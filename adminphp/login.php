@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
 <head>
   <meta charset="UTF-8">
   <title>Adoption Account</title>
+      <link rel="stylesheet" href="login.css">
   <style>
     body {
       font-family: Arial, sans-serif;
