@@ -50,15 +50,26 @@
     <!-- About Section -->
     <section class="mb-8">
       <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">About Shelter of Light</h2>
-      <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm text-justify leading-relaxed">
-        Shelter of Light is an independent rescue located in Quezon City, Philippines. Established on November 20, 2020, it was created by a young woman as supported by her family. Shelter of Light cares for different animals, but has a prime focus on cats, especially the following: neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. Currently residing only in a family home, SoL’s dream is to someday build a sanctuary that will extend help to more animals in need. Shelter of Light, together with animal welfare, also greatly advocates for education and mental health.
-      </div>
-    </section>
+      <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm leading-relaxed flex flex-col md:flex-row gap-4 items-start">
+  <!-- Image -->
+  <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
+  <!-- Text -->
+  <p class="text-justify">
+    Shelter of Light is an independent rescue located in Quezon City, Philippines. Established on November 20, 2020, it was created by a young woman as supported by her family. Shelter of Light cares for different animals, but has a prime focus on cats, especially the following: neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. Currently residing only in a family home, SoL’s dream is to someday build a sanctuary that will extend help to more animals in need. Shelter of Light, together with animal welfare, also greatly advocates for education and mental health.
+  </p>
+</div>
 
+      
+    </section>
     <!-- Mission and Vision Section -->
     <section class="mb-8">
       <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Mission and Vision</h2>
-      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
+      <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm leading-relaxed flex flex-col md:flex-row gap-4 items-start">
+  <!-- Image -->
+  <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
+  <!-- Text -->
+  <p class="text-justify">
+  Shelter of Light aims to rescue and rehabilitate abandoned and neglected animals, with a primary focus on cats, especially neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. We strive to provide a safe and loving environment to these animals, giving them the necessary medical care, food, shelter, and love they require to thrive. Through our advocacies of animal welfare, mental health, and education, we aim to raise awareness and inspire compassion towards all living beings</p>
     </section>
 
     <!-- Adoption Stories -->
