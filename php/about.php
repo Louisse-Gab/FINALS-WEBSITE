@@ -20,21 +20,20 @@
   <!-- Header -->
   <header class="bg-[#FFFBE9] shadow-md">
     <div class="container mx-auto flex justify-between items-center px-6 py-6">
-      <!-- Logo and Title -->
-      <div class="flex items-center space-x-5">
-        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16">
-        <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
-      </div>
-      <!-- Navigation -->
-      <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
-        <a href="#about" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="#what-we-do" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="#donate" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="#adopt" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="#contact" class="hover:text-[#FFBB00]">Contact</a>
-      </nav>
-      <!-- Search Icon -->
+    <a href="home.php" class="flex items-center space-x-5">
+  <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16">
+  <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
+</a>
+
+     <!-- Navigation -->
+     <nav class="flex space-x-8 text-base uppercase font-bold"> <!-- Larger navigation font -->
+                <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
+                <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
+                <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
+                <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+                <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+                <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+            </nav>
       <div>
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -46,47 +45,61 @@
   </header>
 
   <!-- Main Content -->
-  <main class="bg-[#FFEBB9] py-12 px-4">
-    <!-- About Section -->
-    <section class="mb-8">
-      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">About Shelter of Light</h2>
-      <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm leading-relaxed flex flex-col md:flex-row gap-4 items-start">
-        <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
-        <p class="text-justify">
+  <main class="bg-[#FFEBB9] py-16 px-6">
+
+    <!-- About SHELTER OF LIGHT -->
+    <section id="about" class="mb-12">
+      <h2 class="text-center text-xl font-bold uppercase bg-[#FFF2CD] py-5 rounded-md text-black">About Shelter of Light</h2>
+      <div class="bg-white border border-gray-300 rounded-md p-12 mt-6 leading-relaxed flex flex-col md:flex-row gap-6 items-start">
+        <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/About Shelter of Light.jpeg" alt="Shelter Image" class="w-full md:w-72 rounded-lg object-cover">
+        <p class="text-justify text-xl">
           Shelter of Light is an independent rescue located in Quezon City, Philippines. Established on November 20, 2020, it was created by a young woman as supported by her family. Shelter of Light cares for different animals, but has a prime focus on cats, especially the following: neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. Currently residing only in a family home, SoL’s dream is to someday build a sanctuary that will extend help to more animals in need. Shelter of Light, together with animal welfare, also greatly advocates for education and mental health.
         </p>
       </div>
     </section>
 
     <!-- Mission and Vision Section -->
-    <section class="mb-8">
-      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Mission and Vision</h2>
-      <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm leading-relaxed flex flex-col md:flex-row gap-4 items-start">
-        <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
-        <div class="flex flex-col gap-4">
-          <p class="text-justify">
-            Shelter of Light aims to rescue and rehabilitate abandoned and neglected animals, with a primary focus on cats, especially neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. We strive to provide a safe and loving environment to these animals, giving them the necessary medical care, food, shelter, and love they require to thrive. Through our advocacies of animal welfare, mental health, and education, we aim to raise awareness and inspire compassion towards all living beings.
-          </p>
-          <p class="text-justify">
-            Our vision at Shelter of Light is to create a community where all animals are treated with the love and respect that they deserve. We strive to be one of the leading forces in animal welfare and advocacy and in providing a safe haven for animals in need. Our ultimate goal is to build a sanctuary that will accommodate more animals and expand our reach, enabling us to help more and promote a culture of kindness and compassion towards animals and humans alike. We envision a society where people are educated and inspired to care for animals, and where the bond between humans and animals is strengthened and celebrated.
-          </p>
+    <section class="mb-12">
+      <h2 class="text-center text-xl font-bold uppercase bg-[#FFF2CD] py-4 rounded-md text-black">Mission and Vision</h2>
+      <div class="bg-white border border-gray-300 rounded-md p-6 mt-4 leading-relaxed text-xl">
+        <div class="flex flex-col md:flex-row gap-8">
+          <!-- Mission -->
+          <div class="flex-1 border-r border-gray-300 pr-6">
+            <h3 class="text-2xl font-bold mb-3 text-center">Mission</h3>
+            <p class="text-justify">
+              Shelter of Light aims to rescue and rehabilitate abandoned and neglected animals, with a primary focus on cats—especially neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. We strive to provide a safe and loving environment to these animals, giving them the necessary medical care, food, shelter, and love they require to thrive. Through our advocacies of animal welfare, mental health, and education, we aim to raise awareness and inspire compassion toward all living beings.
+            </p>
+          </div>
+
+          <!-- Vision -->
+          <div class="flex-1 pl-6">
+            <h3 class="text-2xl font-bold mb-3 text-center">Vision</h3>
+            <p class="text-justify">
+              Our vision at Shelter of Light is to create a community where all animals are treated with the love and respect that they deserve. We strive to be one of the leading forces in animal welfare and advocacy and in providing a safe haven for animals in need. Our ultimate goal is to build a sanctuary that will accommodate more animals and expand our reach, enabling us to help more and promote a culture of kindness and compassion toward animals and humans alike.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Adoption Stories Section -->
-    <section class="mb-12">
-      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Adoption Stories</h2>
+    <section class="mb-16" id="adopt">
+      <h2 class="text-center text-xl font-bold uppercase bg-[#FFF2CD] py-4 rounded-md text-black">Adoption Stories</h2>
 
       <!-- Cats Carousel -->
-      <section class="mb-6">
+     <!-- Cats Carousel -->
+     <section class="mb-6">
         <h3 class="text-center italic font-bold text-black mt-4">CATS</h3>
         <div class="bg-white border border-gray-300 rounded-md mt-2 p-4">
           <div class="relative overflow-hidden">
             <div id="adoption-carousel" class="flex transition-transform duration-500 ease-in-out">
               <div class="min-w-full p-4 text-center">
-                <img src="../images/adopt1.jpg" alt="Adoption 1" class="mx-auto h-60 object-cover rounded-lg mb-2">
-                <p class="text-sm text-gray-700">Luna found her forever home last March!</p>
+                <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Luna & Diwa.png" alt="Adoption 1" class="mx-auto h-60 object-cover rounded-lg mb-2">
+                <p class="text-sm text-gray-700"> Luna and Diwa </p> 
+                <br>
+                <p class="text-sm text-gray-700"> The story of Shelter of Light began with two rescue kittens—Luna and Diwa. Their journey started when their mother was tragically run over by a car, leaving the tiny kittens orphaned and in need of care. With no prior experience in bottle-feeding animals, the rescuers improvised by using a human baby bottle and Birch Tree milk to nourish them. It was a humble beginning, born out of compassion and a desire to give vulnerable lives a second chance. Luna and Diwa became the first of many, marking the start of a mission rooted in rescue, kindness, and light.
+                </p>
+
               </div>
               <div class="min-w-full p-4 text-center">
                 <img src="../images/adopt2.jpg" alt="Adoption 2" class="mx-auto h-60 object-cover rounded-lg mb-2">
@@ -116,17 +129,49 @@
       </section>
 
       <!-- Dogs Placeholder -->
-      <section>
-        <h3 class="text-center italic font-bold text-black mt-4">DOGS</h3>
-        <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
-      </section>
-    </section>
-  </main>
+       <!-- Dogs Carousel -->
+<section class="mb-6">
+  <h3 class="text-center italic font-bold text-black mt-6">DOGS</h3>
+  <div class="bg-white border border-gray-300 rounded-md mt-2 p-4">
+    <div class="relative overflow-hidden">
+      <div id="dog-carousel" class="flex transition-transform duration-500 ease-in-out">
+        <div class="min-w-full p-4 text-center">
+          <img src="../images/dog1.jpg" alt="Dog 1" class="mx-auto h-60 object-cover rounded-lg mb-2">
+          <p class="text-sm text-gray-700">Buddy was adopted happily!</p>
+        </div>
+        <div class="min-w-full p-4 text-center">
+          <img src="../images/dog2.jpg" alt="Dog 2" class="mx-auto h-60 object-cover rounded-lg mb-2">
+          <p class="text-sm text-gray-700">Max found a new home!</p>
+        </div>
+        <div class="min-w-full p-4 text-center">
+          <img src="../images/dog3.jpg" alt="Dog 3" class="mx-auto h-60 object-cover rounded-lg mb-2">
+          <p class="text-sm text-gray-700">Nala is thriving now!</p>
+        </div>
+        <div class="min-w-full p-4 text-center">
+          <img src="../images/dog4.jpg" alt="Dog 4" class="mx-auto h-60 object-cover rounded-lg mb-2">
+          <p class="text-sm text-gray-700">Rocky got rescued!</p>
+        </div>
+        <div class="min-w-full p-4 text-center">
+          <img src="../images/dog5.jpg" alt="Dog 5" class="mx-auto h-60 object-cover rounded-lg mb-2">
+          <p class="text-sm text-gray-700">Daisy smiles every day!</p>
+        </div>
+        <div class="min-w-full p-4 text-center">
+          <img src="../images/dog6.jpg" alt="Dog 6" class="mx-auto h-60 object-cover rounded-lg mb-2">
+          <p class="text-sm text-gray-700">Charlie loves walks!</p>
+        </div>
+      </div>
+      <button id="dog-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❮</button>
+      <button id="dog-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❯</button>
+    </div>
+  </div>
+</section>
 
+     
   <!-- Footer -->
   <footer class="bg-[#FFEBB9] text-[#5F4B32] py-6">
-    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0 px-6">
-      <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 items-center">
+    <div class="container mx-auto flex justify-between items-center text-sm px-6">
+      <!-- Left Section -->
+      <div class="flex space-x-4 items-center">
         <p class="font-bold">GET IN TOUCH WITH US</p>
         <div class="flex space-x-2">
           <a href="#" class="hover:text-black"><i class="fab fa-facebook"></i></a>
@@ -134,35 +179,42 @@
           <a href="#" class="hover:text-black"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
+      <!-- Center Section -->
       <div class="text-center">
         <p>&copy; Shelter of Light. All Rights Reserved.</p>
       </div>
-      <div class="text-center md:text-right">
+      <!-- Right Section -->
+      <div class="text-right">
         <p class="font-bold">CREATORS OF THIS WEBSITE</p>
-        <p>BRIONES | CABANDA | LIZEN<br>UST – CICS</p>
+        <p>BRIONES | CABANDA | LIZEN<br>UST</p>
       </div>
     </div>
   </footer>
 
   <!-- Carousel Script -->
   <script>
-    const adoptionCarousel = document.getElementById("adoption-carousel");
-    const prevAdoption = document.getElementById("adoption-prev");
-    const nextAdoption = document.getElementById("adoption-next");
+  function setupCarousel(carouselId, prevBtnId, nextBtnId, totalSlides) {
+    const carousel = document.getElementById(carouselId);
+    const prevBtn = document.getElementById(prevBtnId);
+    const nextBtn = document.getElementById(nextBtnId);
 
-    let adoptionIndex = 0;
-    const totalSlides = 6;
+    let currentIndex = 0;
 
-    prevAdoption.addEventListener("click", () => {
-      adoptionIndex = (adoptionIndex === 0) ? totalSlides - 1 : adoptionIndex - 1;
-      adoptionCarousel.style.transform = `translateX(-${adoptionIndex * 100}%)`;
+    prevBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
     });
 
-    nextAdoption.addEventListener("click", () => {
-      adoptionIndex = (adoptionIndex === totalSlides - 1) ? 0 : adoptionIndex + 1;
-      adoptionCarousel.style.transform = `translateX(-${adoptionIndex * 100}%)`;
+    nextBtn.addEventListener("click", () => {
+      currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
+      carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
     });
-  </script>
+  }
+
+  // Initialize both carousels
+  setupCarousel("adoption-carousel", "adoption-prev", "adoption-next", 6); // Cats
+  setupCarousel("dog-carousel", "dog-prev", "dog-next", 6); // Dogs
+</script>
 
 </body>
 </html>
