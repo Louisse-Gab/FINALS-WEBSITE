@@ -45,7 +45,7 @@
     </header>
 
     <!-- Hero Section -->
-     <section class="bg-[#FFEBB9] py-12">
+     <section class="bg-[#FFFBDE] py-12">
         <div class="container mx-auto text-center">
             <div class="flex justify-center items-center">
                 <img src="../images/SHELTER OF LIGHT/PAW-LOGO.png" alt="Paw Logo" class="w-24 h-24 mr-4"> <!-- Paw Logo -->
@@ -71,7 +71,7 @@
     </section>
 
     <!-- Latest Pet Adopted Section -->
-    <section class="bg-[#FFEBB9] py-12"> <!-- Larger padding -->
+    <section class="bg-[#FFFBDE] py-12"> <!-- Larger padding -->
         <div class="container mx-auto">
             <h2 class="text-center text-2xl font-bold text-gray-800 mb-6">Latest Pet Adopted</h2>
             <!-- Carousel -->
@@ -117,7 +117,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-[#FFEBB9] text-[#5F4B32] py-6">
+    <footer class="bg-[#FFFBE9] text-[#5F4B32] py-6">
         <div class="container mx-auto flex justify-between items-center text-sm">
             <!-- Left Section -->
             <div class="flex space-x-4 items-center">

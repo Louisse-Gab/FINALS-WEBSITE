@@ -45,7 +45,7 @@
   </header>
 
   <!-- Main Content -->
-  <main class="bg-[#FFEBB9] py-16 px-6">
+  <main class="bg-[#FFFBDE] py-16 px-6">
 
     <!-- About SHELTER OF LIGHT -->
     <section id="about" class="mb-12">
