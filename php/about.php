@@ -93,8 +93,9 @@
           <div class="relative overflow-hidden">
             <div id="adoption-carousel" class="flex transition-transform duration-500 ease-in-out">
               <div class="min-w-full p-4 text-center">
+              <p class="text-sm text-gray-700"> Luna and Diwa </p> 
+              <br>
                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Luna & Diwa.png" alt="Adoption 1" class="mx-auto h-60 object-cover rounded-lg mb-2">
-                <p class="text-sm text-gray-700"> Luna and Diwa </p> 
                 <br>
                 <p class="text-sm text-gray-700"> The story of Shelter of Light began with two rescue kittens—Luna and Diwa. Their journey started when their mother was tragically run over by a car, leaving the tiny kittens orphaned and in need of care. With no prior experience in bottle-feeding animals, the rescuers improvised by using a human baby bottle and Birch Tree milk to nourish them. It was a humble beginning, born out of compassion and a desire to give vulnerable lives a second chance. Luna and Diwa became the first of many, marking the start of a mission rooted in rescue, kindness, and light.
                 </p>
