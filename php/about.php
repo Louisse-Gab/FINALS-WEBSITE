@@ -67,9 +67,13 @@
       <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm leading-relaxed flex flex-col md:flex-row gap-4 items-start">
   <!-- Image -->
   <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
-  <!-- Text -->
+  <!-- Text Mission -->
   <p class="text-justify">
   Shelter of Light aims to rescue and rehabilitate abandoned and neglected animals, with a primary focus on cats, especially neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. We strive to provide a safe and loving environment to these animals, giving them the necessary medical care, food, shelter, and love they require to thrive. Through our advocacies of animal welfare, mental health, and education, we aim to raise awareness and inspire compassion towards all living beings</p>
+
+<!-- Text Vission -->
+<p class="text-justify">
+Our vision at Shelter of Light is to create a community where all animals are treated with the love and respect that they deserve. We strive to be one of the leading forces in animal welfare and advocacy and in providing a safe haven for animals in need. Our ultimate goal is to build a sanctuary that will accommodate more animals and expand our reach, enabling us to help more and promote a culture of kindness and compassion towards animals and humans alike. We envision a society where people are educated and inspired to care for animals, and where the bond between humans and animals is strengthened and celebrated. </p>
     </section>
 
     <!-- Adoption Stories -->
