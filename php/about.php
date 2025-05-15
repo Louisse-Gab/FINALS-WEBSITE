@@ -77,9 +77,51 @@ Our vision at Shelter of Light is to create a community where all animals are tr
     </section>
 
     <!-- Adoption Stories -->
-    <section class="mb-4">
-      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Adoption Stories</h2>
-    </section>
+     <!-- Adoption Stories with Carousel -->
+<section class="mb-12">
+  <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Adoption Stories</h2>
+
+  <div class="relative mt-4 overflow-hidden">
+    <div id="adoption-carousel" class="flex transition-transform duration-500 ease-in-out">
+      <!-- Slide 1 -->
+      <div class="min-w-full p-4 text-center">
+        <img src="../images/adopt1.jpg" alt="Adoption 1" class="mx-auto h-60 object-cover rounded-lg mb-2">
+        <p class="text-sm text-gray-700">Luna found her forever home last March!</p>
+      </div>
+      <!-- Slide 2 -->
+      <div class="min-w-full p-4 text-center">
+        <img src="../images/adopt2.jpg" alt="Adoption 2" class="mx-auto h-60 object-cover rounded-lg mb-2">
+        <p class="text-sm text-gray-700">Biscuit enjoying the cuddles in his new home.</p>
+      </div>
+      <!-- Slide 3 -->
+      <div class="min-w-full p-4 text-center">
+        <img src="../images/adopt3.jpg" alt="Adoption 3" class="mx-auto h-60 object-cover rounded-lg mb-2">
+        <p class="text-sm text-gray-700">Snowy was adopted by a lovely family.</p>
+      </div>
+      <!-- Slide 4 -->
+      <div class="min-w-full p-4 text-center">
+        <img src="../images/adopt4.jpg" alt="Adoption 4" class="mx-auto h-60 object-cover rounded-lg mb-2">
+        <p class="text-sm text-gray-700">Tiny now has a warm bed every night.</p>
+      </div>
+      <!-- Slide 5 -->
+      <div class="min-w-full p-4 text-center">
+        <img src="../images/adopt5.jpg" alt="Adoption 5" class="mx-auto h-60 object-cover rounded-lg mb-2">
+        <p class="text-sm text-gray-700">Pepper made best friends with the kids!</p>
+      </div>
+      <!-- Slide 6 -->
+      <div class="min-w-full p-4 text-center">
+        <img src="../images/adopt6.jpg" alt="Adoption 6" class="mx-auto h-60 object-cover rounded-lg mb-2">
+        <p class="text-sm text-gray-700">Milo lives in a cozy new apartment now.</p>
+      </div>
+    </div>
+
+    <!-- Carousel Buttons -->
+    <button id="adoption-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❮</button>
+    <button id="adoption-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❯</button>
+  </div>
+</section>
+
+    
 
     <!-- Cats -->
     <section class="mb-6">
