@@ -3,96 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shelter of Light</title>
+  <title>About Us - Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css"> <!-- Optional External CSS -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=PoetsenOne&display=swap');
+    .font-poetsen {
+      font-family: 'PoetsenOne', sans-serif;
+    }
+    .font-opensans {
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-[#FFFBE9] text-gray-800 font-opensans">
 
-  <!-- Navigation Bar -->
-  <nav class="bg-white shadow-md p-4 md:flex md:items-center md:justify-between">
-    <div class="flex flex-wrap items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <img src="logo.png" alt="Shelter Logo" class="h-8 w-8" />
-        <h1 class="font-bold text-lg">Shelter of Light</h1>
+  <!-- Header -->
+  <header class="bg-[#FFFBE9] shadow-md">
+    <div class="container mx-auto flex justify-between items-center px-6 py-6">
+      <!-- Logo and Title -->
+      <div class="flex items-center space-x-5">
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16">
+        <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </div>
-      <div class="flex flex-wrap gap-3 text-sm md:text-base">
-        <a href="#" class="text-orange-500 font-semibold">HOME</a>
-        <a href="#">ABOUT US</a>
-        <a href="#">WHAT WE DO</a>
-        <a href="#">DONATE</a>
-        <a href="#">ADOPT</a>
-        <a href="#">CONTACT</a>
+      <!-- Navigation -->
+      <nav class="flex space-x-8 text-base uppercase font-bold">
+        <a href="#home" class="text-[#FFBB00] hover:text-black">Home</a>
+        <a href="#about" class="hover:text-[#FFBB00]">About Us</a>
+        <a href="#what-we-do" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="#donate" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="#adopt" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="#contact" class="hover:text-[#FFBB00]">Contact</a>
+      </nav>
+      <!-- Search Icon -->
+      <div>
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+          </svg>
+        </button>
       </div>
     </div>
-    <div class="mt-2 md:mt-0">
-      <input type="text" placeholder="Search" class="border rounded px-2 py-1 w-full md:w-auto" />
-    </div>
-  </nav>
+  </header>
 
-  <!-- Content Wrapper -->
-  <main class="p-4 space-y-10 max-w-3xl mx-auto">
-
+  <!-- Main About Content -->
+  <main class="bg-[#FFEBB9] py-12 px-4">
     <!-- About Section -->
-    <section>
-      <h2 class="text-center font-semibold mb-2">ABOUT SHELTER OF LIGHT</h2>
-      <div class="bg-white border border-gray-300 h-48 flex items-center justify-center overflow-hidden">
-        <img src="about-image.png" alt="About Shelter" class="h-full w-auto object-cover" />
-      </div>
+    <section class="mb-8">
+      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">About Shelter of Light</h2>
+      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
     </section>
 
-    <!-- Mission and Vision -->
-    <section>
-      <h2 class="text-center font-semibold mb-2">MISSION AND VISION</h2>
-      <div class="bg-white border border-gray-300 h-48 flex items-center justify-center overflow-hidden">
-        <img src="mission-image.png" alt="Our Mission and Vision" class="h-full w-auto object-cover" />
-      </div>
+    <!-- Mission and Vision Section -->
+    <section class="mb-8">
+      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Mission and Vision</h2>
+      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
     </section>
 
     <!-- Adoption Stories -->
+    <section class="mb-4">
+      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Adoption Stories</h2>
+    </section>
+
+    <!-- Cats -->
+    <section class="mb-6">
+      <h3 class="text-center italic font-bold text-black">CATS</h3>
+      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
+    </section>
+
+    <!-- Dogs -->
     <section>
-      <h2 class="text-center font-semibold mb-4">ADOPTION STORIES</h2>
-
-      <!-- Cats -->
-      <div class="mb-6">
-        <h3 class="text-center font-bold italic mb-1">CATS</h3>
-        <div class="bg-white border border-gray-300 h-48 flex items-center justify-center overflow-hidden">
-          <img src="cats.png" alt="Adopted Cats" class="h-full w-auto object-cover" />
-        </div>
-      </div>
-
-      <!-- Dogs -->
-      <div>
-        <h3 class="text-center font-bold italic mb-1">DOGS</h3>
-        <div class="bg-white border border-gray-300 h-48 flex items-center justify-center overflow-hidden">
-          <img src="dogs.png" alt="Adopted Dogs" class="h-full w-auto object-cover" />
-        </div>
-      </div>
+      <h3 class="text-center italic font-bold text-black">DOGS</h3>
+      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-yellow-100 mt-12 text-sm py-6">
-    <div class="flex flex-col md:flex-row justify-between items-center px-6 text-center md:text-left space-y-4 md:space-y-0">
-      
-      <!-- Contact -->
-      <div>
-        <p class="font-medium">GET IN TOUCH WITH US</p>
-        <div class="flex justify-center md:justify-start gap-3 mt-1">
-          <img src="icon1.png" alt="Facebook" class="h-5" />
-          <img src="icon2.png" alt="Instagram" class="h-5" />
-          <img src="icon3.png" alt="Email" class="h-5" />
+  <footer class="bg-[#FFEBB9] text-[#5F4B32] py-6">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0 px-6">
+      <!-- Left -->
+      <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 items-center">
+        <p class="font-bold">GET IN TOUCH WITH US</p>
+        <div class="flex space-x-2">
+          <a href="#" class="hover:text-black"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="hover:text-black"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="hover:text-black"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
-
-      <!-- Creators -->
-      <div>
-        <p class="font-medium">CREATORS OF THIS WEBSITE</p>
-        <p>BRIONES | CABANADA | UZON</p>
-        <p>BSIT - CACS</p>
+      <!-- Center -->
+      <div class="text-center">
+        <p>&copy; Shelter of Light. All Rights Reserved.</p>
+      </div>
+      <!-- Right -->
+      <div class="text-center md:text-right">
+        <p class="font-bold">CREATORS OF THIS WEBSITE</p>
+        <p>BRIONES | CABANDA | LIZEN<br>UST – CICS</p>
       </div>
     </div>
-    <p class="text-center mt-4">&copy; Shelter of Light. All Rights Reserved.</p>
   </footer>
+
 </body>
 </html>
