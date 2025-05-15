@@ -27,7 +27,7 @@
       </div>
       <!-- Navigation -->
       <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="#home" class="text-[#FFBB00] hover:text-black">Home</a>
+        <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
         <a href="#about" class="hover:text-[#FFBB00]">About Us</a>
         <a href="#what-we-do" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="#donate" class="hover:text-[#FFBB00]">Donate</a>
