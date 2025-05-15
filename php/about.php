@@ -50,7 +50,9 @@
     <!-- About Section -->
     <section class="mb-8">
       <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">About Shelter of Light</h2>
-      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
+      <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm text-justify leading-relaxed">
+        Shelter of Light is an independent rescue located in Quezon City, Philippines. Established on November 20, 2020, it was created by a young woman as supported by her family. Shelter of Light cares for different animals, but has a prime focus on cats, especially the following: neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. Currently residing only in a family home, SoL’s dream is to someday build a sanctuary that will extend help to more animals in need. Shelter of Light, together with animal welfare, also greatly advocates for education and mental health.
+      </div>
     </section>
 
     <!-- Mission and Vision Section -->
