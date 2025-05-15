@@ -27,8 +27,8 @@
 
      <!-- Navigation -->
      <nav class="flex space-x-8 text-base uppercase font-bold"> <!-- Larger navigation font -->
-                <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
-                <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
+                <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+                <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
                 <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
                 <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
                 <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
@@ -87,7 +87,6 @@
       <h2 class="text-center text-xl font-bold uppercase bg-[#FFF2CD] py-4 rounded-md text-black">Adoption Stories</h2>
 
       <!-- Cats Carousel -->
-     <!-- Cats Carousel -->
      <section class="mb-6">
         <h3 class="text-center italic font-bold text-black mt-4">CATS</h3>
         <div class="bg-white border border-gray-300 rounded-md mt-2 p-4">
