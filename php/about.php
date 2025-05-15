@@ -45,101 +45,87 @@
     </div>
   </header>
 
-  <!-- Main About Content -->
+  <!-- Main Content -->
   <main class="bg-[#FFEBB9] py-12 px-4">
     <!-- About Section -->
     <section class="mb-8">
       <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">About Shelter of Light</h2>
       <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm leading-relaxed flex flex-col md:flex-row gap-4 items-start">
-  <!-- Image -->
-  <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
-  <!-- Text -->
-  <p class="text-justify">
-    Shelter of Light is an independent rescue located in Quezon City, Philippines. Established on November 20, 2020, it was created by a young woman as supported by her family. Shelter of Light cares for different animals, but has a prime focus on cats, especially the following: neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. Currently residing only in a family home, SoL’s dream is to someday build a sanctuary that will extend help to more animals in need. Shelter of Light, together with animal welfare, also greatly advocates for education and mental health.
-  </p>
-</div>
-
-      
+        <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
+        <p class="text-justify">
+          Shelter of Light is an independent rescue located in Quezon City, Philippines. Established on November 20, 2020, it was created by a young woman as supported by her family. Shelter of Light cares for different animals, but has a prime focus on cats, especially the following: neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. Currently residing only in a family home, SoL’s dream is to someday build a sanctuary that will extend help to more animals in need. Shelter of Light, together with animal welfare, also greatly advocates for education and mental health.
+        </p>
+      </div>
     </section>
+
     <!-- Mission and Vision Section -->
     <section class="mb-8">
       <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Mission and Vision</h2>
       <div class="bg-white border border-gray-300 rounded-md p-4 mt-2 text-sm leading-relaxed flex flex-col md:flex-row gap-4 items-start">
-  <!-- Image -->
-  <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
-  <!-- Text Mission -->
-  <p class="text-justify">
-  Shelter of Light aims to rescue and rehabilitate abandoned and neglected animals, with a primary focus on cats, especially neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. We strive to provide a safe and loving environment to these animals, giving them the necessary medical care, food, shelter, and love they require to thrive. Through our advocacies of animal welfare, mental health, and education, we aim to raise awareness and inspire compassion towards all living beings</p>
-
-<!-- Text Vission -->
-<p class="text-justify">
-Our vision at Shelter of Light is to create a community where all animals are treated with the love and respect that they deserve. We strive to be one of the leading forces in animal welfare and advocacy and in providing a safe haven for animals in need. Our ultimate goal is to build a sanctuary that will accommodate more animals and expand our reach, enabling us to help more and promote a culture of kindness and compassion towards animals and humans alike. We envision a society where people are educated and inspired to care for animals, and where the bond between humans and animals is strengthened and celebrated. </p>
+        <img src="" alt="Shelter Image" class="w-full md:w-64 rounded-lg object-cover">
+        <div class="flex flex-col gap-4">
+          <p class="text-justify">
+            Shelter of Light aims to rescue and rehabilitate abandoned and neglected animals, with a primary focus on cats, especially neonates, mama cats, special needs, semi-ferals, and those with existing illnesses. We strive to provide a safe and loving environment to these animals, giving them the necessary medical care, food, shelter, and love they require to thrive. Through our advocacies of animal welfare, mental health, and education, we aim to raise awareness and inspire compassion towards all living beings.
+          </p>
+          <p class="text-justify">
+            Our vision at Shelter of Light is to create a community where all animals are treated with the love and respect that they deserve. We strive to be one of the leading forces in animal welfare and advocacy and in providing a safe haven for animals in need. Our ultimate goal is to build a sanctuary that will accommodate more animals and expand our reach, enabling us to help more and promote a culture of kindness and compassion towards animals and humans alike. We envision a society where people are educated and inspired to care for animals, and where the bond between humans and animals is strengthened and celebrated.
+          </p>
+        </div>
+      </div>
     </section>
 
-    <!-- Adoption Stories -->
-     <!-- Adoption Stories with Carousel -->
-<section class="mb-12">
-  <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Adoption Stories</h2>
+    <!-- Adoption Stories Section -->
+    <section class="mb-12">
+      <h2 class="text-center text-sm font-bold uppercase bg-[#FFF2CD] py-2 rounded-md text-black">Adoption Stories</h2>
 
-  <div class="relative mt-4 overflow-hidden">
-    <div id="adoption-carousel" class="flex transition-transform duration-500 ease-in-out">
-      <!-- Slide 1 -->
-      <div class="min-w-full p-4 text-center">
-        <img src="../images/adopt1.jpg" alt="Adoption 1" class="mx-auto h-60 object-cover rounded-lg mb-2">
-        <p class="text-sm text-gray-700">Luna found her forever home last March!</p>
-      </div>
-      <!-- Slide 2 -->
-      <div class="min-w-full p-4 text-center">
-        <img src="../images/adopt2.jpg" alt="Adoption 2" class="mx-auto h-60 object-cover rounded-lg mb-2">
-        <p class="text-sm text-gray-700">Biscuit enjoying the cuddles in his new home.</p>
-      </div>
-      <!-- Slide 3 -->
-      <div class="min-w-full p-4 text-center">
-        <img src="../images/adopt3.jpg" alt="Adoption 3" class="mx-auto h-60 object-cover rounded-lg mb-2">
-        <p class="text-sm text-gray-700">Snowy was adopted by a lovely family.</p>
-      </div>
-      <!-- Slide 4 -->
-      <div class="min-w-full p-4 text-center">
-        <img src="../images/adopt4.jpg" alt="Adoption 4" class="mx-auto h-60 object-cover rounded-lg mb-2">
-        <p class="text-sm text-gray-700">Tiny now has a warm bed every night.</p>
-      </div>
-      <!-- Slide 5 -->
-      <div class="min-w-full p-4 text-center">
-        <img src="../images/adopt5.jpg" alt="Adoption 5" class="mx-auto h-60 object-cover rounded-lg mb-2">
-        <p class="text-sm text-gray-700">Pepper made best friends with the kids!</p>
-      </div>
-      <!-- Slide 6 -->
-      <div class="min-w-full p-4 text-center">
-        <img src="../images/adopt6.jpg" alt="Adoption 6" class="mx-auto h-60 object-cover rounded-lg mb-2">
-        <p class="text-sm text-gray-700">Milo lives in a cozy new apartment now.</p>
-      </div>
-    </div>
+      <!-- Cats Carousel -->
+      <section class="mb-6">
+        <h3 class="text-center italic font-bold text-black mt-4">CATS</h3>
+        <div class="bg-white border border-gray-300 rounded-md mt-2 p-4">
+          <div class="relative overflow-hidden">
+            <div id="adoption-carousel" class="flex transition-transform duration-500 ease-in-out">
+              <div class="min-w-full p-4 text-center">
+                <img src="../images/adopt1.jpg" alt="Adoption 1" class="mx-auto h-60 object-cover rounded-lg mb-2">
+                <p class="text-sm text-gray-700">Luna found her forever home last March!</p>
+              </div>
+              <div class="min-w-full p-4 text-center">
+                <img src="../images/adopt2.jpg" alt="Adoption 2" class="mx-auto h-60 object-cover rounded-lg mb-2">
+                <p class="text-sm text-gray-700">Biscuit enjoying the cuddles in his new home.</p>
+              </div>
+              <div class="min-w-full p-4 text-center">
+                <img src="../images/adopt3.jpg" alt="Adoption 3" class="mx-auto h-60 object-cover rounded-lg mb-2">
+                <p class="text-sm text-gray-700">Snowy was adopted by a lovely family.</p>
+              </div>
+              <div class="min-w-full p-4 text-center">
+                <img src="../images/adopt4.jpg" alt="Adoption 4" class="mx-auto h-60 object-cover rounded-lg mb-2">
+                <p class="text-sm text-gray-700">Tiny now has a warm bed every night.</p>
+              </div>
+              <div class="min-w-full p-4 text-center">
+                <img src="../images/adopt5.jpg" alt="Adoption 5" class="mx-auto h-60 object-cover rounded-lg mb-2">
+                <p class="text-sm text-gray-700">Pepper made best friends with the kids!</p>
+              </div>
+              <div class="min-w-full p-4 text-center">
+                <img src="../images/adopt6.jpg" alt="Adoption 6" class="mx-auto h-60 object-cover rounded-lg mb-2">
+                <p class="text-sm text-gray-700">Milo lives in a cozy new apartment now.</p>
+              </div>
+            </div>
+            <button id="adoption-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❮</button>
+            <button id="adoption-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❯</button>
+          </div>
+        </div>
+      </section>
 
-    <!-- Carousel Buttons -->
-    <button id="adoption-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❮</button>
-    <button id="adoption-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-1 rounded-full">❯</button>
-  </div>
-</section>
-
-    
-
-    <!-- Cats -->
-    <section class="mb-6">
-      <h3 class="text-center italic font-bold text-black">CATS</h3>
-      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
-    </section>
-
-    <!-- Dogs -->
-    <section>
-      <h3 class="text-center italic font-bold text-black">DOGS</h3>
-      <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
+      <!-- Dogs Placeholder -->
+      <section>
+        <h3 class="text-center italic font-bold text-black mt-4">DOGS</h3>
+        <div class="bg-white border border-gray-300 rounded-md h-48 mt-2"></div>
+      </section>
     </section>
   </main>
 
   <!-- Footer -->
   <footer class="bg-[#FFEBB9] text-[#5F4B32] py-6">
     <div class="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0 px-6">
-      <!-- Left -->
       <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 items-center">
         <p class="font-bold">GET IN TOUCH WITH US</p>
         <div class="flex space-x-2">
@@ -148,17 +134,35 @@ Our vision at Shelter of Light is to create a community where all animals are tr
           <a href="#" class="hover:text-black"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
-      <!-- Center -->
       <div class="text-center">
         <p>&copy; Shelter of Light. All Rights Reserved.</p>
       </div>
-      <!-- Right -->
       <div class="text-center md:text-right">
         <p class="font-bold">CREATORS OF THIS WEBSITE</p>
         <p>BRIONES | CABANDA | LIZEN<br>UST – CICS</p>
       </div>
     </div>
   </footer>
+
+  <!-- Carousel Script -->
+  <script>
+    const adoptionCarousel = document.getElementById("adoption-carousel");
+    const prevAdoption = document.getElementById("adoption-prev");
+    const nextAdoption = document.getElementById("adoption-next");
+
+    let adoptionIndex = 0;
+    const totalSlides = 6;
+
+    prevAdoption.addEventListener("click", () => {
+      adoptionIndex = (adoptionIndex === 0) ? totalSlides - 1 : adoptionIndex - 1;
+      adoptionCarousel.style.transform = `translateX(-${adoptionIndex * 100}%)`;
+    });
+
+    nextAdoption.addEventListener("click", () => {
+      adoptionIndex = (adoptionIndex === totalSlides - 1) ? 0 : adoptionIndex + 1;
+      adoptionCarousel.style.transform = `translateX(-${adoptionIndex * 100}%)`;
+    });
+  </script>
 
 </body>
 </html>
