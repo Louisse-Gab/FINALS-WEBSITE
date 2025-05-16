@@ -250,7 +250,6 @@ a.contact-icon-wrapper:hover {
         <div class="bg-white border border-gray-200/50 rounded-lg p-8 my-8 text-center overflow-hidden">
             <!-- Contact Image Container -->
             <div class="w-full max-w-[300px] mx-auto mb-8 rounded-lg overflow-hidden">
-                <img src="../images/contact/contact-image.jpg" alt="Contact Us" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/300x200/FFBB00/ffffff?text=Contact+Us'">
             </div>
             
             <!-- Contact Icons Container Wrapper -->
