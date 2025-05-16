@@ -231,13 +231,13 @@ $socialLinks = [
             <div class="relative overflow-hidden">
                 <div class="flex transition-transform duration-300 ease-in-out" id="carousel">
                     <div class="w-full flex-none">
-                        <img src="pet1.jpg" alt="Pet 1" class="w-full h-48 lg:h-60 object-cover rounded-md">
+                        <img src="" alt="Pet 1" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                     </div>
                     <div class="w-full flex-none">
-                        <img src="pet2.jpg" alt="Pet 2" class="w-full h-48 lg:h-60 object-cover rounded-md">
+                        <img src="" alt="Pet 2" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                     </div>
                     <div class="w-full flex-none">
-                        <img src="pet3.jpg" alt="Pet 3" class="w-full h-48 lg:h-60 object-cover rounded-md">
+                        <img src="" alt="Pet 3" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                     </div>
                 </div>
                 <!-- Carousel navigation -->
