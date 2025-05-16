@@ -221,11 +221,11 @@ a.contact-icon-wrapper:hover {
       <!-- Desktop Navigation -->
  <nav class="desktop-nav space-x-4 lg:space-x-8 text-sm lg:text-base uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
+        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+        <a href="contact.php" class="text-[#FFBB00] hover:text-black"">Contact</a>
       </nav>
       
       <!-- Search Icon -->
