@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users</title>
+    <title>Shelter of Light</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Menu transition effects */
@@ -28,9 +28,28 @@
             opacity: 1;
             pointer-events: auto;
         }
+
+        /* Card hover effect */
+        .dashboard-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Profile icon hover effect */
+        .profile-icon {
+            transition: transform 0.2s ease;
+        }
+        
+        .profile-icon:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
-<body class="bg-gray-800 text-black-300 font-sans">
+<body class="bg-[#fffbeb] font-sans min-h-screen">
     <!-- Side Menu Overlay -->
     <div id="menuOverlay" class="menu-overlay fixed inset-0 z-20"></div>
     
@@ -46,9 +65,9 @@
             <ul class="space-y-4">
                 <!-- Home Menu Item -->
                 <li>
-                    <a href="../adminphp/index.php" 
+                    <a href="../index.php" 
                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300" 
-                       data-url="../admpinphp.index.php">
+                       data-url="../index.php">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -84,7 +103,7 @@
                 </li>
                 <li>  
                     <a href="../adminphp/users.php"
-                       class="menu-item block py-2 px-4 bg-[#FDCB58] rounded-lg transition duration-300" 
+                       class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300" 
                        data-url="../adminphp/users.php">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -112,49 +131,45 @@
     </div>
     
     <!-- Header -->
-    <div class="flex justify-between items-center bg-[#FDF2C1] px-6 py-4 shadow-md">
-        <div class="menu-icon text-2xl cursor-pointer">&#9776;</div>
-        <h1 class="text-xl font-bold text-black">Manage Users Here</h1>
-        <div class="w-8 h-8 bg-black rounded-full"></div>
+  <!-- Header -->
+<div class="flex justify-between items-center bg-[#FDF2C1] p-4 shadow-md">
+    <div class="menu-icon text-2xl cursor-pointer">&#9776;</div>
+    <h1 class="text-xl font-bold">Shelter of Light</h1>
+    <div class="flex items-center">
+        <span class="mr-3 text-sm font-medium">
+            <?php echo isset($_SESSION['adminName']) ? $_SESSION['adminName'] : 'Admin'; ?>
+        </span>
+        <a href="../adminphp/adminprof.php" class="w-8 h-8 bg-black rounded-full block profile-icon cursor-pointer" title="Admin Profile">
+            <!-- If there's a profile picture, it would be displayed here -->
+            <?php if(isset($_SESSION['profilePicture']) && !empty($_SESSION['profilePicture'])): ?>
+                <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="Admin Profile" class="w-full h-full rounded-full object-cover">
+            <?php endif; ?>
+        </a>
     </div>
+</div>
+    <!-- Main Dashboard Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col items-center justify-center min-h-[70vh]">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+                <!-- Dashboard Card -->
+                <a href="../adminphp/dash.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <h2 class="text-black text-2xl font-bold">DASHBOARD</h2>
+                </a>
 
-    <!-- Manage Users Table -->
-    <div class="bg-[#FFF9E5] mx-6 my-8 p-6 rounded-lg shadow-lg">
-        <table class="table-auto w-full border-collapse text-left">
-            <thead class="bg-[#FDF2C1]">
-                <tr>
-                    <th class="px-4 py-2 font-bold">#</th>
-                    <th class="px-4 py-2 font-bold">Name</th>
-                    <th class="px-4 py-2 font-bold">Address</th>
-                    <th class="px-4 py-2 font-bold">Phone Number</th>
-                    <th class="px-4 py-2 font-bold">Age</th>
-                    <th class="px-4 py-2 font-bold">Email Address</th>
-                    <th class="px-4 py-2 font-bold">Social Media Account</th>
-                    <th class="px-4 py-2 font-bold">Occupation</th>
-                    <th class="px-4 py-2 font-bold">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-white">
-                    <td class="px-4 py-2 border-b">1</td>
-                    <td class="px-4 py-2 border-b">John Doe</td>
-                    <td class="px-4 py-2 border-b">123 Main St.</td>
-                    <td class="px-4 py-2 border-b">+1234567890</td>
-                    <td class="px-4 py-2 border-b">30</td>
-                    <td class="px-4 py-2 border-b">johndoe@example.com</td>
-                    <td class="px-4 py-2 border-b">@johndoe</td>
-                    <td class="px-4 py-2 border-b">Software Engineer</td>
-                    <td class="px-4 py-2 border-b flex space-x-2">
-                        <button class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-700">&#10004;</button>
-                        <button class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700">&#10008;</button>
-                    </td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
+                <!-- Pet List Card -->
+                <a href="../adminphp/plist.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <h2 class="text-black text-2xl font-bold">PET LIST</h2>
+                </a>
+
+                <!-- Manage Users Card -->
+                <a href="../adminphp/users.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <h2 class="text-black text-2xl font-bold">MANAGE USERS</h2>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Link to the external JavaScript file -->
-    <script src="../adminjs/users.js"></script>
+    <script src="../adminjs/index.js"></script>
 </body>
 </html>

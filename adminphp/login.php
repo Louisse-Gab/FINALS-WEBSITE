@@ -9,7 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
         $password = htmlspecialchars($_POST['password']);
 
         if ($username === "admin" && $password === "1234") {
-            $message = "<h2 class='text-center text-green-600 font-bold'>Login successful! Welcome, $username.</h2>";
+            // Redirect to index page on successful login
+            header("Location: index.php");
+            exit(); // Make sure to exit after redirect
         } else {
             $message = "<h2 class='text-center text-red-600 font-bold'>Invalid username or password.</h2>";
         }
@@ -32,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
         <div class="container flex justify-center items-center mt-5">
             <div class="right-panel bg-white border border-gray-300 rounded-lg p-8 shadow-lg w-96">
                 <!-- Login Form -->
-                <form id="loginForm" action="admin-login.php" method="POST" class="flex flex-col">
+                <form id="loginForm" action="index.php" method="POST" class="flex flex-col">
                     <h2 class="text-xl font-bold text-center mb-6">LOGIN</h2>
                     <input 
                         type="text" 
