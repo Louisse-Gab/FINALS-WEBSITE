@@ -51,6 +51,7 @@
           <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
               <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
               <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
+              
           </a>
     
     <!-- Desktop Navigation -->
@@ -102,6 +103,7 @@
                 <h1 class="text-3xl lg:text-5xl font-poetsen font-bold text-black">Shelter of Light</h1>
             </div>
             <p class="italic text-[#FFBB00] mt-4 text-base lg:text-lg">"Where Love Shines Through the Darkness."</p>
+            
         </div>
     </section>
 
