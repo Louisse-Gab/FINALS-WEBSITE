@@ -371,9 +371,6 @@ $dogs = [
         <div class="order-2 lg:order-1 flex flex-col sm:flex-row items-center gap-2 lg:gap-4">
           <p class="font-bold whitespace-nowrap">GET IN TOUCH WITH US</p>
           <div class="flex flex-wrap justify-center gap-2 lg:gap-4">
-            <a href="#" class="hover:text-black whitespace-nowrap">Facebook</a>
-            <a href="#" class="hover:text-black whitespace-nowrap">Instagram</a>
-            <a href="#" class="hover:text-black whitespace-nowrap">YouTube</a>
           </div>
         </div>
         
