@@ -221,7 +221,7 @@ class Dog extends Animal {
                         <!-- Carousel Items -->
                         <div class="carousel-slide active">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Luna and Diwa</p>
+                                <p class="text-center font-bold text-black mt-4">Luna and Diwa</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Luna & Diwa.png" alt="Luna & Diwa" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -231,7 +231,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Sinag</p>
+                                <p class="text-center font-bold text-black mt-4">Sinag</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Sinag.png" alt="Sinag" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -241,7 +241,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Faith</p>
+                                <p class="text-center font-bold text-black mt-4">Faith</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Faith.png" alt="Faith" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -251,7 +251,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Bless</p>
+                                <p class="text-center font-bold text-black mt-4">Bless</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Bless.png" alt="Bless" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -261,7 +261,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Viva</p>
+                                <p class="text-center font-bold text-black mt-4">Viva</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Viva.png" alt="Viva" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -271,7 +271,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Boney</p>
+                                <p class="text-center font-bold text-black mt-4">Boney</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Boney.png" alt="Boney" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -292,7 +292,7 @@ class Dog extends Animal {
                         <!-- Carousel Items -->
                         <div class="carousel-slide active">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Toffee</p>
+                                <p class="text-center font-bold text-black mt-4">Toffee</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Toffee.png" alt="Toffee" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -302,7 +302,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Lucky</p>
+                                <p class="text-center font-bold text-black mt-4">Lucky</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Lucky.png" alt="Lucky" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -312,7 +312,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Choco</p>
+                                <p class="text-center font-bold text-black mt-4">Choco</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Choco.png" alt="Choco" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -322,7 +322,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Maria</p>
+                                <p class="text-center font-bold text-black mt-4">Maria</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Maria.png" alt="Maria" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -332,7 +332,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Max</p>
+                                <p class="text-center font-bold text-black mt-4">Max</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Max.png" alt="Max" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>
@@ -342,7 +342,7 @@ class Dog extends Animal {
                         
                         <div class="carousel-slide">
                             <div class="p-4 text-center">
-                                <p class="text-sm text-gray-700">Chou</p>
+                                <p class="text-center font-bold text-black mt-4">Chou</p>
                                 <br>
                                 <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Chou.png" alt="Chou" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                                 <br>

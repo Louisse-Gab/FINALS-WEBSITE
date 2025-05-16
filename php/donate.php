@@ -56,6 +56,19 @@ $navItems = [
         display: none;
       }
     }
+      /* Arrow link styles */
+        .arrow-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            transition: color 0.3s;
+        }
+        
+        .arrow-link:hover svg {
+            transform: translateX(-5px);
+            transition: transform 0.3s ease;
+        }
   </style>
 
 </head>
@@ -115,8 +128,13 @@ $navItems = [
 <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
         <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
             <div class="w-6"></div> <!-- Empty div for spacing -->
+<<<<<<< HEAD
             <h2 class="text-lg lg:text-xl font-medium text-center">Thank you for your interest in donating! We accept through the following:</h2>
             <a href="../../php/whatwedo.php" class="arrow-link text-black hover:text-[#FFBB00]">
+=======
+            <h2 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center">Thank you for your interest in donating! We accept through the following:</h2>
+            <a href="home.php" class="arrow-link text-black hover:text-[#FFBB00]">
+>>>>>>> a47103caade6190c533fc6c44efd7982f3561f6f
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
