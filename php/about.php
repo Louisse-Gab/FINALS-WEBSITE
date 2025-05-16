@@ -295,29 +295,48 @@ $dogs = [
                   <p class="text-sm text-gray-700"> The story of Shelter of Light began with two rescue kittens—Luna and Diwa. Their journey started when their mother was tragically run over by a car, leaving the tiny kittens orphaned and in need of care. With no prior experience in bottle-feeding animals, the rescuers improvised by using a human baby bottle and Birch Tree milk to nourish them. It was a humble beginning, born out of compassion and a desire to give vulnerable lives a second chance. Luna and Diwa became the first of many, marking the start of a mission rooted in rescue, kindness, and light.
                   </p>
                 </div>
+                
                 <div class="min-w-full p-4 text-center">
                 <p class="text-sm text-gray-700">Sinag</p>
                 <br>
                   <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Sinag.png" alt="Adoption 2" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                </div>
-                <div class="min-w-full p-4 text-center">
-                  <img src="../images/adopt3.jpg" alt="Adoption 3" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <br>
+                <br>
                   <p class="text-sm text-gray-700"> Shelter of Light’s first official rescue was a cat named Sinag. She was found in heartbreaking condition—infested with mites and lice, and with one eye already ruptured. Despite the severity of her condition, she was given a name that meant "ray of light," symbolizing hope in the midst of suffering. Sinag was lovingly cared for and lived for almost two years, bringing warmth and inspiration to those around her. Sadly, she crossed the rainbow bridge due to a blood parasite—an effect of her compromised health from the very beginning. Her life, though short, became a defining moment in Shelter of Light’s mission: to stand for those who cannot speak and to bring light where it is most needed.</p>
+                </div>
+
+                <div class="min-w-full p-4 text-center">
+                <p class="text-sm text-gray-700">Faith</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Faith.png" alt="Adoption 3" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                <br>
+                <p class="text-sm text-gray-700">Faith was rescued by us after a supporter reached out for help. She was such a sweet cat who had a large wound on her eye. We fought for her for weeks, but the wound on her face has become necrotizing so we had to let her go and let her rest</p>
+                </div>
+
+                <div class="min-w-full p-4 text-center">
+                <p class="text-sm text-gray-700">Bless</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Bless.png" alt="Adoption 4" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">Bless was found in front of a church by a supporter of SoL. She was probably hit by a car as she had a hernia and was paralyzed because her spine was broken. She is still with us, and just recently underwent her third surgery. Bless is a beautiful cat who is usually nonchalant but also sweet.</p>                
+                </div>
+                
+                <div class="min-w-full p-4 text-center">
+                <p class="text-sm text-gray-700">Viva</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Viva.png" alt="Adoption 5" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">This is Viva, who was found with Vivo during the fire incident. She has burned paws and was very sickly right from the start. We later found out she has FIP. She completed her treatment but her FIP suddenly became neuro and despite all our efforts, as well as the vets’, VIva succumbed to her illness after months. </p>
 
                 </div>
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/adopt4.jpg" alt="Adoption 4" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Tiny now has a warm bed every night.</p>
+                <p class="text-sm text-gray-700">Boney</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Boney.png" alt="Adoption 6" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">Boney was found limping on the street, with a bone visibly protruding from his leg. The injury led to an amputation, but becoming three-legged never slowed him down. Today, he’s one of Shelter of Light’s funniest and most playful cats, often seen running around with the younger ones—full of life and spirit.
+                  </p>
                 </div>
-                <div class="min-w-full p-4 text-center">
-                  <img src="../images/adopt5.jpg" alt="Adoption 5" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Pepper made best friends with the kids!</p>
-                </div>
-                <div class="min-w-full p-4 text-center">
-                  <img src="../images/adopt6.jpg" alt="Adoption 6" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Milo lives in a cozy new apartment now.</p>
-                </div>
+
               </div>
               <button id="adoption-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 lg:px-3 py-1 rounded-full text-sm lg:text-base">❮</button>
               <button id="adoption-next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 lg:px-3 py-1 rounded-full text-sm lg:text-base">❯</button>
@@ -332,28 +351,55 @@ $dogs = [
             <div class="relative overflow-hidden">
               <div id="dog-carousel" class="flex transition-transform duration-500 ease-in-out">
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/dog1.jpg" alt="Dog 1" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Buddy was adopted happily!</p>
+                <p class="text-sm text-gray-700">Toffee</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Toffee.png" alt="Dog 1" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">Toffee was the most aggressive rescue Shelter of Light had taken in. Saved from the pound just a day before scheduled euthanasia, he was limping after being dragged by pound staff. With months of patience and care, his aggression faded—revealing a gentle, loving dog underneath.
+                  </p>
                 </div>
+
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/dog2.jpg" alt="Dog 2" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Max found a new home!</p>
+                <p class="text-sm text-gray-700">Lucky</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Lucky.png" alt="Dog 2" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">Lucky was a paralyzed puppy found thrown into a canal, able to move only his head and mouth. Believed to be abandoned due to his condition, he fought bravely for weeks under vet care. In the end, his body gave up—but his story continues to shine as a symbol of resilience and compassion.</p>
                 </div>
+
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/dog3.jpg" alt="Dog 3" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Nala is thriving now!</p>
+                <p class="text-sm text-gray-700">Choco</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Choco.png" alt="Dog 3" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700"> Choco was an abandoned house dog who kept returning to his former home after his owners moved away. Along the way, he likely encountered cruelty that left him in a severely weakened state. Despite veterinary efforts, Choco passed away—a quiet reminder of the consequences of neglect.</p>
                 </div>
+
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/dog4.jpg" alt="Dog 4" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Rocky got rescued!</p>
+                <p class="text-sm text-gray-700">Maria</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Maria.png" alt="Dog 4" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">Maria was a hit-and-run victim reported by the local barangay. She bravely dragged herself off the road to safety, showing incredible will to live. Though she fought hard, multiple illnesses—including blood parasites—led to her passing despite veterinary care. Her strength left a lasting mark on Shelter of Light.
+                  </p>
                 </div>
+
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/dog5.jpg" alt="Dog 5" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Daisy smiles every day!</p>
+                <p class="text-sm text-gray-700">Max</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Max.png" alt="Dog 5" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">Max was a severely neglected owned dog, found with a chain deeply embedded in his neck—likely worn for a long time. The wound caused muscle trauma and immense pain. Despite weeks of treatment and care, his body eventually gave up. Max's story is a powerful reminder of the cruelty silence can hide.
+                  </p>
                 </div>
+
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/dog6.jpg" alt="Dog 6" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Charlie loves walks!</p>
+                <p class="text-sm text-gray-700">Chou</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Dogs/Chou.png" alt="Dog 6" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
+                  <br>
+                  <p class="text-sm text-gray-700">Chou was a puppy owned by a tenant in our house. She became close to us so when she suddenly got sick and the owners refused to help her, we brought her to the vet. Unfortunately, it was too late and she died due to possible toxicosis and/or canine coronavirus.
+                  </p>
                 </div>
               </div>
               <button id="dog-prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-2 lg:px-3 py-1 rounded-full text-sm lg:text-base">❮</button>
