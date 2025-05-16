@@ -23,13 +23,14 @@
         <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </a>
       <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+        <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
+        <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
+        <a href="../whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
+      <div>
       <div>
         <button>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
