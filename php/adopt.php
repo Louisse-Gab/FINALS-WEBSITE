@@ -26,55 +26,9 @@ $navItems = [
     .modal-overlay {
       background: rgba(0, 0, 0, 0.6);
     }
-  </style>
-  <script>
-    // Open modal by id
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
-    }
-    // Close modal by id
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
 
-    // Close modal on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-          if (!modal.classList.contains('hidden')) {
-            closeModal(modal.id);
-          }
-        });
-      }
-    });
-
-    // Show dog section
-    function showDogSection() {
-      document.getElementById('dog-section').classList.remove('hidden');
-      document.getElementById('see-more-button').classList.add('hidden');
-
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    main {
-      flex: 1;
-    }
-    .full-width-section {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-
-    }
+    
+    /* Media queries */
     @media (max-width: 1023px) {
       .desktop-nav {
         display: none;
@@ -95,7 +49,6 @@ $navItems = [
       }
     }
   </style>
-
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
@@ -106,7 +59,11 @@ $navItems = [
         <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16" />
         <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </a>
+
       <nav class="flex space-x-8 text-base uppercase font-bold">
+
+      <nav class="desktop-nav flex space-x-8 text-base uppercase font-bold">
+
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
         <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
@@ -137,7 +94,7 @@ $navItems = [
       <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-        <a href="whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
@@ -145,74 +102,72 @@ $navItems = [
     </div>
   </header>
 
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 py-8">
+    <section class="mb-12">
+      <div class="flex items-center justify-between bg-[#FFF2CD] px-4 py-3 rounded-md mb-6">
+        <h2 class="text-lg font-bold uppercase text-black">Adopt a Cat</h2>
+      </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-          <!-- Cat Card 1 -->
-          <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-            <p class="font-semibold text-sm text-gray-800">Tabasco</p>
-            <p class="text-xs text-gray-600">Hot-headed no more—Tabasco's got a warm heart under that spice!</p>
-            <button onclick="openModal('modal-tabasco')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-          </div>
 
-          <!-- Cat Card 2 -->
-          <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Cayenne" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-            <p class="font-semibold text-sm text-gray-800">Cayenne</p>
-            <p class="text-xs text-gray-600">Cayenne's still got sass, but now she's all about snuggles too</p>
-            <button onclick="openModal('modal-cayenne')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-          </div>
 
-          <!-- Cat Card 3 -->
-          <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Jalapeno" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-            <p class="font-semibold text-sm text-gray-800">Jalapeno</p>
-            <p class="text-xs text-gray-600">A little fire, a lot of love—Jalapeño will steal your heart</p>
-            <button onclick="openModal('modal-jalapeno')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-          </div>
+        <!-- Cat Card 2 -->
+        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
+          <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Cayenne" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+          <p class="font-semibold text-sm text-gray-800">Cayenne</p>
+          <p class="text-xs text-gray-600">Cayenne's still got sass, but now she's all about snuggles too</p>
+          <button onclick="openModal('modal-cayenne')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
         </div>
 
-        <div class="flex justify-center mt-8">
-          <button id="see-more-button" onclick="showDogSection()" class="bg-[#FFBB00] text-white font-bold px-6 py-2 rounded hover:bg-yellow-500">SEE MORE</button>
+        <!-- Cat Card 3 -->
+        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
+          <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Jalapeno" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+          <p class="font-semibold text-sm text-gray-800">Jalapeno</p>
+          <p class="text-xs text-gray-600">A little fire, a lot of love—Jalapeño will steal your heart</p>
+          <button onclick="openModal('modal-jalapeno')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
         </div>
+      </div>
 
-        <!-- Adopt a Dog Section (Initially Hidden) -->
-        <div id="dog-section" class="hidden mt-12">
-          <div class="flex items-center justify-between bg-[#FFF2CD] px-4 py-3 rounded-md mb-6">
-            <h2 class="text-lg font-bold uppercase text-black">Adopt a Dog</h2>
+      <div class="flex justify-center mt-8">
+        <button id="see-more-button" onclick="showDogSection()" class="bg-[#FFBB00] text-white font-bold px-6 py-2 rounded hover:bg-yellow-500">SEE MORE</button>
+      </div>
+
+      <!-- Adopt a Dog Section (Initially Hidden) -->
+      <div id="dog-section" class="hidden mt-12">
+        <div class="flex items-center justify-between bg-[#FFF2CD] px-4 py-3 rounded-md mb-6">
+          <h2 class="text-lg font-bold uppercase text-black">Adopt a Dog</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <!-- Dog Card 1 -->
+          <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
+            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Miky" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+            <p class="font-semibold text-sm text-gray-800">Miky</p>
+            <p class="text-xs text-gray-600">From rough beginnings to sweet new starts—ready to melt your heart!</p>
+            <button onclick="openModal('modal-miky')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
           </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <!-- Dog Card 1 -->
-            <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Miky" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-              <p class="font-semibold text-sm text-gray-800">Miky</p>
-              <p class="text-xs text-gray-600">From rough beginnings to sweet new starts—ready to melt your heart!</p>
-              <button onclick="openModal('modal-miky')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-            </div>
 
-            <!-- Dog Card 2 -->
-            <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Hany" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-              <p class="font-semibold text-sm text-gray-800">Hany</p>
-              <p class="text-xs text-gray-600">Hungry for love and ready to play—Hany's your happy heart in fur!</p>
-              <button onclick="openModal('modal-hany')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-            </div>
+          <!-- Dog Card 2 -->
+          <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
+            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Hany" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+            <p class="font-semibold text-sm text-gray-800">Hany</p>
+            <p class="text-xs text-gray-600">Hungry for love and ready to play—Hany's your happy heart in fur!</p>
+            <button onclick="openModal('modal-hany')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
+          </div>
 
-            <!-- Dog Card 3 -->
-            <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Belle" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-              <p class="font-semibold text-sm text-gray-800">Belle</p>
-              <p class="text-xs text-gray-600">Small in size, big in heart—Belle is ready to be your little bundle of love!</p>
-              <button onclick="openModal('modal-belle')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-            </div>
+          <!-- Dog Card 3 -->
+          <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
+            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Belle" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+            <p class="font-semibold text-sm text-gray-800">Belle</p>
+            <p class="text-xs text-gray-600">Small in size, big in heart—Belle is ready to be your little bundle of love!</p>
+            <button onclick="openModal('modal-belle')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-   <!-- Tabasco Modal -->
-  <div id="modal-tabasco" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+  <!-- Tabasco Modal -->
+  <div id="modal-tabasco" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
       <button aria-label="Close modal" onclick="closeModal('modal-tabasco')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div class="flex flex-col items-center">
@@ -229,7 +184,7 @@ $navItems = [
   </div>
 
   <!-- Cayenne Modal -->
-  <div id="modal-cayenne" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+  <div id="modal-cayenne" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
       <button aria-label="Close modal" onclick="closeModal('modal-cayenne')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div class="flex flex-col items-center">
@@ -246,7 +201,7 @@ $navItems = [
   </div>
 
   <!-- Jalapeno Modal -->
-  <div id="modal-jalapeno" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+  <div id="modal-jalapeno" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
       <button aria-label="Close modal" onclick="closeModal('modal-jalapeno')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div class="flex flex-col items-center">
@@ -263,7 +218,7 @@ $navItems = [
   </div>
 
   <!-- Miky Modal -->
-  <div id="modal-miky" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+  <div id="modal-miky" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
       <button aria-label="Close modal" onclick="closeModal('modal-miky')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div class="flex flex-col items-center">
@@ -280,7 +235,7 @@ $navItems = [
   </div>
 
   <!-- Hany Modal -->
-  <div id="modal-hany" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+  <div id="modal-hany" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
       <button aria-label="Close modal" onclick="closeModal('modal-hany')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div class="flex flex-col items-center">
@@ -297,7 +252,7 @@ $navItems = [
   </div>
 
   <!-- Belle Modal -->
-  <div id="modal-belle" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+  <div id="modal-belle" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
       <button aria-label="Close modal" onclick="closeModal('modal-belle')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div class="flex flex-col items-center">
@@ -327,5 +282,6 @@ $navItems = [
       </div>
     </div>
   </footer>
+
 </body>
 </html>

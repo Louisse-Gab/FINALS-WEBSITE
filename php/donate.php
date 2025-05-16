@@ -73,7 +73,7 @@ $navItems = [
  <nav class="desktop-nav space-x-4 lg:space-x-8 text-sm lg:text-base uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-        <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
@@ -101,7 +101,7 @@ $navItems = [
       <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-        <a href="whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
