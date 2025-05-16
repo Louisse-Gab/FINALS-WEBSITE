@@ -46,12 +46,12 @@
         <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </a>
       <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+        <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
+        <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
+        <a href="../whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
       <div>
         <button>
@@ -62,11 +62,13 @@
       </div>
     </div>
   </header>
-
+  
+<hr class="border-t border-[#00000033] w-full my-0">
   <!-- Orange Container with Statement and Arrow (Arrow on right) -->
   <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
     <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
       <div class="w-6"></div> <!-- Empty div for left spacing -->
+      
       <h2 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center">WHAT WE DO</h2>
       <a href="../../php/home.php" class="arrow-link text-black hover:text-[#FFBB00]">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
