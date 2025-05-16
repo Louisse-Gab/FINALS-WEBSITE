@@ -46,21 +46,12 @@
         <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </a>
       <nav class="flex space-x-8 text-base uppercase font-bold">
-<<<<<<< HEAD
-        <a href="../php/whatwedo/home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="../php/whatwedo/about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="../php/whatwedo/donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
-=======
         <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
->>>>>>> 015aac8352e229e0c2fb7d4fcfdfd9717e7e75be
       </nav>
       <div>
         <button>

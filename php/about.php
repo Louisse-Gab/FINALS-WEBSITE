@@ -128,26 +128,15 @@ class Dog extends Animal {
                 <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
                 <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
             </a>
-<<<<<<< HEAD
-            <nav class="desktop-nav space-x-4 lg:space-x-8 text-sm lg:text-base uppercase font-bold">
-                <a href="../php/whatwedo/home.php" class="hover:text-[#FFBB00]">Home</a>
-                <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-                <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-                <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-                <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-                <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
-            </nav>
-=======
             <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
+        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
+        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
       <div>
->>>>>>> 015aac8352e229e0c2fb7d4fcfdfd9717e7e75be
             <div class="flex items-center space-x-4">
                 <button class="hidden lg:block">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
