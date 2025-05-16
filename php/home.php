@@ -55,7 +55,7 @@
     
     <!-- Desktop Navigation -->
 <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+        <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
         <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
