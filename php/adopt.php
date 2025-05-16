@@ -2,15 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Adopt a Cat | Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Modal background overlay */
+    .modal-overlay {
+      background: rgba(0, 0, 0, 0.6);
+    }
+  </style>
   <script>
-    function toggleDetails(id) {
-      const detail = document.getElementById(id);
-      detail.classList.toggle('hidden');
+    // Open modal by id
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    }
+    // Close modal by id
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
     }
 
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+          if (!modal.classList.contains('hidden')) {
+            closeModal(modal.id);
+          }
+        });
+      }
+    });
+
+    // Show dog section
     function showDogSection() {
       document.getElementById('dog-section').classList.remove('hidden');
       document.getElementById('see-more-button').classList.add('hidden');
@@ -23,7 +50,7 @@
   <header class="bg-[#FFFBE9] shadow-md">
     <div class="container mx-auto flex justify-between items-center px-6 py-6">
       <a href="home.php" class="flex items-center space-x-5">
-        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16">
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16" />
         <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </a>
       <nav class="flex space-x-8 text-base uppercase font-bold">
@@ -66,29 +93,26 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
           <!-- Cat Card 1 -->
           <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
             <p class="font-semibold text-sm text-gray-800">Tabasco</p>
-            <p class="text-xs text-gray-600">Hot-headed no more—Tabasco’s got a warm heart under that spice!</p>
-            <button onclick="toggleDetails('tabasco-details')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-            <p id="tabasco-details" class="text-xs text-left mt-2 text-gray-700 hidden">Tabasco is a 2-year-old tabby who loves sunbathing and bird watching. She's fully vaccinated and spayed.</p>
+            <p class="text-xs text-gray-600">Hot-headed no more—Tabasco's got a warm heart under that spice!</p>
+            <button onclick="openModal('modal-tabasco')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
           </div>
 
           <!-- Cat Card 2 -->
           <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Cayenne" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Cayenne" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
             <p class="font-semibold text-sm text-gray-800">Cayenne</p>
-            <p class="text-xs text-gray-600">Cayenne’s still got sass, but now she’s all about snuggles too</p>
-            <button onclick="toggleDetails('cayenne-details')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-            <p id="cayenne-details" class="text-xs text-left mt-2 text-gray-700 hidden">Cayenne is 3 years old and loves climbing and playing with feather toys. She gets along with other cats.</p>
+            <p class="text-xs text-gray-600">Cayenne's still got sass, but now she's all about snuggles too</p>
+            <button onclick="openModal('modal-cayenne')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
           </div>
 
           <!-- Cat Card 3 -->
           <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Jalapeno" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
+            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Jalapeno" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
             <p class="font-semibold text-sm text-gray-800">Jalapeno</p>
             <p class="text-xs text-gray-600">A little fire, a lot of love—Jalapeño will steal your heart</p>
-            <button onclick="toggleDetails('jalapeno-details')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-            <p id="jalapeno-details" class="text-xs text-left mt-2 text-gray-700 hidden">Jalapeño is a 1-year-old rescue who’s curious, playful, and eager to find a forever lap to curl up on.</p>
+            <button onclick="openModal('modal-jalapeno')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
           </div>
         </div>
 
@@ -104,29 +128,26 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             <!-- Dog Card 1 -->
             <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Barkley" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
-              <p class="font-semibold text-sm text-gray-800">Barkley</p>
-              <p class="text-xs text-gray-600">Big heart, bigger tail wags—Barkley is a gentle giant.</p>
-              <button onclick="toggleDetails('barkley-details')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-              <p id="barkley-details" class="text-xs text-left mt-2 text-gray-700 hidden">Barkley is a 4-year-old Labrador who loves fetch, belly rubs, and kids.</p>
+              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Miky" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+              <p class="font-semibold text-sm text-gray-800">Miky</p>
+              <p class="text-xs text-gray-600">From rough beginnings to sweet new starts—ready to melt your heart!</p>
+              <button onclick="openModal('modal-miky')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
             </div>
 
             <!-- Dog Card 2 -->
             <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Luna" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
-              <p class="font-semibold text-sm text-gray-800">Luna</p>
-              <p class="text-xs text-gray-600">Shy at first, but Luna will be your shadow once she knows you.</p>
-              <button onclick="toggleDetails('luna-details')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-              <p id="luna-details" class="text-xs text-left mt-2 text-gray-700 hidden">Luna is a sweet shepherd mix, spayed, vaccinated, and leash-trained.</p>
+              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Hany" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+              <p class="font-semibold text-sm text-gray-800">Hany</p>
+              <p class="text-xs text-gray-600">Hungry for love and ready to play—Hany's your happy heart in fur!</p>
+              <button onclick="openModal('modal-hany')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
             </div>
 
             <!-- Dog Card 3 -->
             <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Milo" class="w-32 h-32 object-cover rounded-full mx-auto mb-4">
-              <p class="font-semibold text-sm text-gray-800">Milo</p>
-              <p class="text-xs text-gray-600">Energetic and goofy—Milo’s the life of the dog park!</p>
-              <button onclick="toggleDetails('milo-details')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-              <p id="milo-details" class="text-xs text-left mt-2 text-gray-700 hidden">Milo is a 2-year-old terrier mix with lots of energy and love to give.</p>
+              <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Belle" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+              <p class="font-semibold text-sm text-gray-800">Belle</p>
+              <p class="text-xs text-gray-600">Small in size, big in heart—Belle is ready to be your little bundle of love!</p>
+              <button onclick="openModal('modal-belle')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
             </div>
           </div>
         </div>
@@ -134,29 +155,121 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-[#FFEBB9] text-[#5F4B32] py-6">
-    <div class="container mx-auto flex justify-between items-center text-sm px-6">
-      <!-- Left Section -->
-      <div class="flex space-x-4 items-center">
-        <p class="font-bold">GET IN TOUCH WITH US</p>
-        <div class="flex space-x-2">
-          <a href="#" class="hover:text-black"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="hover:text-black"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="hover:text-black"><i class="fab fa-youtube"></i></a>
+   <!-- Tabasco Modal -->
+  <div id="modal-tabasco" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+      <button aria-label="Close modal" onclick="closeModal('modal-tabasco')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <div class="flex flex-col items-center">
+        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Tabasco" class="w-48 h-48 object-cover rounded-full mb-4">
+        <h3 class="text-xl font-bold mb-2">Tabasco</h3>
+        <div class="text-left w-full">
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 2 years</p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Tabby</p>
+          <p class="text-gray-700 mb-4">Tabasco is a 2-year-old tabby who loves sunbathing and bird watching. She's fully vaccinated and spayed.</p>
+          <button class="bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full">Adopt Me</button>
         </div>
       </div>
-      <!-- Center Section -->
-      <div class="text-center">
-        <p>&copy; Shelter of Light. All Rights Reserved.</p>
+    </div>
+  </div>
+
+  <!-- Cayenne Modal -->
+  <div id="modal-cayenne" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+      <button aria-label="Close modal" onclick="closeModal('modal-cayenne')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <div class="flex flex-col items-center">
+        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Cayenne" class="w-48 h-48 object-cover rounded-full mb-4">
+        <h3 class="text-xl font-bold mb-2">Cayenne</h3>
+        <div class="text-left w-full">
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 3 years</p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Domestic Shorthair</p>
+          <p class="text-gray-700 mb-4">Cayenne is 3 years old and loves climbing and playing with feather toys. She gets along with other cats.</p>
+          <button class="bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full">Adopt Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jalapeno Modal -->
+  <div id="modal-jalapeno" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+      <button aria-label="Close modal" onclick="closeModal('modal-jalapeno')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <div class="flex flex-col items-center">
+        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Jalapeño" class="w-48 h-48 object-cover rounded-full mb-4">
+        <h3 class="text-xl font-bold mb-2">Jalapeño</h3>
+        <div class="text-left w-full">
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 1 year</p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Mixed</p>
+          <p class="text-gray-700 mb-4">Jalapeño is a feisty but affectionate 1-year-old who loves cuddles after playtime.</p>
+          <button class="bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full">Adopt Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Miky Modal -->
+  <div id="modal-miky" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+      <button aria-label="Close modal" onclick="closeModal('modal-miky')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <div class="flex flex-col items-center">
+        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Miky" class="w-48 h-48 object-cover rounded-full mb-4">
+        <h3 class="text-xl font-bold mb-2">Miky</h3>
+        <div class="text-left w-full">
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 4 years</p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Labrador Mix</p>
+          <p class="text-gray-700 mb-4">Miky is a gentle 4-year-old Labrador mix, very friendly and good with kids.</p>
+          <button class="bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full">Adopt Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hany Modal -->
+  <div id="modal-hany" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+      <button aria-label="Close modal" onclick="closeModal('modal-hany')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <div class="flex flex-col items-center">
+        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Hany" class="w-48 h-48 object-cover rounded-full mb-4">
+        <h3 class="text-xl font-bold mb-2">Hany</h3>
+        <div class="text-left w-full">
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 2 years</p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Beagle</p>
+          <p class="text-gray-700 mb-4">Hany is a playful 2-year-old beagle who enjoys long walks and lots of treats.</p>
+          <button class="bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full">Adopt Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Belle Modal -->
+  <div id="modal-belle" class="modal fixed inset-0 flex items-center justify-center bg-modal-overlay bg-black bg-opacity-60 hidden z-50">
+    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
+      <button aria-label="Close modal" onclick="closeModal('modal-belle')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <div class="flex flex-col items-center">
+        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/dog-sample.jpg" alt="Belle" class="w-48 h-48 object-cover rounded-full mb-4">
+        <h3 class="text-xl font-bold mb-2">Belle</h3>
+        <div class="text-left w-full">
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 5 years</p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Chihuahua</p>
+          <p class="text-gray-700 mb-4">Belle is a sweet 5-year-old Chihuahua, small but full of love.</p>
+          <button class="bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full">Adopt Me</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#FFFBE9] border-t border-gray-300 py-6 mt-12">
+    <div class="container mx-auto flex justify-between items-center px-6">
+      <!-- Left Section -->
+      <div>
+        <p>© 2023 Shelter of Light. All rights reserved.</p>
       </div>
       <!-- Right Section -->
-      <div class="text-right">
-        <p class="font-bold">CREATORS OF THIS WEBSITE</p>
-        <p>BRIONES | CABANDA | LIZEN<br>UST</p>
+      <div class="flex space-x-4 items-center">
+        <p class="cursor-pointer hover:underline">Terms and Conditions</p>
+        <p class="cursor-pointer hover:underline">Privacy Policy</p>
       </div>
     </div>
   </footer>
-
 </body>
 </html>
