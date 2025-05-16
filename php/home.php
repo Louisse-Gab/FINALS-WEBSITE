@@ -169,7 +169,7 @@
     </section>
 
    
-     <!-- Footer -->
+  
 <!-- Horizontal line above footer -->
 <hr class="border-t border-[#00000033] w-full my-0">
 
