@@ -21,10 +21,12 @@ $navItems = [
   <title>Adopt a Cat | Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+
     /* Modal background overlay */
     .modal-overlay {
       background: rgba(0, 0, 0, 0.6);
     }
+
     
     /* Media queries */
     @media (max-width: 1023px) {
@@ -57,7 +59,11 @@ $navItems = [
         <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16" />
         <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </a>
+
+      <nav class="flex space-x-8 text-base uppercase font-bold">
+
       <nav class="desktop-nav flex space-x-8 text-base uppercase font-bold">
+
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
         <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
@@ -103,14 +109,7 @@ $navItems = [
         <h2 class="text-lg font-bold uppercase text-black">Adopt a Cat</h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-        <!-- Cat Card 1 -->
-        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-          <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/cat-sample.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-          <p class="font-semibold text-sm text-gray-800">Tabasco</p>
-          <p class="text-xs text-gray-600">Hot-headed no more—Tabasco's got a warm heart under that spice!</p>
-          <button onclick="openModal('modal-tabasco')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-        </div>
+
 
         <!-- Cat Card 2 -->
         <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
@@ -284,46 +283,5 @@ $navItems = [
     </div>
   </footer>
 
-  <!-- JavaScript -->
-  <script>
-    // Open modal by id
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
-    }
-    
-    // Close modal by id
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Close modal on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        const modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {
-          if (!modal.classList.contains('hidden')) {
-            closeModal(modal.id);
-          }
-        });
-      }
-    });
-
-    // Show dog section
-    function showDogSection() {
-      document.getElementById('dog-section').classList.remove('hidden');
-      document.getElementById('see-more-button').classList.add('hidden');
-    }
-    
-    // Toggle mobile menu
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('menu-button').addEventListener('click', function() {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-      });
-    });
-  </script>
 </body>
 </html>
