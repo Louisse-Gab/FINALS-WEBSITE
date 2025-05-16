@@ -296,12 +296,15 @@ $dogs = [
                   </p>
                 </div>
                 <div class="min-w-full p-4 text-center">
-                  <img src="../images/adopt2.jpg" alt="Adoption 2" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Biscuit enjoying the cuddles in his new home.</p>
+                <p class="text-sm text-gray-700">Sinag</p>
+                <br>
+                  <img src="../images/SHELTER OF LIGHT/ABOUT US PAGE/Adoption Stories/Cats/Sinag.png" alt="Adoption 2" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
                 </div>
                 <div class="min-w-full p-4 text-center">
                   <img src="../images/adopt3.jpg" alt="Adoption 3" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                  <p class="text-sm text-gray-700">Snowy was adopted by a lovely family.</p>
+                  <br>
+                  <p class="text-sm text-gray-700"> Shelter of Light’s first official rescue was a cat named Sinag. She was found in heartbreaking condition—infested with mites and lice, and with one eye already ruptured. Despite the severity of her condition, she was given a name that meant "ray of light," symbolizing hope in the midst of suffering. Sinag was lovingly cared for and lived for almost two years, bringing warmth and inspiration to those around her. Sadly, she crossed the rainbow bridge due to a blood parasite—an effect of her compromised health from the very beginning. Her life, though short, became a defining moment in Shelter of Light’s mission: to stand for those who cannot speak and to bring light where it is most needed.</p>
+
                 </div>
                 <div class="min-w-full p-4 text-center">
                   <img src="../images/adopt4.jpg" alt="Adoption 4" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
