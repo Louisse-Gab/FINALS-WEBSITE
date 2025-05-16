@@ -90,6 +90,39 @@ class Dog extends Animal {
         }
         
   </style>
+<<<<<<< HEAD
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Shelter of Light</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; }
+        .full-width-section {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+        .carousel-container { position: relative; overflow: hidden; }
+        .carousel-slide { display: none; }
+        .carousel-slide.active { display: block; animation: fade 0.5s; }
+        @keyframes fade { from {opacity: .4} to {opacity: 1} }
+        .carousel-button:disabled { opacity: 0.5; cursor: not-allowed; }
+        @media (max-width: 1023px) {
+            .desktop-nav { display: none; }
+            .mobile-menu-button { display: block; }
+        }
+        @media (min-width: 1024px) {
+            .desktop-nav { display: flex; }
+            .mobile-menu-button { display: none; }
+            .mobile-menu { display: none; }
+        }
+    </style>
+>>>>>>> 45b1623ae24191ccba5b232683f2be59857ebb05
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
     <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
