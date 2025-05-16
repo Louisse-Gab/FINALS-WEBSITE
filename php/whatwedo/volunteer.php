@@ -25,7 +25,7 @@
       <nav class="flex space-x-8 text-base uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="what-we-do.php" class="text-[#FFBB00] hover:text-black">What We Do</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
@@ -52,7 +52,7 @@
         <p class="text-gray-700 mb-6">
           Our volunteers are the heart of our organization. By donating your time, you directly contribute to improving the lives of animals in need while gaining rewarding experiences and connections with like-minded animal lovers.
         </p>
-        <a href="what-we-do.php" class="inline-block bg-[#FFBB00] text-white font-bold px-6 py-2 rounded hover:bg-yellow-500">Back to Programs</a>
+        <a href="../whatwedo/whatwedo.php" class="inline-block bg-[#FFBB00] text-white font-bold px-6 py-2 rounded hover:bg-yellow-500">Back to Programs</a>
       </div>
     </div>
   </div>

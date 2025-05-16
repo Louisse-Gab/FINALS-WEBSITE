@@ -19,13 +19,13 @@
   <header class="bg-[#FFFBE9] shadow-md">
     <div class="container mx-auto flex justify-between items-center px-6 py-6">
       <a href="home.php" class="flex items-center space-x-5">
-        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16" />
+        <img src="" alt="Logo" class="w-16 h-16" />
         <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
       </a>
       <nav class="flex space-x-8 text-base uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="what-we-do.php" class="text-[#FFBB00] hover:text-black">What We Do</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
@@ -54,7 +54,7 @@
           <div class="p-6">
             <h2 class="text-xl font-bold mb-2">Feeding Program</h2>
             <p class="text-gray-600 mb-4">Helping other rescuers and people through our community pantries and through what we have</p>
-            <a href="feeding-program.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
+            <a href="../whatwedo/feeding-program.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
           </div>
         </div>
         
@@ -64,7 +64,7 @@
           <div class="p-6">
             <h2 class="text-xl font-bold mb-2">Collaboration</h2>
             <p class="text-gray-600 mb-4">Working with partners who share our mission of compassion for animals</p>
-            <a href="collaboration.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
+            <a href="../whatwedo/collaboration.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
           </div>
         </div>
         
@@ -74,7 +74,7 @@
           <div class="p-6">
             <h2 class="text-xl font-bold mb-2">Spay and Neuter</h2>
             <p class="text-gray-600 mb-4">A vital part of our advocacy to control the stray animal population humanely</p>
-            <a href="spay-neuter.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
+            <a href="../whatwedo/spay-neuter.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
           </div>
         </div>
         
@@ -84,7 +84,7 @@
           <div class="p-6">
             <h2 class="text-xl font-bold mb-2">Volunteer Opportunities</h2>
             <p class="text-gray-600 mb-4">Join us in caring for rescued animals through visits and volunteer work</p>
-            <a href="volunteer.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
+            <a href="../whatwedo/volunteer.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">See Details</a>
           </div>
         </div>
       </div>

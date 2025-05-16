@@ -25,7 +25,7 @@
       <nav class="flex space-x-8 text-base uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="what-we-do.php" class="text-[#FFBB00] hover:text-black">What We Do</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
@@ -39,20 +39,40 @@
       </div>
     </div>
   </header>
-
 <main class="py-12">
   <div class="container mx-auto px-4 max-w-4xl">
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-      <img src="../images/SHELTER OF LIGHT/what-we-do/feeding-program.jpg" alt="Feeding Program" class="w-full h-64 object-cover">
+      <img src="../images/SHELTER OF LIGHT/what-we-do/collaboration.jpg" alt="Collaboration" class="w-full h-64 object-cover">
       <div class="p-8">
-        <h1 class="text-3xl font-bold mb-6">Feeding Program</h1>
+        <h1 class="text-3xl font-bold mb-6">Collaboration</h1>
         <p class="text-gray-700 mb-6">
-          Stray feeding is one of Shelter of Light's core outreach efforts, providing consistent food and care to homeless animals in the community. Volunteers go on scheduled rounds to feed stray cats and dogs, many of whom rely solely on this act of kindness for survival.
+          At Shelter of Light, we believe that compassion grows stronger when shared. Our mission to rescue, rehabilitate, and protect animals is made possible through the support and collaboration of like-minded individuals, organizations, and communities. Each partnership plays a vital role in expanding our reach and deepening our impact.
         </p>
-        <p class="text-gray-700 mb-6">
-          More than just a feeding activity, it's an opportunity to build trust, monitor health conditions, and sometimes even identify animals in need of rescue or medical attention. Through this initiative, Shelter of Light extends compassion beyond shelter walls, reaching the streets where help is needed most.
-        </p>
-        <a href="what-we-do.php" class="inline-block bg-[#FFBB00] text-white font-bold px-6 py-2 rounded hover:bg-yellow-500">Back to Programs</a>
+        
+        <h2 class="text-2xl font-bold mt-8 mb-4 text-[#FFBB00]">Our Key Partners</h2>
+        
+        <div class="mb-8">
+          <h3 class="text-xl font-bold mb-2">VetLink</h3>
+          <p class="text-gray-700 mb-4">
+            VetLink is one of our most essential veterinary partners, providing medical care, diagnostics, and emergency interventions for many of our rescues. From life-saving surgeries to regular check-ups, VetLink has been instrumental in ensuring that our animals receive professional and timely treatment.
+          </p>
+        </div>
+        
+        <div class="mb-8">
+          <h3 class="text-xl font-bold mb-2">The Purr Project</h3>
+          <p class="text-gray-700 mb-4">
+            The Purr Project has been a consistent supporter of our mission through both logistical assistance and social media collaboration. They help amplify our advocacy by cross-posting urgent cases, promoting adoptables, and sharing educational content on responsible pet care.
+          </p>
+        </div>
+        
+        <div class="mb-8">
+          <h3 class="text-xl font-bold mb-2">Doc Gab and Team</h3>
+          <p class="text-gray-700 mb-4">
+            Doc Gab and his team have been with us for years, consistently supporting our kapon (spay/neuter) and vaccination drives. Whether it's for outreach events or emergency care, we rely on the skilled hands and kind hearts of Doc Gab, Doc Pao, and Doc Simon.
+          </p>
+        </div>
+        
+        <a href="../whatwedo/whatwedo.php" class="inline-block bg-[#FFBB00] text-white font-bold px-6 py-2 rounded hover:bg-yellow-500">Back to Programs</a>
       </div>
     </div>
   </div>
