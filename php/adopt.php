@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 // Define the current page
 $currentPage = 'donate';
@@ -329,4 +327,3 @@ $navItems = [
   </script>
 </body>
 </html>
->>>>>>> ae620c6ec86f3c533eb2fc5107eb76890b91170c

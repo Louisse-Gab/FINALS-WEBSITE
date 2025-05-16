@@ -136,6 +136,21 @@ $dogs = [
         display: none;
       }
     }
+
+      /* Arrow link styles */
+        .arrow-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            transition: color 0.3s;
+        }
+        
+        .arrow-link:hover svg {
+            transform: translateX(-5px);
+            transition: transform 0.3s ease;
+        }
+        
   </style>
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
