@@ -34,7 +34,6 @@ class Dog extends Animal {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adopt a Cat | Shelter of Light</title>
@@ -91,7 +90,6 @@ class Dog extends Animal {
         }
         
   </style>
-=======
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Shelter of Light</title>
@@ -122,7 +120,6 @@ class Dog extends Animal {
             .mobile-menu { display: none; }
         }
     </style>
->>>>>>> 7053ad12c146e337de14c32634d91048504066e6
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
     <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
