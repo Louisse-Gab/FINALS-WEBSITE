@@ -30,24 +30,7 @@ $creators = [
     ["name" => "Lizen, Louisse Gabrielle", "image" => "../images/creators/lizen.jpg"]
 ];
 
-// Handle form submission (if you need form functionality)
-$formSubmitted = false;
-$formMessage = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["contact_submit"])) {
-    $name = htmlspecialchars($_POST["name"] ?? "");
-    $email = htmlspecialchars($_POST["email"] ?? "");
-    $message = htmlspecialchars($_POST["message"] ?? "");
-    
-    // Simple validation
-    if (!empty($name) && !empty($email) && !empty($message)) {
-        // In a real application, you would process the form data here
-        // For example, send an email or save to database
-        $formSubmitted = true;
-        $formMessage = "Thank you for your message. We will get back to you soon!";
-    } else {
-        $formMessage = "Please fill in all required fields.";
-    }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -196,8 +179,9 @@ a.contact-icon-wrapper:hover {
             transition: color 0.3s;
         }
         
-        .arrow-link:hover {
-            color: #FFBB00;
+        .arrow-link:hover svg {
+            transform: translateX(-5px);
+            transition: transform 0.3s ease;
         }
     </style>
 </head>
@@ -231,11 +215,11 @@ a.contact-icon-wrapper:hover {
     </header>
 
     <!-- Contact Info Section - Centered text and clickable arrow -->
-    <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5">
+    <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
         <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
             <div class="w-6"></div> <!-- Empty div for spacing -->
-            <h2 class="text-lg font-medium text-center">FOR INQUIRIES, MESSAGE US ON ANY OF THE FOLLOWING:</h2>
-            <a href="home.php" class="arrow-link">
+             <h2 class="text-lg lg:text-xl font-medium text-center">For Inquiries, Message us on any of the following: </h2>
+            <a href="home.php" class="arrow-link text-black hover:text-[#FFBB00]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
