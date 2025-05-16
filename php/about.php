@@ -424,5 +424,36 @@ $dogs = [
     </div>
 </footer>
 
+<script>
+  function setupCarousel(carouselId, nextId, prevId) {
+    const carousel = document.getElementById(carouselId);
+    const next = document.getElementById(nextId);
+    const prev = document.getElementById(prevId);
+
+    let index = 0;
+    const totalItems = carousel.children.length;
+
+    function updateCarousel() {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    next.addEventListener('click', () => {
+      if (index < totalItems - 1) index++;
+      updateCarousel();
+    });
+
+    prev.addEventListener('click', () => {
+      if (index > 0) index--;
+      updateCarousel();
+    });
+  }
+
+  // Initialize all carousels
+  setupCarousel('adoption-carousel', 'adoption-next', 'adoption-prev');
+  setupCarousel('dogs-carousel', 'dogs-next', 'dogs-prev');
+  setupCarousel('cats-carousel', 'cats-next', 'cats-prev');
+</script>
+
+
 </body>
 </html>
