@@ -90,8 +90,6 @@ class Dog extends Animal {
         }
         
   </style>
-<<<<<<< HEAD
-=======
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | Shelter of Light</title>
@@ -122,7 +120,6 @@ class Dog extends Animal {
             .mobile-menu { display: none; }
         }
     </style>
->>>>>>> 45b1623ae24191ccba5b232683f2be59857ebb05
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
     <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
@@ -132,9 +129,9 @@ class Dog extends Animal {
                 <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
             </a>
             <nav class="desktop-nav space-x-4 lg:space-x-8 text-sm lg:text-base uppercase font-bold">
-                <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+                <a href="../php/whatwedo/home.php" class="hover:text-[#FFBB00]">Home</a>
                 <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-                <a href="whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+                <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
                 <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
                 <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
                 <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
