@@ -137,57 +137,10 @@ $dogs = [
       }
     }
   </style>
-  <script>
-    function toggleDetails(id) {
-      const detail = document.getElementById(id);
-      detail.classList.toggle('hidden');
-    }
-
-    function showDogSection() {
-      document.getElementById('dog-section').classList.remove('hidden');
-      document.getElementById('see-more-button').classList.add('hidden');
-    }
-
-    // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      const menuButton = document.getElementById('menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
-      
-      menuButton.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-      });
-
-      // Carousel functionality
-      function setupCarousel(carouselId, prevBtnId, nextBtnId, totalSlides) {
-        const carousel = document.getElementById(carouselId);
-        const prevBtn = document.getElementById(prevBtnId);
-        const nextBtn = document.getElementById(nextBtnId);
-        let currentIndex = 0;
-        
-        function updateCarousel() {
-          carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-        
-        prevBtn.addEventListener("click", () => {
-          currentIndex = (currentIndex === 0) ? totalSlides - 1 : currentIndex - 1;
-          updateCarousel();
-        });
-        
-        nextBtn.addEventListener("click", () => {
-          currentIndex = (currentIndex === totalSlides - 1) ? 0 : currentIndex + 1;
-          updateCarousel();
-        });
-      }
-      
-      setupCarousel("adoption-carousel", "adoption-prev", "adoption-next", 6);
-      setupCarousel("dog-carousel", "dog-prev", "dog-next", 6);
-    });
-  </script>
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
-
-  <!-- Header with original navigation placement -->
-    <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
+<!-- Header with original navigation placement -->
+<header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
         <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
             <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
                 <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
@@ -198,7 +151,7 @@ $dogs = [
  <nav class="desktop-nav space-x-4 lg:space-x-8 text-sm lg:text-base uppercase font-bold">
         <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-        <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>

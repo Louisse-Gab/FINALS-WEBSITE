@@ -30,31 +30,53 @@ $creators = [
     ["name" => "Lizen, Louisse Gabrielle", "image" => "../images/creators/lizen.jpg"]
 ];
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $pageTitle; ?></title>
-    <!-- Include Tailwind CSS from CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FFBB00',
-                        secondary: '#FFFBE9',
-                        accent: '#5F4B32',
-                        footer: '#FFEBB9'
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adopt a Cat | Shelter of Light</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+    .full-width-section {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+    @media (max-width: 1023px) {
+      .desktop-nav {
+        display: none;
+      }
+      .mobile-menu-button {
+        display: block;
+      }
+    }
+    @media (min-width: 1024px) {
+      .desktop-nav {
+        display: flex;
+      }
+      .mobile-menu-button {
+        display: none;
+      }
+      .mobile-menu {
+        display: none;
+      }
+    }
+  </style>
+
+ <style>
  /* Contact card styles */
 .contact-card {
     background-color: white;
@@ -184,41 +206,63 @@ a.contact-icon-wrapper:hover {
             transition: transform 0.3s ease;
         }
     </style>
+
 </head>
-<body class="bg-[#FFFBDE]">
-    <!-- Header with original navigation placement -->
+<body class="bg-[#FFFBDE] text-gray-800 font-sans">
+
+  <!-- Header with original navigation placement -->
     <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
         <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
             <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
                 <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
                 <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
             </a>
-            
-            <!-- Desktop Navigation -->
-            <nav class="desktop-nav space-x-4 lg:space-x-8 text-sm lg:text-base uppercase font-bold">
-                <?php foreach ($navItems as $item): ?>
-                    <a href="<?php echo $item['url']; ?>" class="<?php echo $item['active'] ? 'text-[#FFBB00]' : 'hover:text-[#FFBB00]'; ?>">
-                        <?php echo $item['name']; ?>
-                    </a>
-                <?php endforeach; ?>
-            </nav>
-            
-            <!-- Search Icon -->
-            <div class="flex items-center space-x-4">
-                <button>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </header>
+      
+      <!-- Desktop Navigation -->
+ <nav class="desktop-nav space-x-4 lg:space-x-8 text-sm lg:text-base uppercase font-bold">
+        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+        <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
+        <a href="what-we-do.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+      </nav>
+      
+      <!-- Search Icon -->
+      <div class="flex items-center space-x-4">
+        <button class="hidden lg:block">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+          </svg>
+        </button>
+        
+        <!-- Mobile Menu Button -->
+        <button id="menu-button" class="mobile-menu-button lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-[#FFFBE9] pb-4">
+      <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
+        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+        <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
+        <a href="whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Contact Info Section - Centered text and clickable arrow -->
-    <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
+<!-- Orange Container with Statement and Arrow -->
+<div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
         <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
             <div class="w-6"></div> <!-- Empty div for spacing -->
-             <h2 class="text-lg lg:text-xl font-medium text-center">For Inquiries, Message us on any of the following: </h2>
+            <h2 class="text-lg lg:text-xl font-medium text-center">Thank you for your interest in donating! We accept through the following:</h2>
             <a href="home.php" class="arrow-link text-black hover:text-[#FFBB00]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -226,6 +270,7 @@ a.contact-icon-wrapper:hover {
             </a>
         </div>
     </div>
+    
 
    <!-- Contact Card with Image Container and Side-by-Side Icons -->
 <section class="py-8">
@@ -336,7 +381,7 @@ a.contact-icon-wrapper:hover {
     </div>
 </section>
 
-      <!-- Footer -->
+    <!-- Footer -->
 <!-- Horizontal line above footer -->
 <hr class="border-t border-[#00000033] w-full my-0">
 
@@ -388,15 +433,5 @@ a.contact-icon-wrapper:hover {
     </div>
 </footer>
 
-    <?php if (!empty($formMessage)): ?>
-    <div id="message" style="position: fixed; bottom: 20px; right: 20px; background-color: <?php echo $formSubmitted ? '#4CAF50' : '#f44336'; ?>; color: white; padding: 15px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
-        <?php echo $formMessage; ?>
-    </div>
-    <script>
-        setTimeout(function() {
-            document.getElementById('message').style.display = 'none';
-        }, 5000);
-    </script>
-    <?php endif; ?>
 </body>
 </html>
