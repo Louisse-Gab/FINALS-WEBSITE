@@ -174,12 +174,7 @@
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
       
-      <div class="flex items-center space-x-4">
-        <button class="hidden lg:block">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"/>
-          </svg>
-        </button>
+
         
         <button id="menu-button" class="mobile-menu-button lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
