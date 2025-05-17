@@ -132,9 +132,9 @@
                     <a href="../../php/home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
                     <a href="../../php/about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
                     <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
-                    <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
-                    <a href="adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
-                    <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
+                    <a href="../../php/donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+                    <a href="../../php/adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
+                    <a href="../../php/contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
                 </div>
             </div>
         </div>
