@@ -100,7 +100,7 @@
 <body class="text-gray-800 font-sans">
     <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
         <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
-            <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+            <a href="../home.php" class="flex items-center space-x-2 lg:space-x-5">
                 <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
                 <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
             </a>
@@ -109,7 +109,7 @@
             <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
                 <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
                 <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
-                <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00] hover:text-black">What We Do</a>
+                <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00hover:text-black">What We Do</a>
                 <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
                 <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
                 <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
@@ -131,7 +131,7 @@
                 <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
                     <a href="../../php/home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
                     <a href="../../php/about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
-                    <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+                    <a href="../../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
                     <a href="../../php/donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
                     <a href="../../php/adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
                     <a href="../../php/contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
@@ -146,7 +146,7 @@
                 <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
                     <div class="w-6"></div>
                     <h3 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center">WHAT WE DO</h3>
-                    <a href="home.php" class="arrow-link text-black hover:text-[#FFBB00]">
+                    <a href="../about.php" class="arrow-link text-black hover:text-[#FFBB00]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
