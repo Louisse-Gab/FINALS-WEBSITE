@@ -2,41 +2,197 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>What We Do | Shelter of Light</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adopt a Cat | Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .card-hover:hover {
-      transform: translateY(-5px);
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+    .full-width-section {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+    
+    /* Enhanced Responsive Carousel Styles */
+    .multi-carousel {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .multi-carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .multi-carousel-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+    .multi-carousel-item {
+      width: 100%;
+      max-width: 300px;
+      height: 300px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .multi-carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .multi-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .multi-carousel-prev {
+      left: 0.5rem;
+    }
+    .multi-carousel-next {
+      right: 0.5rem;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 1023px) {
+      .desktop-nav {
+        display: none;
+      }
+      .mobile-menu-button {
+        display: block;
+      }
+      
+      .multi-carousel-slide {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0 2rem;
+      }
+      .multi-carousel-item {
+        max-width: 100%;
+        height: 250px;
+      }
+      .multi-carousel-nav {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+    
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .multi-carousel-slide {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .multi-carousel-item {
+        width: 45%;
+        max-width: none;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .desktop-nav {
+        display: flex;
+      }
+      .mobile-menu-button {
+        display: none;
+      }
+      .mobile-menu {
+        display: none;
+      }
+      
+      .multi-carousel {
+        max-width: 1200px;
+      }
+      .multi-carousel-item {
+        height: 350px;
+      }
+    }
+    
+    /* Pet Info Overlay */
+    .pet-info-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 1rem;
+      transform: translateY(0);
       transition: transform 0.3s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .multi-carousel-item:hover .pet-info-overlay {
+      transform: translateY(0);
     }
   </style>
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-  <!-- Header -->
-  <header class="bg-[#FFFBE9] shadow-md">
-    <div class="container mx-auto flex justify-between items-center px-6 py-6">
-      <a href="home.php" class="flex items-center space-x-5">
+  <!-- Improved Responsive Header -->
+  <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
+    <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
+      <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
         <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
-        <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
+        <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
       </a>
-      <nav class="flex space-x-8 text-base uppercase font-bold">
+      
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
         <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="../whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00] hover:text-black">What We Do</a>
         <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
         <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
-      <div>
-      <div>
-        <button>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+      
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center lg:hidden">
+        <button id="mobile-menu-button" class="text-gray-800 hover:text-[#FFBB00] focus:outline-none">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu (Dropdown) -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
+          <a href="home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
+          <a href="about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
+          <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+          <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+          <a href="adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
+          <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
+        </div>
       </div>
     </div>
   </header>

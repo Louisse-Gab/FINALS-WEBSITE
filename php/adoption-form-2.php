@@ -43,15 +43,7 @@
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-12">
     <form action="adoption-form-3.php" method="post" class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-      <div class="flex justify-between items-center mb-8">
-        <a href="adoption-form-1.php" class="text-[#FFBB00] hover:text-[#FFA000] font-bold flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-          </svg>
-          Back
-        </a>
-        <div class="text-sm text-gray-600">Step 1 of 5</div>
-      </div>
+     
       
       <h1 class="text-3xl font-bold mb-6">Personal Information</h1>
       <p class="mb-8 text-gray-600">This section is all about you, the potential adopter. Please provide accurate information to help us process your application.</p>
