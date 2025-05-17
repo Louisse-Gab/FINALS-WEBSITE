@@ -109,18 +109,6 @@ $navItems = [
         <h2 class="text-lg font-bold uppercase text-black">Adopt a Cat</h2>
       </div>
 
-<<<<<<< HEAD
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Cat Card 1 -->
-        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-          <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Tabasco.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-          <p class="font-semibold text-sm text-gray-800">Tabasco</p>
-          <p class="text-xs text-gray-600">Spicy in name, sweet in nature—Tabasco will warm your heart</p>
-          <button onclick="openModal('modal-tabasco')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-        </div>
-
-=======
->>>>>>> f4da0cf076b64dcc477097eab078d3acd8f63c0e
         <!-- Cat Card 2 -->
         <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
           <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cayenne.jpg" alt="Cayenne" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
