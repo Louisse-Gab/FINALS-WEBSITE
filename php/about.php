@@ -85,16 +85,19 @@
                     </svg>
                 </button>
             </div>
+        </div>
         
         <!-- Mobile Menu (Dropdown) -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] pb-4 px-4">
-            <div class="flex flex-col space-y-3 text-sm uppercase font-bold">
-                <a href="home.php" class="hover:text-[#FFBB00] py-2">Home</a>
-                <a href="about.php" class="text-[#FFBB00] hover:text-black py-2">About Us</a>
-                <a href="whatwedo.php" class="hover:text-[#FFBB00] py-2">What We Do</a>
-                <a href="donate.php" class="hover:text-[#FFBB00] py-2">Donate</a>
-                <a href="adopt.php" class="hover:text-[#FFBB00] py-2">Adopt</a>
-                <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
+        <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
+                    <a href="home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
+                    <a href="about.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">About Us</a>
+                    <a href="whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+                    <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+                    <a href="adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
+                    <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
+                </div>
             </div>
         </div>
     </header>
@@ -353,6 +356,13 @@
             
             mobileMenuButton.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
             });
 
             // Initialize all carousels

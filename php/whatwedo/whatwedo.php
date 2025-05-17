@@ -155,13 +155,14 @@
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-   <!-- Your existing header -->
-   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
-    <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
-      <a href="../../php/about.php"flex items-center space-x-2 lg:space-x-5">
-        <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png " alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
-        <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
-      </a>
+</head>
+<body class="text-gray-800 font-sans">
+    <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
+        <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
+            <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+                <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
+                <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
+            </a>
       
       <nav class="flex space-x-8 text-base uppercase font-bold">
         <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>

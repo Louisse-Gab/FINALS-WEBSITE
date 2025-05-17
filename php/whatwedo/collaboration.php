@@ -156,7 +156,7 @@
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
    <!-- Your existing header -->
-   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
+   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000044]">
     <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
       <a href="../../php/whatwedo/whatwedo.php" class="flex items-center space-x-2 lg:space-x-5">
         <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png " alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
@@ -191,20 +191,6 @@
       </div>
     </div>
   </header>
-
-  <main>
-        <section id="about" class="mb-8 lg:mb-12">
-            <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
-                <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
-                    <div class="w-6"></div>
-                    <h3 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center">WHAT WE DO</h3>
-                    <a href="home.php" class="arrow-link text-black hover:text-[#FFBB00]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
 
 <main class="py-14">
   <div class="container mx-auto px-5 max-w-5xl">
