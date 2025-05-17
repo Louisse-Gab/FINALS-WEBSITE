@@ -23,10 +23,10 @@
       margin-right: -50vw;
     }
     
-    /* New Carousel Styles */
+    /* Enhanced Responsive Carousel Styles */
     .multi-carousel {
       position: relative;
-      max-width: 900px;
+      max-width: 100%;
       margin: 0 auto;
       overflow: hidden;
     }
@@ -38,16 +38,19 @@
       min-width: 100%;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 0 20px;
+      gap: 1rem;
+      padding: 0 1rem;
+      box-sizing: border-box;
     }
     .multi-carousel-item {
-      width: 250px;
-      height: 250px;
+      width: 100%;
+      max-width: 300px;
+      height: 300px;
       flex-shrink: 0;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: relative;
     }
     .multi-carousel-item img {
       width: 100%;
@@ -61,18 +64,22 @@
       background: rgba(0,0,0,0.5);
       color: white;
       border: none;
-      padding: 10px 15px;
+      padding: 0.75rem 1rem;
       cursor: pointer;
       border-radius: 50%;
       z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .multi-carousel-prev {
-      left: 10px;
+      left: 0.5rem;
     }
     .multi-carousel-next {
-      right: 10px;
+      right: 0.5rem;
     }
     
+    /* Responsive Adjustments */
     @media (max-width: 1023px) {
       .desktop-nav {
         display: none;
@@ -80,14 +87,32 @@
       .mobile-menu-button {
         display: block;
       }
+      
       .multi-carousel-slide {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 1.5rem;
+        padding: 0 2rem;
       }
       .multi-carousel-item {
-        width: 80%;
-        height: 200px;
+        max-width: 100%;
+        height: 250px;
+      }
+      .multi-carousel-nav {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+    
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .multi-carousel-slide {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .multi-carousel-item {
+        width: 45%;
+        max-width: none;
       }
     }
     
@@ -101,7 +126,33 @@
       .mobile-menu {
         display: none;
       }
+      
+      .multi-carousel {
+        max-width: 1200px;
+      }
+      .multi-carousel-item {
+        height: 350px;
+      }
     }
+    
+    /* Pet Info Overlay */
+    .pet-info-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 1rem;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+    .multi-carousel-item:hover .pet-info-overlay {
+      transform: translateY(0);
+    }
+  </style>
+
+</head>
   </style>
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
@@ -178,91 +229,72 @@
       </div>
     </section>
 
-   <!-- Replaced carousel section with new 3-image carousel -->
-<section class="bg-[#FFFBDE] py-8 lg:py-12">
-  <div class="container mx-auto px-4">
-    <h2 class="text-center text-xl lg:text-2xl font-bold text-gray-800 mb-6">Latest Pets Adopted</h2>
-    
-    <div class="multi-carousel">
-      <div class="multi-carousel-track" id="multi-carousel-track">
-        <!-- Slide 1 with 3 images -->
-        <div class="multi-carousel-slide">
-          <!-- Pet 1 -->
-          <div class="multi-carousel-item">
-            <div class="relative h-full">
-              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Luna & Diwa.png" alt="Luna & Diwa" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
-                <h3 class="font-bold text-lg">Luna & Diwa</h3>
-                <p class="text-sm">Our first rescues - orphaned kittens who started it all</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Pet 2 -->
-          <div class="multi-carousel-item">
-            <div class="relative h-full">
-              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Sinag.png" alt="Sinag" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
-                <h3 class="font-bold text-lg">Sinag</h3>
-                <p class="text-sm">Our first official rescue with one ruptured eye</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Pet 3 -->
-          <div class="multi-carousel-item">
-            <div class="relative h-full">
-              <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Anino.jpg" alt="Faith" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
-                <h3 class="font-bold text-lg text-center">Anino</h3>
-                <p class="text-sm">Sweet cat who fought bravely against necrosis</p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="bg-[#FFFBDE] py-8 lg:py-12 px-4">
+      <div class="container mx-auto">
+        <h2 class="text-center text-xl lg:text-2xl font-bold text-gray-800 mb-6 lg:mb-8">Latest Pets Adopted</h2>
         
-        <!-- Slide 2 with 3 images -->
-        <div class="multi-carousel-slide">
-          <!-- Pet 1 -->
-          <div class="multi-carousel-item">
-            <div class="relative h-full">
-              <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Chance.jpg" alt="Bless" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
-                <h3 class="font-bold text-lg text-center">Chance</h3>
-                <p class="text-sm">Paralyzed cat found in front of a church</p>
+        <div class="multi-carousel">
+          <div class="multi-carousel-track" id="multi-carousel-track">
+            <!-- Slide 1 -->
+            <div class="multi-carousel-slide">
+              <div class="multi-carousel-item">
+                <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Mallows.jpg" alt="Mallows" class="w-full h-full object-cover">
+                <div class="pet-info-overlay">
+                  <h3 class="font-bold text-lg text-center">Mallows</h3>
+                  <p class="text-sm text-center mt-1">This sweet fluff found the warm, loving home he always deserved.</p>
+                </div>
+              </div>
+              
+              <div class="multi-carousel-item">
+                <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Mocha.jpg" alt="Mocha" class="w-full h-full object-cover">
+                <div class="pet-info-overlay">
+                  <h3 class="font-bold text-lg text-center">Mocha</h3>
+                  <p class="text-sm text-center mt-1">Her days are now filled with joy, play, and cozy cuddles.</p>
+                </div>
+              </div>
+              
+              <div class="multi-carousel-item">
+                <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Anino.jpg" alt="Anino" class="w-full h-full object-cover">
+                <div class="pet-info-overlay">
+                  <h3 class="font-bold text-lg text-center">Anino</h3>
+                  <p class="text-sm text-center mt-1">Once a shadow, now basking in the light of a loving home</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="multi-carousel-slide">
+              <div class="multi-carousel-item">
+                <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Chance.jpg" alt="Chance" class="w-full h-full object-cover">
+                <div class="pet-info-overlay">
+                  <h3 class="font-bold text-lg text-center">Chance</h3>
+                  <p class="text-sm text-center mt-1">Once lost, now loved - found the home he was always meant for.</p>
+                </div>
+              </div>
+              
+              <div class="multi-carousel-item">
+                <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Sabrina.jpg" alt="Sabrina" class="w-full h-full object-cover">
+                <div class="pet-info-overlay">
+                  <h3 class="font-bold text-lg text-center">Sabrina</h3>
+                  <p class="text-sm text-center mt-1">No more magic tricks — she found her real-life happy ending.</p>
+                </div>
+              </div>
+              
+              <div class="multi-carousel-item">
+                <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Star.jpeg" alt="Star" class="w-full h-full object-cover">
+                <div class="pet-info-overlay">
+                  <h3 class="font-bold text-lg text-center">Star</h3>
+                  <p class="text-sm text-center mt-1">From shelter to shining star — now glowing in her forever home.</p>
+                </div>
               </div>
             </div>
           </div>
           
-          <!-- Pet 2 -->
-          <div class="multi-carousel-item">
-            <div class="relative h-full">
-              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Viva.png" alt="Viva" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
-                <h3 class="font-bold text-lg text-center">Chance</h3>
-                <p class="text-sm">Rescued from fire, battled FIP bravely</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Pet 3 -->
-          <div class="multi-carousel-item">
-            <div class="relative h-full">
-              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Boney.png" alt="Boney" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
-                <h3 class="font-bold text-lg text-center">Chance</h3>
-                <p class="text-sm">Three-legged wonder who never slows down</p>
-              </div>
-            </div>
-          </div>
+          <button class="multi-carousel-nav multi-carousel-prev" aria-label="Previous slide">❮</button>
+          <button class="multi-carousel-nav multi-carousel-next" aria-label="Next slide">❯</button>
         </div>
       </div>
-      
-      <button class="multi-carousel-nav multi-carousel-prev">❮</button>
-      <button class="multi-carousel-nav multi-carousel-next">❯</button>
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Your existing info section -->
     <section class="bg-black text-white py-8 lg:py-12">
@@ -336,44 +368,94 @@
     </div>
 </footer>
 
-  <!-- JavaScript -->
-  <script>
-    // Your existing mobile menu toggle
+<script>
+    // Mobile menu toggle (unchanged)
     document.getElementById('menu-button').addEventListener('click', function() {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
-    // New carousel functionality
+    // Enhanced Carousel Functionality
     document.addEventListener('DOMContentLoaded', function() {
       const track = document.getElementById('multi-carousel-track');
       const slides = document.querySelectorAll('.multi-carousel-slide');
       const prevBtn = document.querySelector('.multi-carousel-prev');
       const nextBtn = document.querySelector('.multi-carousel-next');
       let currentIndex = 0;
-      const slideWidth = slides[0].offsetWidth;
-
+      let autoScrollInterval;
+      const slideWidth = slides[0].clientWidth;
+      
+      // Initialize carousel
+      updateCarousel();
+      setupAutoScroll();
+      setupResponsiveChecks();
+      
       function updateCarousel() {
         track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
       }
-
-      nextBtn.addEventListener('click', () => {
+      
+      function nextSlide() {
         currentIndex = (currentIndex + 1) % slides.length;
         updateCarousel();
-      });
-
-      prevBtn.addEventListener('click', () => {
+        resetAutoScroll();
+      }
+      
+      function prevSlide() {
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
         updateCarousel();
-      });
-
-      // Initialize
-      updateCarousel();
+        resetAutoScroll();
+      }
       
-      // Optional: Auto-advance every 5 seconds
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel();
-      }, 5000);
+      function setupAutoScroll() {
+        autoScrollInterval = setInterval(nextSlide, 5000);
+      }
+      
+      function resetAutoScroll() {
+        clearInterval(autoScrollInterval);
+        setupAutoScroll();
+      }
+      
+      function setupResponsiveChecks() {
+        // Recalculate slide width on resize
+        window.addEventListener('resize', function() {
+          const newSlideWidth = slides[0].clientWidth;
+          if (Math.abs(newSlideWidth - slideWidth) > 10) { // Only update if significant change
+            updateCarousel();
+          }
+        });
+      }
+      
+      // Event listeners
+      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', prevSlide);
+      
+      // Pause auto-scroll on hover
+      const carousel = document.querySelector('.multi-carousel');
+      carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+      carousel.addEventListener('mouseleave', setupAutoScroll);
+      
+      // Touch support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        clearInterval(autoScrollInterval);
+      }, {passive: true});
+      
+      track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        setupAutoScroll();
+      }, {passive: true});
+      
+      function handleSwipe() {
+        const threshold = 50; // Minimum swipe distance
+        if (touchStartX - touchEndX > threshold) {
+          nextSlide(); // Swipe left
+        } else if (touchEndX - touchStartX > threshold) {
+          prevSlide(); // Swipe right
+        }
+      }
     });
   </script>
 </body>

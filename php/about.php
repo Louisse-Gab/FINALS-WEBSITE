@@ -1,35 +1,3 @@
-<?php
-class Animal {
-    protected $name;
-    protected $type;
-    protected $description;
-    protected $image;
-
-    public function __construct($name, $type, $description, $image) {
-        $this->name = $name;
-        $this->type = $type;
-        $this->description = $description;
-        $this->image = $image;
-    }
-
-    public function getName() { return $this->name; }
-    public function getType() { return $this->type; }
-    public function getDescription() { return $this->description; }
-    public function getImage() { return $this->image; }
-}
-
-class Cat extends Animal {
-    public function __construct($name, $description, $image) {
-        parent::__construct($name, 'cat', $description, $image);
-    }
-}
-
-class Dog extends Animal {
-    public function __construct($name, $description, $image) {
-        parent::__construct($name, 'dog', $description, $image);
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
