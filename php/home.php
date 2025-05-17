@@ -22,6 +22,57 @@
       margin-left: -50vw;
       margin-right: -50vw;
     }
+    
+    /* New Carousel Styles */
+    .multi-carousel {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .multi-carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .multi-carousel-slide {
+      min-width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .multi-carousel-item {
+      width: 250px;
+      height: 250px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .multi-carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .multi-carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+    }
+    .multi-carousel-prev {
+      left: 10px;
+    }
+    .multi-carousel-next {
+      right: 10px;
+    }
+    
     @media (max-width: 1023px) {
       .desktop-nav {
         display: none;
@@ -29,7 +80,17 @@
       .mobile-menu-button {
         display: block;
       }
+      .multi-carousel-slide {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .multi-carousel-item {
+        width: 80%;
+        height: 200px;
+      }
     }
+    
     @media (min-width: 1024px) {
       .desktop-nav {
         display: flex;
@@ -42,20 +103,18 @@
       }
     }
   </style>
-  
-  <body class="bg-[#FFFBDE] text-gray-800 font-sans">
+</head>
+<body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-<!-- Header with original navigation placement -->
+  <!-- Your existing header -->
   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
-      <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
-          <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
-              <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
-              <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
-              
-          </a>
-    
-    <!-- Desktop Navigation -->
-<nav class="flex space-x-8 text-base uppercase font-bold">
+    <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
+      <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
+        <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
+      </a>
+      
+      <nav class="flex space-x-8 text-base uppercase font-bold">
         <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
         <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
@@ -64,116 +123,172 @@
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
       
+      <div class="flex items-center space-x-4">
+        <button class="hidden lg:block">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"/>
+          </svg>
+        </button>
+        
+        <button id="menu-button" class="mobile-menu-button lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
     
-    <!-- Search Icon -->
-    <div class="flex items-center space-x-4">
-      <button class="hidden lg:block">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
-        </svg>
-      </button>
-      
-      <!-- Mobile Menu Button -->
-      <button id="menu-button" class="mobile-menu-button lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+    <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-[#FFFBE9] pb-4">
+      <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
+        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+      </div>
     </div>
-  </div>
-  
-  <!-- Mobile Navigation -->
-  <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-[#FFFBE9] pb-4">
-    <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
-      <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-      <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-      <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-      <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-      <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-      <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
-    </div>
-  </div>
-</header>
+  </header>
 
-    <!-- Hero Section -->
+  <main>
+    <!-- Your existing hero section -->
     <section class="bg-[#FFFBDE] py-8 lg:py-12">
-        <div class="container mx-auto text-center px-4">
-            <div class="flex flex-col lg:flex-row justify-center items-center">
-                <img src="../images/SHELTER OF LIGHT/PAW-LOGO.png" alt="Paw Logo" class="w-20 h-20 lg:w-24 lg:h-24 lg:mr-4 mb-4 lg:mb-0">
-                <h1 class="text-3xl lg:text-5xl font-poetsen font-bold text-black">Shelter of Light</h1>
-            </div>
-            <p class="italic text-[#FFBB00] mt-4 text-base lg:text-lg">"Where Love Shines Through the Darkness."</p>
-            
+      <div class="container mx-auto text-center px-4">
+        <div class="flex flex-col lg:flex-row justify-center items-center">
+          <img src="../images/SHELTER OF LIGHT/PAW-LOGO.png" alt="Paw Logo" class="w-20 h-20 lg:w-24 lg:h-24 lg:mr-4 mb-4 lg:mb-0">
+          <h1 class="text-3xl lg:text-5xl font-poetsen font-bold text-black">Shelter of Light</h1>
         </div>
+        <p class="italic text-[#FFBB00] mt-4 text-base lg:text-lg">"Where Love Shines Through the Darkness."</p>
+      </div>
     </section>
 
-    <!-- Introduction Section -->
+    <!-- Your existing introduction section -->
     <section class="text-gray-800 py-8 lg:py-12 px-4 lg:px-6">
-        <div class="container mx-auto">
-            <p class="text-center leading-relaxed text-base lg:text-lg">
-                Welcome to the Shelter of Light website. This platform serves as a central space where visitors can learn more about who we are, what we do, and how we continue to grow as a faith-centered community. Whether you're a member, a supporter, or someone new to our mission, this site provides a clear overview of our journey, programs, and vision.
-            </p>
-            <p class="text-center leading-relaxed mt-4 lg:mt-6 text-base lg:text-lg">
-                Here, you will find key information about our ministry, highlights from past events, and updates on ongoing activities. It also features media galleries, testimonials, and resources that reflect our commitment to service, discipleship, and spiritual growth.
-            </p>
-            <p class="text-center leading-relaxed mt-4 lg:mt-6 text-base lg:text-lg">
-                We invite you to explore the pages, discover our story, and be part of the continuing light that inspires and connects us all.
-            </p>
-        </div>
+      <div class="container mx-auto">
+        <p class="text-center leading-relaxed text-base lg:text-lg">
+          Welcome to the Shelter of Light website. This platform serves as a central space where visitors can learn more about who we are, what we do, and how we continue to grow as a faith-centered community. Whether you're a member, a supporter, or someone new to our shelter, this website provides a clear overview of our journey, programs, and vision.
+        </p>
+        <p class="text-center leading-relaxed mt-4 lg:mt-6 text-base lg:text-lg">
+        Our shelter provides comprehensive rehabilitation, from emergency medical treatment to emotional recovery and socialization. Through our adoption program, we carefully match animals with loving forever homes. The website shares heartwarming rescue stories, updates on current residents, and resources about responsible pet care. You'll also find practical ways to support our mission through donations, volunteering, or adoption.
+          
+        </p>
+        <p class="text-center leading-relaxed mt-4 lg:mt-6 text-base lg:text-lg">
+        Every animal deserves safety, dignity, and compassion. At Shelter of Light, we work tirelessly to make that vision a reality - one rescue at a time. Join us in creating brighter futures for animals in need.
+        </p>
+      </div>
     </section>
 
-    <!-- Latest Pet Adopted Section -->
-    <section class="bg-[#FFFBDE] py-8 lg:py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-center text-xl lg:text-2xl font-bold text-gray-800 mb-6">Latest Pet Adopted</h2>
-            <!-- Carousel -->
-            <div class="relative overflow-hidden">
-                <div class="flex transition-transform duration-300 ease-in-out" id="carousel">
-                    <div class="w-full flex-none">
-                        <img src="" alt="Pet 1" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                    </div>
-                    <div class="w-full flex-none">
-                        <img src="" alt="Pet 2" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                    </div>
-                    <div class="w-full flex-none">
-                        <img src="" alt="Pet 3" class="mx-auto h-48 lg:h-60 object-cover rounded-lg mb-2">
-                    </div>
-                </div>
-                <!-- Carousel navigation -->
-                <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 px-3 py-1 lg:px-4 lg:py-2 bg-gray-800 text-white rounded-full text-sm lg:text-base">❮</button>
-                <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 px-3 py-1 lg:px-4 lg:py-2 bg-gray-800 text-white rounded-full text-sm lg:text-base">❯</button>
+   <!-- Replaced carousel section with new 3-image carousel -->
+<section class="bg-[#FFFBDE] py-8 lg:py-12">
+  <div class="container mx-auto px-4">
+    <h2 class="text-center text-xl lg:text-2xl font-bold text-gray-800 mb-6">Latest Pets Adopted</h2>
+    
+    <div class="multi-carousel">
+      <div class="multi-carousel-track" id="multi-carousel-track">
+        <!-- Slide 1 with 3 images -->
+        <div class="multi-carousel-slide">
+          <!-- Pet 1 -->
+          <div class="multi-carousel-item">
+            <div class="relative h-full">
+              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Luna & Diwa.png" alt="Luna & Diwa" class="w-full h-full object-cover">
+              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
+                <h3 class="font-bold text-lg">Luna & Diwa</h3>
+                <p class="text-sm">Our first rescues - orphaned kittens who started it all</p>
+              </div>
             </div>
+          </div>
+          
+          <!-- Pet 2 -->
+          <div class="multi-carousel-item">
+            <div class="relative h-full">
+              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Sinag.png" alt="Sinag" class="w-full h-full object-cover">
+              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
+                <h3 class="font-bold text-lg">Sinag</h3>
+                <p class="text-sm">Our first official rescue with one ruptured eye</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pet 3 -->
+          <div class="multi-carousel-item">
+            <div class="relative h-full">
+              <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Anino.jpg" alt="Faith" class="w-full h-full object-cover">
+              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
+                <h3 class="font-bold text-lg text-center">Anino</h3>
+                <p class="text-sm">Sweet cat who fought bravely against necrosis</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+        
+        <!-- Slide 2 with 3 images -->
+        <div class="multi-carousel-slide">
+          <!-- Pet 1 -->
+          <div class="multi-carousel-item">
+            <div class="relative h-full">
+              <img src="../images/SHELTER OF LIGHT/HOME PAGE/Latest Pet Adopted/Chance.jpg" alt="Bless" class="w-full h-full object-cover">
+              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
+                <h3 class="font-bold text-lg text-center">Chance</h3>
+                <p class="text-sm">Paralyzed cat found in front of a church</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pet 2 -->
+          <div class="multi-carousel-item">
+            <div class="relative h-full">
+              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Viva.png" alt="Viva" class="w-full h-full object-cover">
+              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
+                <h3 class="font-bold text-lg text-center">Chance</h3>
+                <p class="text-sm">Rescued from fire, battled FIP bravely</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Pet 3 -->
+          <div class="multi-carousel-item">
+            <div class="relative h-full">
+              <img src="../images/SHELTER OF LIGHT/ADOPTION STORIES/Cats/Boney.png" alt="Boney" class="w-full h-full object-cover">
+              <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-3">
+                <h3 class="font-bold text-lg text-center">Chance</h3>
+                <p class="text-sm">Three-legged wonder who never slows down</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="multi-carousel-nav multi-carousel-prev">❮</button>
+      <button class="multi-carousel-nav multi-carousel-next">❯</button>
+    </div>
+  </div>
+</section>
 
-    <!-- Info Section -->
+    <!-- Your existing info section -->
     <section class="bg-black text-white py-8 lg:py-12">
-        <div class="container mx-auto text-center px-4">
-            <h3 class="text-base lg:text-lg font-bold mb-4">In total, Shelter of Light has aided, helped, loved, fed, and cared for</h3>
-            <p class="text-xl lg:text-2xl font-bold">Around 400 Animals</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-10 mt-6 lg:mt-8">
-                <div class="text-center">
-                    <p class="text-[#FFBB00] text-2xl lg:text-3xl font-bold">23</p>
-                    <p>Dogs</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-[#FFBB00] text-2xl lg:text-3xl font-bold">377+</p>
-                    <p>Cats</p>
-                </div>
-                <div class="text-center">
-                    <p class="text-[#FFBB00] text-2xl lg:text-3xl font-bold">3</p>
-                    <p>Birds</p>
-                </div>
-            </div>
+      <div class="container mx-auto text-center px-4">
+        <h3 class="text-base lg:text-lg font-bold mb-4">In total, Shelter of Light has aided, helped, loved, fed, and cared for</h3>
+        <p class="text-xl lg:text-2xl font-bold">Around 400 Animals</p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 lg:space-x-10 mt-6 lg:mt-8">
+          <div class="text-center">
+            <p class="text-[#FFBB00] text-2xl lg:text-3xl font-bold">23</p>
+            <p>Dogs</p>
+          </div>
+          <div class="text-center">
+            <p class="text-[#FFBB00] text-2xl lg:text-3xl font-bold">377+</p>
+            <p>Cats</p>
+          </div>
+          <div class="text-center">
+            <p class="text-[#FFBB00] text-2xl lg:text-3xl font-bold">3</p>
+            <p>Birds</p>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-   
-  
-<!-- Horizontal line above footer -->
+  <!-- Footer -->
 <hr class="border-t border-[#00000033] w-full my-0">
-
-<!-- Footer -->
 <footer class="full-width-section bg-[#FFFBE9] text-[#5F4B32] py-6">
     <div class="container mx-auto px-4 lg:px-6">
         <div class="flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
@@ -221,5 +336,45 @@
     </div>
 </footer>
 
+  <!-- JavaScript -->
+  <script>
+    // Your existing mobile menu toggle
+    document.getElementById('menu-button').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // New carousel functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const track = document.getElementById('multi-carousel-track');
+      const slides = document.querySelectorAll('.multi-carousel-slide');
+      const prevBtn = document.querySelector('.multi-carousel-prev');
+      const nextBtn = document.querySelector('.multi-carousel-next');
+      let currentIndex = 0;
+      const slideWidth = slides[0].offsetWidth;
+
+      function updateCarousel() {
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+      }
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+      });
+
+      // Initialize
+      updateCarousel();
+      
+      // Optional: Auto-advance every 5 seconds
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+      }, 5000);
+    });
+  </script>
 </body>
 </html>
