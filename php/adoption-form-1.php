@@ -13,82 +13,92 @@
     }
   </style>
 </head>
-<body class="bg-[#FFFBDE] text-gray-800 font-sans">
+  <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-  <!-- Header -->
-  <header class="bg-[#FFFBE9] shadow-md">
-    <div class="container mx-auto flex justify-between items-center px-6 py-6">
-      <a href="home.php" class="flex items-center space-x-5">
-        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-16 h-16" />
-        <h1 class="text-3xl font-poetsen font-bold text-black">Shelter of Light</h1>
+
+<!-- Main Content -->
+<main class="container mx-auto px-6 py-12">
+  <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">     
+
+    <!-- Heading with X icon -->
+    <div class="flex items-center justify-center mb-6 relative">
+      <h1 class="text-3xl font-bold text-center">Shelter of Light Adoption Application Form</h1>
+      <a href="adopt.php" class="absolute right-0 text-gray-500 hover:text-red-600 transition-colors duration-300" title="Back to Adopt Page">
+        <!-- X Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </a>
-      <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="adopt.php" class="text-[#FFBB00] hover:text-black">Adopt</a>
-        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
-      </nav>
-      <div>
-        <button>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
-          </svg>
-        </button>
-      </div>
     </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="container mx-auto px-6 py-12">
-    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-      <h1 class="text-3xl font-bold mb-6 text-center">Shelter of Light Adoption Application Form</h1>
+    <!-- Application instructions -->
+    <div class="mb-8 p-6 bg-yellow-50 rounded-lg">
+      <p class="mb-4">All information you will share in this form will strictly be confidential and will only be used for the sake of this adoption process.</p>
+      <p>Please complete all sections of this form to help us understand your situation and find the best match for both you and our animals.</p>
+    </div>
+
       
-      <div class="mb-8 p-6 bg-yellow-50 rounded-lg">
-        <p class="mb-4">All information you will share in this form will strictly be confidential and will only be used for the sake of this adoption process.</p>
-        <p>Please complete all sections of this form to help us understand your situation and find the best match for both you and our animals.</p>
-      </div>
-      
-      <h2 class="text-2xl font-bold mb-4">Application Process</h2>
-      <div class="grid grid-cols-3 gap-4 mb-8 text-center">
-        <div class="bg-[#FFFBE9] p-4 rounded-lg border border-[#FFBB00]">
-          <h3 class="font-bold mb-2">1. Fill Out Application Form</h3>
-          <p>Complete all sections of this form</p>
-        </div>
-        <div class="bg-gray-100 p-4 rounded-lg">
-          <h3 class="font-bold mb-2">2. Interview Process</h3>
-          <p>We'll contact you for an interview</p>
-        </div>
-        <div class="bg-gray-100 p-4 rounded-lg">
-          <h3 class="font-bold mb-2">3. Home Visit</h3>
-          <p>Final verification before approval</p>
-        </div>
-      </div>
-      
-      <h2 class="text-2xl font-bold mb-4">Our Adoptable Pets</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div>
-          <h3 class="text-xl font-bold mb-2">Dogs</h3>
-          <ul class="list-disc pl-5">
-            <li>Miky</li>
-            <li>Hany</li>
-            <li>Belle</li>
-            <li>Snoppy</li>
-            <li>Tofu</li>
-            
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold mb-2">Cats</h3>
-          <ul class="list-disc pl-5">
-            <li>Tabasco</li>
-            <li>Cayenne</li>
-            <li>Jalapeno</li>
-          </ul>
-        </div>
-      </div>
-      
+<!-- Application Process -->
+<h2 class="text-2xl font-bold mb-4">Application Process</h2>
+<div class="flex justify-center mb-8">
+  <img src="../images/SHELTER OF LIGHT/FORMS/Adoption Process 2.png" 
+       alt="Step 1" 
+       class="w-[700px] h-auto rounded-lg shadow-md">
+</div>
+<!-- Our Adoptable Pets -->
+<h2 class="text-2xl font-bold mb-4">Our Adoptable Pets</h2>
+
+<!-- Dogs -->
+<h3 class="text-xl font-semibold mb-3">Take note of our adoptable dogs:</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+  <div class="text-center">
+    <img src="../images/SHELTER OF LIGHT/FORMS/Belle.png" alt="Belle" class="w-full h-64 object-cover rounded-lg shadow-md mb-2">
+    <p class="font-bold">Belle</p>
+  </div>
+  <div class="text-center">
+    <img src="../images/SHELTER OF LIGHT/FORMS/Snoppy.jpg" alt="Snoopy" class="w-full h-64 object-cover rounded-lg shadow-md mb-2">
+    <p class="font-bold">Snoopy</p>
+  </div>
+  <div class="text-center">
+    <img src="../images/SHELTER OF LIGHT/FORMS/Tofu.jpg" alt="Tofu" class="w-full h-64 object-cover rounded-lg shadow-md mb-2">
+    <p class="font-bold">Tofu</p>
+  </div>
+</div>
+
+<!-- Milky and Hany Centered -->
+<div class="flex justify-center mb-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="text-center">
+      <img src="../images/SHELTER OF LIGHT/FORMS/Milky.jpg" alt="Milky" class="w-64 h-64 object-cover rounded-lg shadow-md mb-2">
+      <p class="font-bold">Milky</p>
+    </div>
+    <div class="text-center">
+      <img src="../images/SHELTER OF LIGHT/FORMS/Hany.jpg" alt="Hany" class="w-64 h-64 object-cover rounded-lg shadow-md mb-2">
+      <p class="font-bold">Hany</p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Cats -->
+<h3 class="text-xl font-semibold mb-3">Take note of our adoptable cats:</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="text-center">
+    <img src="../images/SHELTER OF LIGHT/FORMS/Jalapeno.jpg" alt="Jalapeño" class="w-full h-64 object-cover rounded-lg shadow-md mb-2">
+    <p class="font-bold">Jalapeño</p>
+  </div>
+  <div class="text-center">
+    <img src="../images/SHELTER OF LIGHT/FORMS/Cayenne.jpg" alt="Cayenne" class="w-full h-64 object-cover rounded-lg shadow-md mb-2">
+    <p class="font-bold">Cayenne</p>
+  </div>
+  <div class="text-center">
+    <img src="../images/SHELTER OF LIGHT/FORMS/Tabasco.jpg" alt="Tabasco" class="w-full h-64 object-cover rounded-lg shadow-md mb-2">
+    <p class="font-bold">Tabasco</p>
+  </div>
+</div>
+
+
       <div class="text-center mt-8">
         <a href="adoption-form-2.php" class="bg-[#FFBB00] hover:bg-[#FFA000] text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-block">
           Start Application
@@ -97,17 +107,6 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-[#FFFBE9] border-t border-gray-300 py-6 mt-12">
-    <div class="container mx-auto flex justify-between items-center px-6">
-      <div>
-        <p>© 2023 Shelter of Light. All rights reserved.</p>
-      </div>
-      <div class="flex space-x-4 items-center">
-        <p class="cursor-pointer hover:underline">Terms and Conditions</p>
-        <p class="cursor-pointer hover:underline">Privacy Policy</p>
-      </div>
-    </div>
-  </footer>
+  
 </body>
 </html>
