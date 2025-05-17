@@ -71,16 +71,20 @@
         <div>
           <h3 class="text-xl font-bold mb-2">Dogs</h3>
           <ul class="list-disc pl-5">
-            <li>Premier</li>
-            <li>Milky Hany</li>
+            <li>Miky</li>
+            <li>Hany</li>
+            <li>Belle</li>
+            <li>Snoppy</li>
+            <li>Tofu</li>
+            
           </ul>
         </div>
         <div>
           <h3 class="text-xl font-bold mb-2">Cats</h3>
           <ul class="list-disc pl-5">
-            <li>Job Apress</li>
-            <li>Extensive Tabasco</li>
-            <li>Next</li>
+            <li>Tabasco</li>
+            <li>Cayenne</li>
+            <li>Jalapeno</li>
           </ul>
         </div>
       </div>
