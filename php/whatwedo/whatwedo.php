@@ -109,7 +109,7 @@
             <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
                 <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
                 <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
-                <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00hover:text-black">What We Do</a>
+                <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00] hover:text-black">What We Do</a>
                 <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
                 <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
                 <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
@@ -131,7 +131,7 @@
                 <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
                     <a href="../../php/home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
                     <a href="../../php/about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
-                    <a href="../../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+                    <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">What We Do</a>
                     <a href="../../php/donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
                     <a href="../../php/adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
                     <a href="../../php/contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>

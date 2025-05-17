@@ -79,7 +79,7 @@ $navItems = [
   <!-- Header with original navigation placement -->
   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
       <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
-          <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+          <a href="../php/donate.php" class="flex items-center space-x-2 lg:space-x-5">
               <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
               <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
               
@@ -87,11 +87,11 @@ $navItems = [
     
     <!-- Desktop Navigation -->
 <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
+        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
         <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="adopt.php" class="text-[#FFBB00] hover:text-black">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
       
@@ -111,7 +111,7 @@ $navItems = [
       <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
       <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
       <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-      <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+      <a href="adopt.php" class="text-[#FFBB00] hover:text-black]">Adopt</a>
       <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
     </div>
   </div>
@@ -120,7 +120,6 @@ $navItems = [
   <!-- Main Content -->
  
 
-<<<<<<< HEAD
     <!-- Orange Container with Statement and Arrow -->
 <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
     <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
@@ -138,16 +137,14 @@ $navItems = [
 <div class="mt-8 mb-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         <!-- Cat Card 1 -->
-        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Tabasco/Tabasco.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition ">
+            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Tabasco/Tabasco.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4 " />
             <p class="font-semibold text-sm text-gray-800">Tabasco</p>
             <p class="text-xs text-gray-600">Hot-headed no more—Tabasco’s got a warm heart under that spice!
 </p>
             <button onclick="openModal('modal-tabasco')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
         </div>
 
-=======
->>>>>>> 2afdf019e33fef6dfe086416771a856a00438617
         <!-- Cat Card 2 -->
         <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
             <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Cayenne/Cayenne (Thumbnail).jpg" alt="Cayenne" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />

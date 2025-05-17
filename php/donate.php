@@ -88,10 +88,10 @@ $navItems = [
       
       <!-- Desktop Navigation -->
       <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
+        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="donate.php" class="text-[#FFBB00] hover:text-black">Donate</a>
         <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
@@ -111,7 +111,7 @@ $navItems = [
           <a href="home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
           <a href="about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
           <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
-          <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+          <a href="donate.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">Donate</a>
           <a href="adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
           <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
         </div>
@@ -119,20 +119,6 @@ $navItems = [
     </div>
   </header>
 
-<<<<<<< HEAD
-<!-- Orange Container with Statement and Arrow -->
-<div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
-        <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
-            <div class="w-6"></div> <!-- Empty div for spacing -->
-            <a href="../../php/whatwedo.php" class="arrow-link text-black hover:text-[#FFBB00]">
-            <h2 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center">Thank you for your interest in donating! We accept through the following:</h2>
-            <a href="home.php" class="arrow-link text-black hover:text-[#FFBB00]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-            </a>
-        </div>
-=======
   <!-- Orange Container with Statement and Arrow -->
   <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
     <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
@@ -143,7 +129,6 @@ $navItems = [
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
       </a>
->>>>>>> 2afdf019e33fef6dfe086416771a856a00438617
     </div>
   </div>
   

@@ -94,7 +94,7 @@
             <div class="container mx-auto px-4">
                 <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
                     <a href="home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
-                    <a href="about.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">About Us</a>
+                    <a href="about.php" class="text-[#FFBB00] text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">About Us</a>
                     <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
                     <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
                     <a href="adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
