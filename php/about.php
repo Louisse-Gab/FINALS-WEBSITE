@@ -30,7 +30,6 @@ class Dog extends Animal {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,6 +42,7 @@ class Dog extends Animal {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      background-color: #FFFBDE;
     }
     main {
       flex: 1;
@@ -55,109 +55,88 @@ class Dog extends Animal {
       margin-left: -50vw;
       margin-right: -50vw;
     }
-    @media (max-width: 1023px) {
-      .desktop-nav {
-        display: none;
-      }
-      .mobile-menu-button {
-        display: block;
-      }
-    }
-    @media (min-width: 1024px) {
-      .desktop-nav {
+    /* Arrow link styles */
+    .arrow-link {
         display: flex;
-      }
-      .mobile-menu-button {
-        display: none;
-      }
-      .mobile-menu {
-        display: none;
-      }
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        transition: color 0.3s;
     }
-
-      /* Arrow link styles */
-        .arrow-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-            transition: color 0.3s;
-        }
-        
-        .arrow-link:hover svg {
-            transform: translateX(-5px);
-            transition: transform 0.3s ease;
-        }
-        
+    
+    .arrow-link:hover svg {
+        transform: translateX(-5px);
+        transition: transform 0.3s ease;
+    }
+    
+    /* Carousel styles */
+    .carousel-container { 
+        position: relative; 
+        overflow: hidden; 
+    }
+    .carousel-slide { 
+        display: none; 
+    }
+    .carousel-slide.active { 
+        display: block; 
+        animation: fade 0.5s; 
+    }
+    @keyframes fade { 
+        from {opacity: .4} 
+        to {opacity: 1} 
+    }
+    .carousel-button:disabled { 
+        opacity: 0.5; 
+        cursor: not-allowed; 
+    }
   </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Shelter of Light</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { display: flex; flex-direction: column; min-height: 100vh; }
-        main { flex: 1; }
-        .full-width-section {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-        }
-        .carousel-container { position: relative; overflow: hidden; }
-        .carousel-slide { display: none; }
-        .carousel-slide.active { display: block; animation: fade 0.5s; }
-        @keyframes fade { from {opacity: .4} to {opacity: 1} }
-        .carousel-button:disabled { opacity: 0.5; cursor: not-allowed; }
-        @media (max-width: 1023px) {
-            .desktop-nav { display: none; }
-            .mobile-menu-button { display: block; }
-        }
-        @media (min-width: 1024px) {
-            .desktop-nav { display: flex; }
-            .mobile-menu-button { display: none; }
-            .mobile-menu { display: none; }
-        }
-    </style>
 </head>
-<body class="bg-[#FFFBDE] text-gray-800 font-sans">
+<body class="text-gray-800 font-sans">
     <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
         <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
             <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
                 <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
                 <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
             </a>
-            <nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
-      </nav>
-      <div>
-            <div class="flex items-center space-x-4">
-                <button class="hidden lg:block">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7 text-black hover:text-[#FFBB00]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
+                <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+                <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
+                <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+                <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+                <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+                <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <div class="flex items-center lg:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 hover:text-[#FFBB00] focus:outline-none">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
-                <button id="menu-button" class="mobile-menu-button lg:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </div>
+            
+            <!-- Search Icon (Desktop) -->
+            <div class="hidden lg:block">
+                <button class="text-black hover:text-[#FFBB00]">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 lg:h-7 lg:w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.75-4.4a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"/>
                     </svg>
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-[#FFFBE9] pb-4">
-            <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
-                <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-                <a href="about.php" class="text-[#FFBB00] hover:text-black">About Us</a>
-                <a href="whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-                <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-                <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-                <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+        
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] pb-4 px-4">
+            <div class="flex flex-col space-y-3 text-sm uppercase font-bold">
+                <a href="home.php" class="hover:text-[#FFBB00] py-2">Home</a>
+                <a href="about.php" class="text-[#FFBB00] hover:text-black py-2">About Us</a>
+                <a href="whatwedo.php" class="hover:text-[#FFBB00] py-2">What We Do</a>
+                <a href="donate.php" class="hover:text-[#FFBB00] py-2">Donate</a>
+                <a href="adopt.php" class="hover:text-[#FFBB00] py-2">Adopt</a>
+                <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
             </div>
         </div>
     </header>
@@ -217,7 +196,7 @@ class Dog extends Animal {
                 <!-- Cats Carousel -->
                 <section class="mb-6">
                     <h3 class="text-center italic font-bold text-black mt-4">CATS</h3>
-                    <div class="bg-white border border-gray-300 rounded-md mt-2 p-4 carousel-container" id="cats-carousel">
+                    <div class="bg-white border border-gray-300 rounded-md mt-2 p-4 relative" id="cats-carousel">
                         <!-- Carousel Items -->
                         <div class="carousel-slide active">
                             <div class="p-4 text-center">
@@ -288,7 +267,7 @@ class Dog extends Animal {
                 <!-- Dogs Carousel -->
                 <section class="mb-6">
                     <h3 class="text-center italic font-bold text-black mt-4 lg:mt-6">DOGS</h3>
-                    <div class="bg-white border border-gray-300 rounded-md mt-2 p-4 carousel-container" id="dogs-carousel">
+                    <div class="bg-white border border-gray-300 rounded-md mt-2 p-4 relative" id="dogs-carousel">
                         <!-- Carousel Items -->
                         <div class="carousel-slide active">
                             <div class="p-4 text-center">
@@ -411,42 +390,46 @@ class Dog extends Animal {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu toggle
-            document.getElementById('menu-button').addEventListener('click', function() {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
             });
 
             // Initialize all carousels
-            document.querySelectorAll('.carousel-container').forEach(carousel => {
+            document.querySelectorAll('[id$="-carousel"]').forEach(carousel => {
                 const slides = carousel.querySelectorAll('.carousel-slide');
                 const prevBtn = carousel.querySelector('.carousel-prev');
                 const nextBtn = carousel.querySelector('.carousel-next');
                 let currentIndex = 0;
 
                 function showSlide(index) {
-                    slides.forEach((slide, i) => {
-                        slide.classList.toggle('active', i === index);
+                    // Validate index
+                    if (index < 0) index = slides.length - 1;
+                    if (index >= slides.length) index = 0;
+                    
+                    // Hide all slides
+                    slides.forEach(slide => {
+                        slide.classList.remove('active');
                     });
                     
-                    // Disable buttons when at boundaries
-                    prevBtn.disabled = index === 0;
-                    nextBtn.disabled = index === slides.length - 1;
+                    // Show current slide
+                    slides[index].classList.add('active');
+                    currentIndex = index;
                 }
 
+                // Previous button click handler
                 prevBtn.addEventListener('click', () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        showSlide(currentIndex);
-                    }
+                    showSlide(currentIndex - 1);
                 });
 
+                // Next button click handler
                 nextBtn.addEventListener('click', () => {
-                    if (currentIndex < slides.length - 1) {
-                        currentIndex++;
-                        showSlide(currentIndex);
-                    }
+                    showSlide(currentIndex + 1);
                 });
 
-                // Initialize
+                // Initialize with first slide
                 showSlide(0);
             });
         });
