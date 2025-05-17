@@ -119,6 +119,10 @@ $navItems = [
     </div>
   </header>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 90183a76cbabfc047272b5e0f38116f37cae4b0d
   <!-- Orange Container with Statement and Arrow -->
   <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
     <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
