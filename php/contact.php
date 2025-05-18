@@ -36,7 +36,7 @@ $creators = [
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | Shelter of Light</title>
+  <title>Adopt a Cat | Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -57,102 +57,107 @@ $creators = [
       margin-right: -50vw;
     }
     
+    /* Arrow link styles */
+    .arrow-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        transition: color 0.3s;
+    }
+    
+    .arrow-link:hover svg {
+        transform: translateX(-5px);
+        transition: transform 0.3s ease;
+    }
+    
     /* Mobile menu styles */
-    .mobile-nav {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100vh;
-      background-color: #FFFBE9;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-      transition: right 0.3s ease-in-out;
-      z-index: 1000;
-      padding-top: 80px;
-      overflow-y: auto;
-    }
-    
-    .mobile-nav.open {
-      right: 0;
-    }
-    
-    .overlay {
-      position: fixed;
-      top: 0;
+    .mobile-menu {
+      position: absolute;
+      top: 100%;
       left: 0;
       width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease-in-out;
+      background-color: #FFFBE9;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transform: translateY(-150%);
+      transition: transform 0.3s ease-out;
+      z-index: 50;
     }
     
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
+    .mobile-menu.open {
+      transform: translateY(0);
     }
     
-    /* Contact icons responsive layout */
-    @media (max-width: 640px) {
-      .contact-icons-container {
-        flex-direction: column;
-        align-items: center;
+    /* Hamburger animation */
+    .hamburger {
+      transition: transform 0.3s;
+    }
+    
+    .hamburger.active {
+      transform: rotate(90deg);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1023px) {
+      .desktop-nav {
+        display: none;
       }
-      .contact-item {
-        width: 100%;
-        margin-bottom: 1.5rem;
-      }
     }
     
-    /* Creators grid responsive */
-    @media (max-width: 768px) {
-      .creators-grid {
-        grid-template-columns: 1fr;
+    @media (min-width: 1024px) {
+      .mobile-menu-button {
+        display: none;
+      }
+      .mobile-menu {
+        display: none;
       }
     }
   </style>
 </head>
-<body class="text-gray-800 font-sans">
+<body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-<!-- Header with improved navigation -->
-<header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033] sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4">
-        <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
-            <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
-            <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
-        </a>
+  <!-- Improved Responsive Header -->
+  <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
+    <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
+      <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
+        <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
+      </a>
       
-        <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
-            <?php foreach ($navItems as $item): ?>
-                <a href="<?= $item['url'] ?>" class="<?= $item['active'] ? 'text-[#FFBB00]' : 'hover:text-[#FFBB00]' ?> transition-colors duration-200">
-                    <?= $item['name'] ?>
-                </a>
-            <?php endforeach; ?>
-        </nav>
-
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="lg:hidden text-gray-800 hover:text-[#FFBB00] focus:outline-none">
-            <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
+        <a href="home.php" class="text-[#FFBB00] hover:text-black">Home</a>
+        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+        <a href="adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
+        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+      </nav>
+      
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center lg:hidden">
+        <button id="mobile-menu-button" class="text-gray-800 hover:text-[#FFBB00] focus:outline-none">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
         </button>
+      </div>
     </div>
-</header>
-
-<!-- Mobile Navigation (Pop-up) -->
-<div id="mobile-nav" class="mobile-nav">
-    <div class="flex flex-col space-y-4 p-6 text-lg uppercase font-bold">
-        <?php foreach ($navItems as $item): ?>
-            <a href="<?= $item['url'] ?>" class="<?= $item['active'] ? 'text-[#FFBB00]' : 'hover:text-[#FFBB00]' ?> py-2 border-b border-gray-200 transition-colors duration-200">
-                <?= $item['name'] ?>
-            </a>
-        <?php endforeach; ?>
+    
+    <!-- Mobile Menu (Dropdown) -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
+          <a href="home.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">Home</a>
+          <a href="about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
+          <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+          <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+          <a href="adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
+          <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
+        </div>
+      </div>
     </div>
-</div>
+  </header>
 
 <!-- Overlay for mobile menu -->
 <div id="overlay" class="overlay"></div>
@@ -321,37 +326,34 @@ $creators = [
 </footer>
 
 <script>
-    // Mobile menu toggle functionality
     document.addEventListener('DOMContentLoaded', function() {
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileNav = document.getElementById('mobile-nav');
-        const overlay = document.getElementById('overlay');
-        
-        menuButton.addEventListener('click', function() {
-            mobileNav.classList.toggle('open');
-            overlay.classList.toggle('active');
-            // Toggle aria-expanded attribute for accessibility
-            const isExpanded = mobileNav.classList.contains('open');
-            menuButton.setAttribute('aria-expanded', isExpanded);
+      const menuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      
+      // Toggle mobile menu
+      menuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('open');
+        hamburgerIcon.classList.toggle('active');
+      });
+      
+      // Close menu when clicking a link (for single page applications)
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('open');
+          hamburgerIcon.classList.remove('active');
         });
-        
-        // Close menu when clicking overlay
-        overlay.addEventListener('click', function() {
-            mobileNav.classList.remove('open');
-            overlay.classList.remove('active');
-            menuButton.setAttribute('aria-expanded', 'false');
-        });
-        
-        // Close menu when pressing Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && mobileNav.classList.contains('open')) {
-                mobileNav.classList.remove('open');
-                overlay.classList.remove('active');
-                menuButton.setAttribute('aria-expanded', 'false');
-            }
-        });
+      });
+      
+      // Close menu when window is resized to desktop size
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 1024) {
+          mobileMenu.classList.remove('open');
+          hamburgerIcon.classList.remove('active');
+        }
+      });
     });
 </script>
-
 </body>
 </html>
