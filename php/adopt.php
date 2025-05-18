@@ -71,55 +71,53 @@ $navItems = [
             transform: translateX(-5px);
             transition: transform 0.3s ease;
         }
-        
+
   </style>
-</head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-  <!-- Header with original navigation placement -->
-  <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
-      <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
-          <a href="../php/donate.php" class="flex items-center space-x-2 lg:space-x-5">
-              <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
-              <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
-              
-          </a>
+<!-- Improved Responsive Header -->
+<header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
+  <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
+    <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+      <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
+      <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
+    </a>
     
     <!-- Desktop Navigation -->
-<nav class="flex space-x-8 text-base uppercase font-bold">
-        <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="adopt.php" class="text-[#FFBB00] hover:text-black">Adopt</a>
-        <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
-      </nav>
-      
-      <!-- Mobile Menu Button -->
-      <button id="menu-button" class="mobile-menu-button lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
+      <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
+      <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
+      <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
+      <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
+      <a href="adopt.php" class="text-[#FFBB00] hover:text-black">Adopt</a>
+      <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <div class="flex items-center lg:hidden">
+      <button id="mobile-menu-button" class="text-gray-800 hover:text-[#FFBB00] focus:outline-none">
+        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
   </div>
   
-  <!-- Mobile Navigation -->
-  <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-[#FFFBE9] pb-4">
-    <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
-      <a href="home.php" class="hover:text-[#FFBB00]">Home</a>
-      <a href="about.php" class="hover:text-[#FFBB00]">About Us</a>
-      <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-      <a href="donate.php" class="hover:text-[#FFBB00]">Donate</a>
-      <a href="adopt.php" class="text-[#FFBB00] hover:text-black]">Adopt</a>
-      <a href="contact.php" class="hover:text-[#FFBB00]">Contact</a>
+  <!-- Mobile Menu (Dropdown) -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
+        <a href="home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
+        <a href="about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
+        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+        <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+        <a href="adopt.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">Adopt</a>
+        <a href="contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
+      </div>
     </div>
   </div>
 </header>
-
-  <!-- Main Content -->
  
-
     <!-- Orange Container with Statement and Arrow -->
 <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
     <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
@@ -451,32 +449,101 @@ $navItems = [
   </footer>
 
   <script>
-    // Mobile menu toggle
-    document.getElementById('menu-button').addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        
+        // Toggle mobile menu
+        menuButton.addEventListener('click', function() {
+            // Toggle mobile menu visibility
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('block');
+            
+            // Toggle animation classes
+            mobileMenu.classList.toggle('open');
+            hamburgerIcon.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('block', 'open');
+                hamburgerIcon.classList.remove('active');
+            });
+        });
+        
+        // Close menu when window is resized to desktop size
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 1024) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('block', 'open');
+                hamburgerIcon.classList.remove('active');
+            }
+        });
     });
+    // Mobile menu functionality
+    const menuButton = document.getElementById('menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (menuButton && mobileMenu) {
+        menuButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent this click from triggering the document click handler
+            // Toggle menu visibility
+            mobileMenu.classList.toggle('hidden');
+            
+            // Toggle aria-expanded for accessibility
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                menuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+   
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+                menuButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+    
 
     // Modal functions
     function openModal(modalId) {
-      document.body.classList.add('modal-open');
-      const modal = document.getElementById(modalId);
-      modal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
     }
 
     function closeModal(modalId) {
-      document.body.classList.remove('modal-open');
-      const modal = document.getElementById(modalId);
-      modal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('hidden');
+        }
     }
 
     // Close modal when clicking outside
     window.addEventListener('click', function(event) {
-      if (event.target.classList.contains('modal')) {
-        document.body.classList.remove('modal-open');
-        event.target.classList.add('hidden');
-      }
+        if (event.target.classList.contains('modal')) {
+            document.body.classList.remove('modal-open');
+            event.target.classList.add('hidden');
+        }
     });
-  </script>
+
+    
+</script>
 </body>
 </html>

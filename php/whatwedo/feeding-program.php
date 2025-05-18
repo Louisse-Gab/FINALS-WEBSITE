@@ -157,7 +157,7 @@
   <!-- Improved Responsive Header -->
   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
     <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
-      <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+      <a href="../home.php" class="flex items-center space-x-2 lg:space-x-5">
         <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
         <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
       </a>
@@ -188,7 +188,7 @@
         <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
           <a href="../../php/home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
           <a href="../../php/about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
-          <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+          <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">What We Do</a>
           <a href="../../php/donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
           <a href="../../php/adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
           <a href="../../php/contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
@@ -273,5 +273,24 @@
         </div>
     </div>
   </footer>
+  
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

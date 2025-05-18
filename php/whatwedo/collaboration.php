@@ -155,15 +155,17 @@
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-   <!-- Your existing header -->
-   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000044]">
+  
+  <!-- Improved Responsive Header -->
+  <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
     <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
-      <a href="../../php/whatwedo/whatwedo.php" class="flex items-center space-x-2 lg:space-x-5">
-        <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png " alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
+      <a href="../home.php" class="flex items-center space-x-2 lg:space-x-5">
+        <img src="../../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
         <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
       </a>
       
-      <nav class="flex space-x-8 text-base uppercase font-bold">
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
         <a href="../../php/home.php" class="hover:text-[#FFBB00]">Home</a>
         <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
         <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00] hover:text-black">What We Do</a>
@@ -171,23 +173,28 @@
         <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
         <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
       </nav>
-        
-        <button id="menu-button" class="mobile-menu-button lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      
+      <!-- Mobile Menu Button -->
+      <div class="flex items-center lg:hidden">
+        <button id="mobile-menu-button" class="text-gray-800 hover:text-[#FFBB00] focus:outline-none">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
       </div>
     </div>
     
-    <div id="mobile-menu" class="mobile-menu hidden lg:hidden bg-[#FFFBE9] pb-4">
-      <div class="container mx-auto px-4 flex flex-col space-y-3 text-sm uppercase font-bold">
-        <a href="../../php/about.php" class="hover:text-[#FFBB00]">Home</a>
-        <a href="../../php/about.php" class="hover:text-[#FFBB00]">About Us</a>
-        <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00]">What We Do</a>
-        <a href="../../php/donate.php" class="hover:text-[#FFBB00]">Donate</a>
-        <a href="../../php/adopt.php" class="hover:text-[#FFBB00]">Adopt</a>
-        <a href="../../php/contact.php" class="hover:text-[#FFBB00]">Contact</a>
+    <!-- Mobile Menu (Dropdown) -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
+          <a href="../../php/home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
+          <a href="../../php/about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
+          <a href="../../php/whatwedo/whatwedo.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">What We Do</a>
+          <a href="../../php/donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+          <a href="../../php/adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
+          <a href="../../php/contact.php" class="hover:text-[#FFBB00] py-2">Contact</a>
+        </div>
       </div>
     </div>
   </header>
@@ -290,9 +297,27 @@
                 <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
                 <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST</p>
             </div>
-            
         </div>
     </div>
 </footer>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

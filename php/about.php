@@ -301,8 +301,10 @@
         </section>
     </main>
 
- <!-- Footer -->
-<hr class="border-t border-[#00000033] w-full my-0">
+ <!-- Horizontal line above footer -->
+ <hr class="border-t border-[#00000033] w-full my-0">
+
+<!-- Footer -->
 <footer class="full-width-section bg-[#FFFBE9] text-[#5F4B32] py-6">
     <div class="container mx-auto px-4 lg:px-6">
         <div class="flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
@@ -349,6 +351,7 @@
         </div>
     </div>
 </footer>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
     <div class="container">
       <!-- Left Panel: Only visible on login -->
       <div class="left-panel" id="leftPanel" style="display: <?= $formToShow === 'login' ? 'flex' : 'none' ?>;">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Cayenne/Cayenne.jpg" alt="Cat" class="cat-img">
+        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Tabasco/Tabasco.jpg" alt="Cat" class="cat-img">
       </div>
 
       <!-- Right Panel: Forms -->
