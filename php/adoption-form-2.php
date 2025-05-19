@@ -1,3 +1,27 @@
+<?php
+  require_once '../connection.php';
+
+  if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $fullname = $_POST['fullName'];
+    $address = $_POST['address'];
+    $phone = $_POST['phone'];
+    $email = $_POST['email'];
+    $socialMedia = $_POST['socialMedia'];
+    $jobTitle = $_POST['jobTitle'];
+    $age = $_POST['age'];
+    $employer = $_POST['employer'];
+
+    $query = $conn->prepare('INSERT INTO adopt (fullName, address, phone, email, socialMedia, jobTitle, age, employer) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    $query->bind_param('ssssssss', $fullname, $address, $phone, $email, $socialMedia, $jobTitle, $age, $employer);
+    
+    if($query->execute() === TRUE){
+      $last_id = $conn->insert_id;
+      header("Location: adoption-form-3.php?id=" . $last_id);
+      exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +42,8 @@
 
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-12">
-    <form action="adoption-form-3.php" method="post" class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-     
+    <form action="" method="post" class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
+     <input type="hidden" name="id" value="<?php echo isset($_GET['id']) ? htmlspecialchars($_GET['id']) : (isset($_POST['id']) ? htmlspecialchars($_POST['id']) : ''); ?>">
       
       <h1 class="text-3xl font-bold mb-6">Personal Information</h1>
       <p class="mb-8 text-gray-600">This section is all about you, the potential adopter. Please provide accurate information to help us process your application.</p>

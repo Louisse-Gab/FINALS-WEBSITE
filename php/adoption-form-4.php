@@ -1,4 +1,5 @@
 <?php
+require_once '../connection.php';
 // Define the current page
 $currentPage = 'adopt';
 
@@ -11,6 +12,32 @@ $navItems = [
     ['name' => 'Adopt', 'url' => 'adopt.php', 'active' => $currentPage === 'adopt'],
     ['name' => 'Contact', 'url' => 'contact.php', 'active' => $currentPage === 'contact']
 ];
+
+$success = false;
+$errorMsg = '';
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $id = $_POST['id'] ?? null;  // Get the record ID to update
+    $adoptionProcess = $_POST['adoption_process'] ?? '';
+    $informationTruth = $_POST['information_truth'] ?? '';
+    $agreement = $_POST['agreement'] ?? '';
+
+    if (!$id) {
+        $errorMsg = "Record ID is missing.";
+    } elseif (!$adoptionProcess || !$informationTruth || !$agreement || $agreement === 'disagree') {
+        $errorMsg = "Please answer all questions properly and agree to continue.";
+    } else {
+        // Update existing record in the database
+        $stmt = $conn->prepare("UPDATE adopt SET adoption_process = ?, information_truth = ?, agreement = ? WHERE id = ?");
+        $stmt->bind_param("sssi", $adoptionProcess, $informationTruth, $agreement, $id);
+
+        if ($stmt->execute()) {
+            $success = true;
+        } else {
+            $errorMsg = "Database error: " . $stmt->error;
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -142,17 +169,29 @@ $navItems = [
 
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-8 agreement-container">
-    <form id="adoption-agreement-form" class="agreement-form">
+
+    <!-- Show error message if any -->
+    <?php if (!empty($errorMsg)) : ?>
+      <div class="max-w-600 mx-auto mb-4 p-4 bg-red-100 text-red-700 rounded">
+        <?php echo htmlspecialchars($errorMsg); ?>
+      </div>
+    <?php endif; ?>
+
+    <form id="adoption-agreement-form" method="POST" action="" class="agreement-form">
+      <input type="hidden" name="id" value="<?php echo isset($_POST['id']) ? htmlspecialchars($_POST['id']) : (isset($_GET['id']) ? htmlspecialchars($_GET['id']) : ''); ?>">
+
       <h1 class="agreement-title text-2xl font-bold mb-6">ADOPTION AGREEMENT</h1>
       
       <div class="question">
         <label class="block mb-2 font-medium">Do you agree to undergo the adoption process in all its steps?</label>
         <div class="flex items-center mb-1">
-          <input type="radio" id="process-yes" name="adoption_process" value="yes" class="mr-2" required>
+          <input type="radio" id="process-yes" name="adoption_process" value="yes" class="mr-2" required
+            <?php if (isset($_POST['adoption_process']) && $_POST['adoption_process'] === 'yes') echo 'checked'; ?>>
           <label for="process-yes">Yes</label>
         </div>
         <div class="flex items-center">
-          <input type="radio" id="process-no" name="adoption_process" value="no" class="mr-2">
+          <input type="radio" id="process-no" name="adoption_process" value="no" class="mr-2"
+            <?php if (isset($_POST['adoption_process']) && $_POST['adoption_process'] === 'no') echo 'checked'; ?>>
           <label for="process-no">No</label>
         </div>
       </div>
@@ -160,11 +199,13 @@ $navItems = [
       <div class="question">
         <label class="block mb-2 font-medium">Do you ensure that all the information that you have shared in this form and all the information you will share going forward will all be true?</label>
         <div class="flex items-center mb-1">
-          <input type="radio" id="truth-yes" name="information_truth" value="yes" class="mr-2" required>
+          <input type="radio" id="truth-yes" name="information_truth" value="yes" class="mr-2" required
+            <?php if (isset($_POST['information_truth']) && $_POST['information_truth'] === 'yes') echo 'checked'; ?>>
           <label for="truth-yes">Yes</label>
         </div>
         <div class="flex items-center">
-          <input type="radio" id="truth-no" name="information_truth" value="no" class="mr-2">
+          <input type="radio" id="truth-no" name="information_truth" value="no" class="mr-2"
+            <?php if (isset($_POST['information_truth']) && $_POST['information_truth'] === 'no') echo 'checked'; ?>>
           <label for="truth-no">No</label>
         </div>
       </div>
@@ -172,11 +213,13 @@ $navItems = [
       <div class="question">
         <label class="block mb-2 font-medium">I understand that in the submission of this form, I am granting Shelter of Light to use my answers here for the sake of the adoption application process.</label>
         <div class="flex items-center mb-1">
-          <input type="checkbox" id="agree" name="agreement" value="agree" class="mr-2" required>
+          <input type="checkbox" id="agree" name="agreement" value="agree" class="mr-2" required
+            <?php if (isset($_POST['agreement']) && $_POST['agreement'] === 'agree') echo 'checked'; ?>>
           <label for="agree">Agree</label>
         </div>
         <div class="flex items-center">
-          <input type="checkbox" id="disagree" name="agreement" value="disagree" class="mr-2">
+          <input type="checkbox" id="disagree" name="agreement" value="disagree" class="mr-2"
+            <?php if (isset($_POST['agreement']) && $_POST['agreement'] === 'disagree') echo 'checked'; ?>>
           <label for="disagree">Disagree</label>
         </div>
       </div>
@@ -194,7 +237,6 @@ $navItems = [
       <h2 class="text-2xl font-bold mb-4">Thank You for Your Adoption Application!</h2>
       <p class="mb-4">We appreciate your interest in adopting from Shelter of Light. Our team will review your application and get back to you soon.</p>
   
-      
       <button id="modal-exit-button" class="modal-exit-button">Exit</button>
     </div>
   </div>
@@ -206,28 +248,6 @@ $navItems = [
       menu.classList.toggle('hidden');
     });
 
-    // Form submission and modal handling
-    document.getElementById('adoption-agreement-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      // Validate the form
-      const adoptionProcess = document.querySelector('input[name="adoption_process"]:checked');
-      const informationTruth = document.querySelector('input[name="information_truth"]:checked');
-      const agreement = document.querySelector('input[name="agreement"]:checked');
-      
-      if (!adoptionProcess || !informationTruth || !agreement) {
-        alert('Please answer all questions before submitting.');
-        return false;
-      }
-      
-      // Show the thank you modal
-      document.getElementById('thank-you-modal').style.display = 'flex';
-      document.body.classList.add('modal-open');
-      
-      // Optional: You could submit the form data to the server here
-      // using fetch() or XMLHttpRequest
-    });
-
     // Modal exit button
     document.getElementById('modal-exit-button').addEventListener('click', function() {
       document.getElementById('thank-you-modal').style.display = 'none';
@@ -235,5 +255,15 @@ $navItems = [
       window.location.href = 'home.php';
     });
   </script>
+
+  <?php if ($success): ?>
+  <script>
+    window.onload = function() {
+      document.getElementById('thank-you-modal').style.display = 'flex';
+      document.body.classList.add('modal-open');
+    };
+  </script>
+  <?php endif; ?>
+
 </body>
 </html>

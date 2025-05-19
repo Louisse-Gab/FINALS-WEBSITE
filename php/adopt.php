@@ -131,262 +131,96 @@ $navItems = [
     </div>
 </div>
 
-<!-- Added margin-top here for spacing below the header -->
-<div class="mt-8 mb-8">
+<?php
+  require_once('../connection.php');
+
+  $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_kind, pet_vacinated FROM pets";
+  $result = $conn->query($query);
+  $pets = [];
+  if ($result) {
+    while ($row = $result->fetch_assoc()) {
+      $pets[] = $row;
+    }
+  } else {
+    die("Query failed: " . $conn->error);
+  }
+
+  // Separate cats and dogs
+  $cats = array_filter($pets, fn($p) => strtolower($p['type']) === 'cat');
+  $dogs = array_filter($pets, fn($p) => strtolower($p['type']) === 'dog');
+  ?>
+
+  <!-- Added margin-top here for spacing below the header -->
+  <div class="mt-8 mb-8">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <!-- Cat Card 1 -->
-        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition ">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Tabasco/Tabasco.jpg" alt="Tabasco" class="w-32 h-32 object-cover rounded-full mx-auto mb-4 " />
-            <p class="font-semibold text-sm text-gray-800">Tabasco</p>
-            <p class="text-xs text-gray-600">Hot-headed no more—Tabasco’s got a warm heart under that spice!
-</p>
-            <button onclick="openModal('modal-tabasco')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-        </div>
-
-        <!-- Cat Card 2 -->
+      <?php foreach ($cats as $cat): ?>
         <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Cayenne/Cayenne (Thumbnail).jpg" alt="Cayenne" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-            <p class="font-semibold text-sm text-gray-800">Cayenne</p>
-            <p class="text-xs text-gray-600">Cayenne's still got sass, but now she's all about snuggles too</p>
-            <button onclick="openModal('modal-cayenne')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
+          <img src="../adminphp/plist.php?id=<?= $cat['id'] ?>" alt="<?= htmlspecialchars($cat['pet_name']) ?>"
+            class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+          <p class="font-semibold text-sm text-gray-800"><?= htmlspecialchars($cat['pet_name']) ?></p>
+          <p class="text-xs text-gray-600"><?= htmlspecialchars(mb_strimwidth($cat['description'], 0, 100, '...')) ?></p>
+          <button class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500"
+            onclick="openModal(this)" data-name="<?= htmlspecialchars($cat['pet_name']) ?>"
+            data-img="../adminphp/plist.php?id=<?= $cat['id'] ?>.jpg" data-age="<?= htmlspecialchars($cat['pet_age']) ?>"
+            data-breed="<?= htmlspecialchars($cat['pet_breed']) ?>"
+            data-gender="<?= htmlspecialchars($cat['pet_gender']) ?>"
+            data-vaccine="<?= htmlspecialchars($cat['pet_vacinated']) ?>"
+            data-description="<?= htmlspecialchars($cat['description']) ?>">
+            SEE DETAILS
+          </button>
         </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
 
-        <!-- Cat Card 3 -->
-        <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition">
-            <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Jalapeno/Jalapeno (Thumbnail).jpg" alt="Jalapeno" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-            <p class="font-semibold text-sm text-gray-800">Jalapeno</p>
-            <p class="text-xs text-gray-600">A little fire, a lot of love—Jalapeño will steal your heart</p>
-            <button onclick="openModal('modal-jalapeno')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
+  <!-- Adopt a Dog Section -->
+  <div id="dog-section" class="mt-12">
+    <div class="flex items-center justify-center bg-[#FFF2CD] px-4 py-3 rounded-md mb-6">
+      <h2 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center">ADOPT A DOG</h2>
+    </div>
+
+    <div class="flex justify-center gap-6 flex-wrap">
+      <?php foreach ($dogs as $dog): ?>
+        <div
+          class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition w-[400px] min-h-[300px]">
+          <img src="../adminphp/plist.php?id=<?= $dog['id'] ?>" alt="<?= htmlspecialchars($dog['pet_name']) ?>"
+            class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
+          <p class="font-semibold text-sm text-gray-800"><?= htmlspecialchars($dog['pet_name']) ?></p>
+          <p class="text-xs text-gray-600"><?= htmlspecialchars(mb_strimwidth($dog['description'], 0, 100, '...')) ?></p>
+          <button class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500"
+            onclick="openModal(this)" data-name="<?= htmlspecialchars($dog['pet_name']) ?>"
+            data-img="../adminphp/plist.php?id=<?= $dog['id'] ?>.jpg" data-age="<?= htmlspecialchars($dog['pet_age']) ?>"
+            data-breed="<?= htmlspecialchars($dog['pet_breed']) ?>"
+            data-gender="<?= htmlspecialchars($dog['pet_gender']) ?>"
+            data-vaccine="<?= htmlspecialchars($dog['pet_vacinated']) ?>"
+            data-description="<?= htmlspecialchars($dog['description']) ?>">
+            SEE DETAILS
+          </button>
         </div>
-    </div>
-</div>
-
-<!-- Adopt a Dog Section -->
-<div id="dog-section" class="mt-12">
-  <div class="flex items-center justify-center bg-[#FFF2CD] px-4 py-3 rounded-md mb-6">
-    <h2 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center">ADOPT A DOG</h2>
-  </div>
-
-  <!-- First Three Dog Cards -->
-  <div class="flex justify-center gap-6 flex-wrap">
-    <!-- Dog Card 1 -->
-    <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition w-[400px] min-h-[300px]">
-      <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Milky/Milky (Thumbnail)_.jpg" alt="Miky" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-      <p class="font-semibold text-sm text-gray-800">Miky</p>
-      <p class="text-xs text-gray-600">From rough beginnings to sweet new starts—ready to melt your heart!</p>
-      <button onclick="openModal('modal-miky')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-    </div>
-
-    <!-- Dog Card 2 -->
-    <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition w-[400px] min-h-[300px]">
-      <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Hany/Hany (Thumbnail).jpg" alt="Hany" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-      <p class="font-semibold text-sm text-gray-800">Hany</p>
-      <p class="text-xs text-gray-600">Hungry for love and ready to play—Hany's your happy heart in fur!</p>
-      <button onclick="openModal('modal-hany')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-    </div>
-
-    <!-- Dog Card 3 -->
-    <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition w-[400px] min-h-[300px]">
-      <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Belle/Belle(Thumbnail).jpg" alt="Belle" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-      <p class="font-semibold text-sm text-gray-800">Belle</p>
-      <p class="text-xs text-gray-600">Small in size, big in heart—Belle is ready to be your little bundle of love!</p>
-      <button onclick="openModal('modal-belle')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
+      <?php endforeach; ?>
     </div>
   </div>
-
-  <div class="flex justify-center gap-6 mt-6 flex-wrap">
-    <!-- Snoopy Card -->
-    <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition w-[400px] min-h-[300px]">
-      <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Snoppy/Snoopy (Thumbnail)].jpg" alt="Snoopy" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-      <p class="font-semibold text-sm text-gray-800">Snoopy</p>
-      <p class="text-xs text-gray-600">From forgotten to fighting—Snoopy's story isn't over yet!</p>
-      <button onclick="openModal('modal-snoopy')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-    </div>
-
-    <!-- Tofu Card -->
-    <div class="bg-white border border-gray-300 rounded-md p-4 text-center shadow-sm hover:shadow-md transition w-[400px] min-h-[300px]">
-      <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Tofu/Tofu.jpg" alt="Tofu" class="w-32 h-32 object-cover rounded-full mx-auto mb-4" />
-      <p class="font-semibold text-sm text-gray-800">Tofu</p>
-      <p class="text-xs text-gray-600">Tiny but tough—Tofu's heart is bigger than his battles!</p>
-      <button onclick="openModal('modal-tofu')" class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</button>
-    </div>
-  </div>
-</div>
 
     </section>
   </main>
 
-  <!-- Tabasco Modal -->
-  <div id="modal-tabasco" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
+  <div id="pet-modal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
     <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
-      <button aria-label="Close modal" onclick="closeModal('modal-tabasco')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      <button aria-label="Close modal" onclick="closeModal()"
+        class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
       <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Tabasco/Tabasco.jpg" alt="Tabasco" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Tabasco</h3>
+        <img id="modal-img" src="" alt="Pet Image" class="w-48 h-48 object-cover rounded-full mb-4">
+        <h3 id="modal-name" class="text-xl font-bold mb-2">Pet Name</h3>
         <div class="text-left w-full">
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 3-4 months</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Puspin, half tabby</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Female</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> 4-1 x2</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Very playful and loves food</p>
-          <p class="text-gray-700 mb-4 text-justify">Tabasco was the first of the three kittens spotted near our foster’s home, hiding under a parked tricycle with eyes wide and body tense. She was covered in dirt and let out tiny growls when approached, warning everyone to stay away. With slow, careful steps and food as bait, our foster was able to gently lure her out. It took time and a lot of patience, but Tabasco finally allowed herself to be scooped up—and that marked the beginning of her second chance at life.
-</p>
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Cayenne Modal -->
-  <div id="modal-cayenne" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
-      <button aria-label="Close modal" onclick="closeModal('modal-cayenne')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Cayenne/Cayenne.jpg" alt="Cayenne" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Cayenne</h3>
-        <div class="text-left w-full">
-           <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 3-4 months</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Puspin, Calico
-</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Female</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> 4-1 x2</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Very playful and loves food</p>
-          <p class="text-gray-700 mb-4 text-justify">Cayenne was found just a few feet away from Tabasco, crouched inside an old cardboard box near a neighbor’s gate. She was alert, fierce, and clearly trying to protect herself and her sisters. While she put up a little fight, she also seemed the most curious about the humans trying to help. She eventually allowed herself to be carried, eyes never leaving her sisters. Cayenne showed early signs of leadership—brave, protective, and strong—and continues to carry that spirit in her foster home.
-</p>
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Jalapeno Modal -->
-  <div id="modal-jalapeno" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
-      <button aria-label="Close modal" onclick="closeModal('modal-jalapeno')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Jalapeno/Jalapeno.jpg" alt="Jalapeño" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Jalapeño</h3>
-        <div class="text-left w-full">
-         <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 3-4 months</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span>Puspin, Full tabby
-</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Female</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> 4-1 x2</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Very playful and loves food</p>
-          <p class="text-gray-700 mb-4 text-justify">Jalapeño was the last one rescued—and the most fearful. She had taken shelter behind a pile of wood, trembling at every sound. Her eyes were filled with fear, and it was clear she had not experienced kindness before. It took several quiet visits, gentle coaxing, and the sound of her sisters meowing nearby before she dared to come out. When she was finally brought into safety, she clung quietly to her siblings, drawing comfort from their presence. She’s since made huge strides and is now blooming into a gentle, loving kitten.
-</p>
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Miky Modal -->
-  <div id="modal-miky" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
-      <button aria-label="Close modal" onclick="closeModal('modal-miky')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Milky/Milky 1.jpg" alt="Miky" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Miky</h3>
-        <div class="text-left w-full">
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 4-5 months</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Aspin (dirty white fur)</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Male</p>
-
-          <p class="text-gray-700 mb-4 text-justify">Milky is a playful male pup around 3–4 months old, rescued from a neglectful past. Now healthy and fully vaccinated with 5-in-1, he's thriving in foster care. Milky loves boiled chicken, puppy milk, and playtime—and is looking for a forever home filled with love and patience.
-</p>
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hany Modal -->
-  <div id="modal-hany" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
-      <button aria-label="Close modal" onclick="closeModal('modal-hany')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Hany/Hany 1.jpg" alt="Hany" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Hany</h3>
-        <div class="text-left w-full">
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 4-5 months</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span>Aspin brown * white fur
-</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Male</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> 5- in-1 x2</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Very playful and loves food</p>
-          <p class="text-gray-700 mb-4 text-justify">Hany was rescued from the streets, underweight and neglected. Despite his rough start, he quickly bounced back with proper care and love. 
-</p>
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Belle Modal -->
-  <div id="modal-belle" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
-      <button aria-label="Close modal" onclick="closeModal('modal-belle')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Belle/Belle 1.jpg" alt="Belle" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Belle</h3>
-        <div class="text-left w-full">
-         <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 3-4</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span>Aspin, small breed
-</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Female</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> 5- in-1 x2 </span>, Dewormed x4</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Very playful and loves food</p>
-          <p class="text-gray-700 mb-4 text-justify">Belle was found as a tiny stray, wandering alone—likely separated from her mother far too early. Weak and vulnerable, she was taken in by Shelter of Light where she finally received the warmth and safety every pup deserves. </p>
-
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Centered Modals Container -->
-<div class="flex flex-col items-center justify-center gap-8 py-8">
-  
-  <!-- Snoopy Modal - Centered -->
-  <div id="modal-snoopy" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative mx-auto">
-      <button aria-label="Close modal" onclick="closeModal('modal-snoopy')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Snoppy/Snoopy 1.jpg" alt="Snoopy" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Snoopy</h3>
-        <div class="text-left w-full">
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 6-7 months</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Aspin (white, bigger)</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Male</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> 5-1 x2</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Neutered:</span> Yes</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Very playful and sweet</p>
-
-          <p class="text-gray-700 mb-4 text-justify ">Snoopy is one of Akira’s pups who was neglected by previous owners and later surrendered when he got sick. Diagnosed with parvo, he is now under care and fighting through with strength and resilience. He’ll be moving to a loving foster home this week.</p>
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tofu Modal - Centered -->
-  <div id="modal-tofu" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 hidden z-50">
-    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative mx-auto">
-      <button aria-label="Close modal" onclick="closeModal('modal-tofu')" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-2xl font-bold">&times;</button>
-      <div class="flex flex-col items-center">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Dogs/Tofu/Tofu.jpg" alt="Tofu" class="w-48 h-48 object-cover rounded-full mb-4">
-        <h3 class="text-xl font-bold mb-2">Tofu</h3>
-        <div class="text-left w-full">
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> 6-7 months</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> Aspin (white, smaller)</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> Male</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> 5-1 x2</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Neutered:</span> Yes</p>
-          <p class="text-gray-700 mb-2"><span class="font-semibold">Very playful and sweet</p>
-
-          <p class="text-gray-700 mb-4 text-justify">Surrendered by previous owners after neglect and lack of medical care. They only gave him up when he became seriously ill. Tofu is now under the care of Shelter of Light with the help of Lala's Haven. Very playful and sweet.</p>
-          <a href="adoptlogin.php" class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt Me</a>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> <span id="modal-age"></span></p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> <span id="modal-breed"></span></p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> <span id="modal-gender"></span></p>
+          <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> <span id="modal-vaccine"></span>
+          </p>
+          <p class="text-gray-700 mb-4 text-justify" id="modal-description">Description here.</p>
+          <a href="adoptlogin.php"
+            class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt
+            Me</a>
         </div>
       </div>
     </div>
@@ -518,23 +352,6 @@ $navItems = [
         });
     
 
-    // Modal functions
-    function openModal(modalId) {
-        document.body.classList.add('modal-open');
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.remove('hidden');
-        }
-    }
-
-    function closeModal(modalId) {
-        document.body.classList.remove('modal-open');
-        const modal = document.getElementById(modalId);
-        if (modal) {
-            modal.classList.add('hidden');
-        }
-    }
-
     // Close modal when clicking outside
     window.addEventListener('click', function(event) {
         if (event.target.classList.contains('modal')) {
@@ -545,5 +362,24 @@ $navItems = [
 
     
 </script>
+  <script>
+    function openModal(button) {
+      const modal = document.getElementById('pet-modal');
+
+      document.getElementById('modal-img').src = button.dataset.img;
+      document.getElementById('modal-name').textContent = button.dataset.name;
+      document.getElementById('modal-age').textContent = button.dataset.age;
+      document.getElementById('modal-breed').textContent = button.dataset.breed;
+      document.getElementById('modal-gender').textContent = button.dataset.gender;
+      document.getElementById('modal-vaccine').textContent = button.dataset.vaccine;
+      document.getElementById('modal-description').textContent = button.dataset.description;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('pet-modal').classList.add('hidden');
+    }
+  </script>
 </body>
 </html>

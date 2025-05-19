@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -96,9 +97,9 @@
                 </li>
                 
                 <li class="border-t border-gray-300 mt-6 pt-4">
-                    <a href="../adminphp/login.php" 
+                    <a href="../php/adoptlogin.php" 
                        class="menu-item block py-2 px-4 hover:bg-red-100 text-red-600 rounded-lg transition duration-300" 
-                       data-url="../adminphp/login.php">
+                       data-url="../php/adoptlogin.php">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -114,7 +115,7 @@
     <!-- Header -->
     <div class="flex justify-between items-center bg-[#FDF2C1] px-6 py-4 shadow-md">
         <div class="menu-icon text-2xl cursor-pointer">&#9776;</div>
-        <h1 class="text-xl font-bold text-black">Manage Users Here</h1>
+        <h1 class="text-xl font-bold text-black">Manage Adopt Here</h1>
         <div class="w-8 h-8 bg-black rounded-full"></div>
     </div>
 
@@ -135,25 +136,175 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white">
-                    <td class="px-4 py-2 border-b">1</td>
-                    <td class="px-4 py-2 border-b">John Doe</td>
-                    <td class="px-4 py-2 border-b">123 Main St.</td>
-                    <td class="px-4 py-2 border-b">+1234567890</td>
-                    <td class="px-4 py-2 border-b">30</td>
-                    <td class="px-4 py-2 border-b">johndoe@example.com</td>
-                    <td class="px-4 py-2 border-b">@johndoe</td>
-                    <td class="px-4 py-2 border-b">Software Engineer</td>
-                    <td class="px-4 py-2 border-b flex space-x-2">
-                        <button class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-700">&#10004;</button>
-                        <button class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700">&#10008;</button>
-                    </td>
-                </tr>
+                <tbody>
+        <?php
+        require_once '../connection.php'; 
+
+        $stmt = $conn->query("SELECT * FROM adopt");
+        $counter = 1;
+        while ($row = $stmt->fetch_assoc()) {
+            echo "<tr class='bg-white'>";
+            echo "<td class='px-4 py-2 border-b'>{$counter}</td>";
+            echo "<td class='px-4 py-2 border-b'>{$row['fullName']}</td>";
+            echo "<td class='px-4 py-2 border-b'>{$row['address']}</td>";
+            echo "<td class='px-4 py-2 border-b'>{$row['phone']}</td>";
+            echo "<td class='px-4 py-2 border-b'>{$row['age']}</td>";
+            echo "<td class='px-4 py-2 border-b'>{$row['email']}</td>";
+            echo "<td class='px-4 py-2 border-b'>{$row['socialMedia']}</td>";
+            echo "<td class='px-4 py-2 border-b'>{$row['jobTitle']}</td>";
+            echo "<td class='px-4 py-2 border-b flex space-x-2'>";
+            echo "<button class='bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-700'>&#10004;</button>";
+            echo "<button class='bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700'>&#10008;</button>";
+            echo "</td>";
+            echo "</tr>";
+            $counter++;
+        }
+        ?>
+    </tbody>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
     </div>
+    <!-- Modal for Adoption Details -->
+    <div id="adoptionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Adoption Details</h3>
+                <button id="closeModal" class="text-2xl">&times;</button>
+            </div>
+            <div id="adoptionDetails" class="mb-4">
+                <!-- Adoption details will be inserted here -->
+            </div>
+            <div class="flex justify-between">
+                <button id="declineBtn" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700">Decline</button>
+                <button id="confirmBtn" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700">Confirm</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- Confirmation Modal -->
+    <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Confirm Action</h3>
+                <button id="closeConfirmModal" class="text-2xl">&times;</button>
+            </div>
+            <p id="confirmMessage" class="mb-4">Are you sure you want to proceed?</p>
+            <div class="flex justify-between">
+                <button id="cancelBtn" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700">Cancel</button>
+                <button id="proceedBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkButtons = document.querySelectorAll('.bg-green-500');
+            const xButtons = document.querySelectorAll('.bg-red-500');
+            const adoptionModal = document.getElementById('adoptionModal');
+            const confirmModal = document.getElementById('confirmModal');
+            const closeModal = document.getElementById('closeModal');
+            const closeConfirmModal = document.getElementById('closeConfirmModal');
+            const cancelBtn = document.getElementById('cancelBtn');
+            let currentAction = '';
+            let currentRowId = null;
+
+            // Function to show adoption details
+            function showAdoptionDetails(rowId) {
+                // In a real app, you would fetch this data via AJAX
+                // For now, we'll get the data from the table row
+                const row = document.querySelector(`tr[data-id="${rowId}"]`);
+                if (row) {
+                    const userName = row.querySelector('td:nth-child(2)').textContent;
+                    const petName = row.getAttribute('data-pet-name') || 'Unknown Pet';
+                    const petDescription = row.getAttribute('data-pet-description') || 'No description available';
+                    
+                    document.getElementById('adoptionDetails').innerHTML = `
+                        <h4 class="font-bold mb-2">Adoption Request</h4>
+                        <p class="mb-2"><span class="font-semibold">User:</span> ${userName}</p>
+                        <p class="mb-2"><span class="font-semibold">Pet to Adopt:</span> ${petName}</p>
+                        <p class="mb-2"><span class="font-semibold">Pet Description:</span> ${petDescription}</p>
+                    `;
+                    adoptionModal.classList.remove('hidden');
+                }
+            }
+
+            // Add data attributes to table rows (you should populate these from your database)
+            document.querySelectorAll('tbody tr').forEach((row, index) => {
+                row.setAttribute('data-id', index + 1);
+                // These should come from your database - this is just an example
+                row.setAttribute('data-pet-name', 'Pet ' + (index + 1));
+                row.setAttribute('data-pet-description', 'Description for Pet ' + (index + 1));
+            });
+
+            // Open adoption modal when check button is clicked
+            checkButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    currentRowId = row.getAttribute('data-id');
+                    showAdoptionDetails(currentRowId);
+                    currentAction = 'confirm';
+                });
+            });
+
+            // X button directly declines (with confirmation)
+            xButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    currentRowId = row.getAttribute('data-id');
+                    currentAction = 'decline';
+                    document.getElementById('confirmMessage').textContent = 
+                        "Are you sure you want to decline this adoption request?";
+                    confirmModal.classList.remove('hidden');
+                });
+            });
+
+            // Close adoption modal
+            closeModal.addEventListener('click', function() {
+                adoptionModal.classList.add('hidden');
+            });
+
+            // Decline button in modal
+            document.getElementById('declineBtn').addEventListener('click', function() {
+                currentAction = 'decline';
+                document.getElementById('confirmMessage').textContent = 
+                    "Are you sure you want to decline this adoption request?";
+                confirmModal.classList.remove('hidden');
+                adoptionModal.classList.add('hidden');
+            });
+
+            // Confirm button in modal
+            document.getElementById('confirmBtn').addEventListener('click', function() {
+                currentAction = 'confirm';
+                document.getElementById('confirmMessage').textContent = 
+                    "Are you sure you want to confirm this adoption request?";
+                confirmModal.classList.remove('hidden');
+                adoptionModal.classList.add('hidden');
+            });
+
+            // Close confirm modal
+            closeConfirmModal.addEventListener('click', function() {
+                confirmModal.classList.add('hidden');
+            });
+
+            cancelBtn.addEventListener('click', function() {
+                confirmModal.classList.add('hidden');
+            });
+
+            // Proceed with action
+            document.getElementById('proceedBtn').addEventListener('click', function() {
+                confirmModal.classList.add('hidden');
+                if (currentAction === 'confirm') {
+                    alert(`Adoption request #${currentRowId} confirmed!`);
+                    // Here you would add your actual confirmation logic
+                } else {
+                    alert(`Adoption request #${currentRowId} declined!`);
+                    // Here you would add your actual decline logic
+                }
+            });
+        });
+    </script>
     <!-- Link to the external JavaScript file -->
     <script src="../adminjs/users.js"></script>
 </body>

@@ -1,4 +1,8 @@
 <?php
+require_once '../connection.php';
+
+session_start();
+
 $message = "";
 $formToShow = "login"; // Default form
 
@@ -9,22 +13,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
         $username = htmlspecialchars($_POST['username']);
         $password = htmlspecialchars($_POST['password']);
 
-        if ($username === "admin" && $password === "1234") {
-            header("Location: adoption-form-1.php");
-            exit();
-        } else {
-            $message = "<h2 style='text-align:center; color:red;'>Invalid username or password.</h2>";
-        }
-        $formToShow = "login";
-    } elseif ($action === "signup") {
-        $email = htmlspecialchars($_POST['email']);
-        $username = htmlspecialchars($_POST['username']);
-        $address = htmlspecialchars($_POST['address']);
-        $phone = htmlspecialchars($_POST['phone']);
-        $password = htmlspecialchars($_POST['password']);
+        $query = $conn->prepare("SELECT PASSWORD, role FROM accounts WHERE username = ? ");
+        $query->bind_param("s", $username);
+        $query->execute();
+        $query->store_result();
 
+        if ($query->num_rows === 1) {
+            $query->bind_result($hashedPasswordFromDB, $role);
+            $query->fetch();
+
+            if (password_verify($password, $hashedPasswordFromDB)) {
+
+                $_SESSION['username'] = $username;
+                $_SESSION['role'] = $role;  
+
+                if ($role === 'Admin') {
+                    header("Location: ../adminphp/index.php");
+                } elseif ($role === 'User') {
+                    header("Location: adoption-form-1.php");
+                } else {
+                    $message = "<h2 style='text-align:center; color:red;'>Unknown role.</h2>";
+                }
+                exit();
+            } else {
+                $message = "<h2 style='text-align:center; color:red;'>Incorrect password.</h2>";
+            }
+        } else {
+            $message = "<h2 style='text-align:center; color:red;'>Username not found.</h2>";
+        }
+
+        $query->close();
+        $formToShow = "login";
+
+    } elseif ($action === "signup") {
+      $email = htmlspecialchars($_POST['email']);
+      $username = htmlspecialchars($_POST['username']);
+      $address = htmlspecialchars($_POST['address']);
+      $phone = htmlspecialchars($_POST['contact']);
+      $password = htmlspecialchars($_POST['password']);
+      $role = 'User';
+
+      $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
+
+      $query = $conn->prepare("INSERT INTO accounts (role, email, username, address, contact, password) VALUES (?, ?, ?, ?, ?, ?)");
+      $query->bind_param("ssssss", $role, $email, $username, $address, $phone, $hashedpassword);
+
+      if ($query->execute()) {
         $message = "<h2 style='text-align:center; color:green;'>Thanks, $username! Your account has been created.</h2>";
-        $formToShow = "signup";
+      } else {
+        $message = "<h2 style='text-align:center; color:red;'>Error: " . $query->error . "</h2>";
+      }
+
+      $query->close();
+      $formToShow = "signup";
     }
 }
 ?>
@@ -188,13 +229,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
     <div class="container">
       <!-- Left Panel: Only visible on login -->
       <div class="left-panel" id="leftPanel" style="display: <?= $formToShow === 'login' ? 'flex' : 'none' ?>;">
-        <img src="../images/SHELTER OF LIGHT/ADOPT PAGE/Cats/Tabasco/Tabasco.jpg" alt="Cat" class="cat-img">
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Cat" class="cat-img">
       </div>
 
       <!-- Right Panel: Forms -->
       <div class="right-panel">
         <!-- Login Form -->
-        <form id="loginForm" action="adoption-form-1.php" method="POST">
+        <form id="loginForm" action="" method="POST">
           <h2>LOGIN</h2>
           <input type="text" name="username" placeholder="USERNAME" required>
           <input type="password" name="password" placeholder="PASSWORD" required>
@@ -207,12 +248,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
         </form>
 
         <!-- Sign Up Form -->
-        <form id="signupForm" action="adoption-form-1.php" method="POST">
+        <form id="signupForm" action="" method="POST">
           <h2>REGISTER</h2>
           <input type="email" name="email" placeholder="EMAIL ADDRESS" required>
           <input type="text" name="username" placeholder="USERNAME" required>
           <input type="text" name="address" placeholder="ADDRESS" required>
-          <input type="text" name="phone" placeholder="PHONE NUMBER" required>
+          <input type="text" name="contact" placeholder="PHONE NUMBER" required>
           <input type="password" name="password" placeholder="PASSWORD" required>
           <input type="hidden" name="action_type" value="signup">
           <button type="submit">SIGN UP</button>
