@@ -12,7 +12,8 @@ $dogBreeds = [
     'Poodle',
     'Rottweiler',
     'Yorkshire Terrier',
-    'Boxer'
+    'Boxer',
+    'Others'
 ];
 
 $catBreeds = [
@@ -25,7 +26,8 @@ $catBreeds = [
     'British Shorthair',
     'Scottish Fold',
     'Sphynx',
-    'Russian Blue'
+    'Russian Blue',
+    'Others'
 ];
 
 $vaccinationOptions = [

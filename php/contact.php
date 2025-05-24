@@ -117,14 +117,13 @@ $creators = [
 </head>
 <body class="text-gray-800 font-sans">
 
-<!-- Header with improved navigation -->
-<header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033] sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4">
-        <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
-            <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
-            <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
-        </a>
-      
+ <!-- Header -->
+ <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
+    <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
+      <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-10 h-10 lg:w-16 lg:h-16">
+        <h1 class="text-xl lg:text-3xl font-bold text-black">Shelter of Light</h1>
+      </a>
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex space-x-8 text-base uppercase font-bold">
             <?php foreach ($navItems as $item): ?>
@@ -143,16 +142,21 @@ $creators = [
     </div>
 </header>
 
-<!-- Mobile Navigation (Pop-up) -->
-<div id="mobile-nav" class="mobile-nav">
-    <div class="flex flex-col space-y-4 p-6 text-lg uppercase font-bold">
-        <?php foreach ($navItems as $item): ?>
-            <a href="<?= $item['url'] ?>" class="<?= $item['active'] ? 'text-[#FFBB00]' : 'hover:text-[#FFBB00]' ?> py-2 border-b border-gray-200 transition-colors duration-200">
-                <?= $item['name'] ?>
-            </a>
-        <?php endforeach; ?>
+  
+     <!-- Mobile Menu (Dropdown) -->
+     <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
+          <a href="home.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Home</a>
+          <a href="about.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">About Us</a>
+          <a href="../php/whatwedo/whatwedo.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">What We Do</a>
+          <a href="donate.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Donate</a>
+          <a href="adopt.php" class="hover:text-[#FFBB00] py-2 border-b border-gray-200">Adopt</a>
+          <a href="contact.php" class="text-[#FFBB00] hover:text-black py-2 border-b border-gray-200">Contact</a>
+        </div>
+      </div>
     </div>
-</div>
+  </header>
 
 <!-- Overlay for mobile menu -->
 <div id="overlay" class="overlay"></div>
@@ -320,38 +324,25 @@ $creators = [
     </div>
 </footer>
 
+
 <script>
-    // Mobile menu toggle functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileNav = document.getElementById('mobile-nav');
-        const overlay = document.getElementById('overlay');
-        
-        menuButton.addEventListener('click', function() {
-            mobileNav.classList.toggle('open');
-            overlay.classList.toggle('active');
-            // Toggle aria-expanded attribute for accessibility
-            const isExpanded = mobileNav.classList.contains('open');
-            menuButton.setAttribute('aria-expanded', isExpanded);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
         });
-        
-        // Close menu when clicking overlay
-        overlay.addEventListener('click', function() {
-            mobileNav.classList.remove('open');
-            overlay.classList.remove('active');
-            menuButton.setAttribute('aria-expanded', 'false');
-        });
-        
-        // Close menu when pressing Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && mobileNav.classList.contains('open')) {
-                mobileNav.classList.remove('open');
-                overlay.classList.remove('active');
-                menuButton.setAttribute('aria-expanded', 'false');
-            }
-        });
-    });
-</script>
+    </script>
 
 </body>
 </html>
