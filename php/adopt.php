@@ -134,7 +134,7 @@ $navItems = [
 <?php
   require_once('../connection.php');
 
-  $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_kind, pet_vacinated FROM pets";
+  $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
   $result = $conn->query($query);
   $pets = [];
   if ($result) {

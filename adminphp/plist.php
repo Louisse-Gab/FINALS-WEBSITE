@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $petage = $_POST['pet_age'];
             $petbreed = $_POST['pet_breed'];
             $petgender = $_POST['pet_gender'];
-            $petkind = $_POST['pet_kind'];
             $petvaccinated = $_POST['pet_vacinated'];
 
             if (isset($_FILES['pet_image']) && $_FILES['pet_image']['error'] === UPLOAD_ERR_OK) {
@@ -54,10 +53,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageData = file_get_contents($imageTmpPath);
                 $imageType = $_FILES['pet_image']['type'];
 
-                $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, pet_image=?, image_type=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_kind=?, pet_vacinated=? WHERE id=?");
+                $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, pet_image=?, image_type=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
                 $query->bind_param("ssssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
             } else {
-                $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_kind=?, pet_vacinated=? WHERE id=?");
+                $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
                 $query->bind_param("ssssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
             }
 
@@ -88,15 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $petbreed = $_POST['pet_breed'];
         $petgender = $_POST['pet_gender'];
         $petvaccinated = $_POST['pet_vacinated'];
-        $petkind = ''; // Set empty kind for new pets
 
         if (isset($_FILES['pet_image']) && $_FILES['pet_image']['error'] === UPLOAD_ERR_OK) {
             $imageTmpPath = $_FILES['pet_image']['tmp_name'];
             $imageData = file_get_contents($imageTmpPath);
             $imageType = $_FILES['pet_image']['type'];
 
-            $query = $conn->prepare("INSERT INTO pets (pet_name, description, pet_image, image_type, type, pet_age, pet_breed, pet_gender, pet_kind, pet_vacinated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $query->bind_param("ssssssssss", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated);
+            $query = $conn->prepare("INSERT INTO pets (pet_name, description, pet_image, image_type, type, pet_age, pet_breed, pet_gender, pet_vacinated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $query->bind_param("sssssssss", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petvaccinated);
 
             if ($query->execute()) {
                 echo "<script>alert('Pet added successfully!'); window.location.href='plist.php';</script>";
@@ -281,7 +279,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 
         <!-- Pet List Section -->
         <?php
-        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_kind, pet_vacinated FROM pets";
+        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
         $result = $conn->query($query);
         ?>
 
@@ -408,7 +406,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" name="pet_kind" value="<?php echo isset($petToEdit['pet_kind']) ? htmlspecialchars($petToEdit['pet_kind']) : ''; ?>" placeholder="Kind" class="input-field" required>
                     <select name="pet_vacinated" class="input-field" required>
                         <option value="">Select Vaccination</option>
                         <option value="5-in-1" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === '5-in-1') ? 'selected' : ''; ?>>5-in-1</option>
