@@ -87,8 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $petage = $_POST['pet_age'];
         $petbreed = $_POST['pet_breed'];
         $petgender = $_POST['pet_gender'];
-        $petkind = $_POST['pet_kind'];
         $petvaccinated = $_POST['pet_vacinated'];
+        $petkind = ''; // Set empty kind for new pets
 
         if (isset($_FILES['pet_image']) && $_FILES['pet_image']['error'] === UPLOAD_ERR_OK) {
             $imageTmpPath = $_FILES['pet_image']['tmp_name'];
@@ -352,8 +352,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                     </select>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" name="pet_kind" placeholder="Kind" class="input-field" required>
+                <div>
                     <select name="pet_vacinated" class="input-field" required>
                         <option value="">Select Vaccination</option>
                         <option value="5-in-1">5-in-1</option>
