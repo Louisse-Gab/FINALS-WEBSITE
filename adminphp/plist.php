@@ -1,6 +1,39 @@
 <?php
 require_once('../connection.php');
 
+// Breed options
+$dogBreeds = [
+    'Aspin',
+    'Labrador Retriever',
+    'German Shepherd',
+    'Golden Retriever',
+    'French Bulldog',
+    'Beagle',
+    'Poodle',
+    'Rottweiler',
+    'Yorkshire Terrier',
+    'Boxer'
+];
+
+$catBreeds = [
+    'Puspin',
+    'Persian',
+    'Siamese',
+    'Maine Coon',
+    'Ragdoll',
+    'Bengal',
+    'British Shorthair',
+    'Scottish Fold',
+    'Sphynx',
+    'Russian Blue'
+];
+
+$vaccinationOptions = [
+    '5-in-1',
+    '4-in-1',
+    'Unvaccinated'
+];
+
 // Handle POST requests (add/edit pet)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
@@ -66,13 +99,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $query->bind_param("ssssssssss", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated);
 
             if ($query->execute()) {
-                echo "<script> alert('Pet added successfully!'); window.location.href='plist.php';</script>";
+                echo "<script>alert('Pet added successfully!'); window.location.href='plist.php';</script>";
             } else {
                 echo "Error: " . $query->error;
             }
             $query->close();
         } else {
-            echo "<script> alert('Please upload a valid image.'); </script>";
+            echo "<script>alert('Please upload a valid image.');</script>";
         }
     }
 }
@@ -114,13 +147,15 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Pet List</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .side-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
+            width: 80%;
+            max-width: 320px;
         }
         .side-menu.active {
             transform: translateX(0);
@@ -138,6 +173,11 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
         .input-field {
             @apply w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#FDCB58];
         }
+        @media (min-width: 640px) {
+            .side-menu {
+                width: 16rem;
+            }
+        }
     </style>
 </head>
 
@@ -146,7 +186,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
     <div id="menuOverlay" class="menu-overlay fixed inset-0 z-20" onclick="toggleMenu()"></div>
 
     <!-- Side Menu -->
-    <div id="sideMenu" class="side-menu fixed top-0 left-0 h-full w-64 bg-[#FDF2C1] z-30 shadow-lg">
+    <div id="sideMenu" class="side-menu fixed top-0 left-0 h-full bg-[#FDF2C1] z-30 shadow-lg">
         <div class="p-4 border-b border-gray-300">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold">Menu</h2>
@@ -157,8 +197,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             <ul class="space-y-4">
                 <li>
                     <a href="../adminphp/index.php"
-                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300"
-                        data-url="../adminphp/index.php">
+                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -171,8 +210,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                 </li>
                 <li>
                     <a href="../adminphp/dash.php"
-                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300"
-                        data-url="../adminphp/dash.php">
+                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -184,9 +222,8 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" onclick="navigateTo('../adminphp/plist.php')"
-                        class="menu-item block py-2 px-4 bg-[#FDCB58] rounded-lg transition duration-300"
-                        data-url="../adminphp/plist.php">
+                    <a href="plist.php"
+                        class="menu-item block py-2 px-4 bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -197,24 +234,20 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                         </div>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="navigateTo('../adminphp/users.php')"
-                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300"
-                        data-url="../adminphp/users.php">
+                <li>  
+                    <a href="../adminphp/users.php"
+                       class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                             </svg>
                             Manage Users
                         </div>
                     </a>
                 </li>
                 <li class="border-t border-gray-300 mt-6 pt-4">
-                    <a href="javascript:void(0);" onclick="navigateTo('../php/adoptlogin.php')"
-                        class="menu-item block py-2 px-4 hover:bg-red-100 text-red-600 rounded-lg transition duration-300"
-                        data-url="../php/adoptlogin.php">
+                    <a href="../php/adoptlogin.php"
+                        class="menu-item block py-2 px-4 hover:bg-red-100 text-red-600 rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -230,60 +263,68 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
     </div>
 
     <!-- Header -->
-    <div class="flex justify-between items-center bg-[#FDF2C1] p-4 shadow-md">
+    <div class="flex justify-between items-center bg-[#FDF2C1] p-4 shadow-md sticky top-0 z-10">
         <div class="menu-icon text-2xl cursor-pointer" onclick="toggleMenu()">&#9776;</div>
         <h1 class="text-xl font-bold">Pet List</h1>
         <div class="w-8 h-8 bg-black rounded-full"></div>
     </div>
 
-    <!-- Action Buttons -->
-    <div class="flex justify-end space-x-4 px-4 pt-4">
-        <button onclick="openModal()"
-            class="bg-[#FDCB58] text-black py-2 px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300">
-            + Add Pet
-        </button>
-    </div>
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-4">
+        <!-- Action Buttons -->
+        <div class="flex justify-end mb-4">
+            <button onclick="openModal()"
+                class="bg-[#FDCB58] text-black py-2 px-4 sm:px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300 text-sm sm:text-base">
+                + Add Pet
+            </button>
+        </div>
 
-    <!-- Pet List Section -->
-    <?php
-    $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_kind, pet_vacinated FROM pets";
-    $result = $conn->query($query);
-    ?>
+        <!-- Pet List Section -->
+        <?php
+        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_kind, pet_vacinated FROM pets";
+        $result = $conn->query($query);
+        ?>
 
-    <div class="text-center mt-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center px-4">
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="bg-white border border-gray-300 rounded-lg shadow-lg w-64 p-4 text-center relative">
-                    <!-- Edit and Delete buttons -->
-                    <div class="absolute top-2 right-2 flex space-x-1">
-                        <button onclick="openEditModal(<?= $row['id'] ?>)" 
-                                class="bg-blue-500 text-white p-1 rounded-full hover:bg-blue-600 transition duration-300">
+        <div class="mt-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="bg-white border border-gray-300 rounded-lg shadow-md p-4 relative">
+                        <!-- Edit and Delete buttons -->
+                        <div class="absolute top-2 right-2 flex space-x-1">
+                            <button onclick="openEditModal(<?= $row['id'] ?>)" 
+                                    class="bg-blue-500 text-white p-1 rounded-full hover:bg-blue-600 transition duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                </button>
+                            <button onclick="confirmDelete(<?= $row['id'] ?>)" 
+                                class="bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
                             </button>
-                        <button onclick="confirmDelete(<?= $row['id'] ?>)" 
-                            class="bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition duration-300">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                        </button>
+                        </div>
+                        
+                        <img src="plist.php?id=<?= $row['id'] ?>" alt="Pet Image"
+                            class="w-full h-48 object-cover rounded-lg mb-3">
+                        <div>
+                            <p class="font-bold text-lg mb-1 truncate"><?= htmlspecialchars($row['pet_name']) ?></p>
+                            <p class="text-gray-600 text-sm mb-2 line-clamp-2"><?= htmlspecialchars($row['description']) ?></p>
+                            <div class="text-gray-500 text-xs space-y-1">
+                                <p><?= htmlspecialchars($row['type']) ?> • <?= htmlspecialchars($row['pet_age']) ?> • <?= htmlspecialchars($row['pet_gender']) ?></p>
+                                <p>Breed: <?= htmlspecialchars($row['pet_breed']) ?></p>
+                                <p>Vaccination: <?= htmlspecialchars($row['pet_vacinated']) ?></p>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <img src="../adminphp/plist.php?id=<?= $row['id'] ?>" alt="Pet Image"
-                        class="w-full h-40 object-cover rounded-lg">
-                    <div class="mt-4">
-                        <p class="font-bold text-lg mb-2"><?= htmlspecialchars($row['pet_name']) ?></p>
-                        <p class="text-gray-600 text-sm mb-4"><?= htmlspecialchars($row['description']) ?></p>
-                    </div>
-                </div>
-            <?php endwhile; ?>
+                <?php endwhile; ?>
+            </div>
         </div>
     </div>
 
     <!-- Add Pet Modal -->
-    <div id="addPetModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden overflow-y-auto">
-        <div class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 relative">
+    <div id="addPetModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden overflow-y-auto p-4">
+        <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal()" class="absolute top-2 right-2 text-xl font-bold text-gray-500 hover:text-red-500">&times;</button>
             <h2 class="text-xl font-bold mb-4 text-center">Add New Pet</h2>
             
@@ -291,28 +332,38 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                 <input type="text" name="pet_name" placeholder="Pet Name" class="input-field" required>
                 <textarea name="description" rows="2" placeholder="Description" class="input-field" required></textarea>
                 
-                <div class="grid grid-cols-2 gap-4">
-                    <select name="type" class="input-field">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <select name="type" id="petType" class="input-field" onchange="updateBreedOptions()" required>
+                        <option value="">Select Type</option>
                         <option value="Dog">Dog</option>
                         <option value="Cat">Cat</option>
                     </select>
                     <input type="text" name="pet_age" placeholder="Age" class="input-field" required>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <input type="text" name="pet_breed" placeholder="Breed" class="input-field" required>
-                    <select name="pet_gender" class="input-field">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <select name="pet_breed" id="petBreed" class="input-field" required>
+                        <option value="">Select Breed</option>
+                    </select>
+                    <select name="pet_gender" class="input-field" required>
+                        <option value="">Select Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                     </select>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <input type="text" name="pet_kind" placeholder="Kind" class="input-field" required>
-                    <input type="text" name="pet_vacinated" placeholder="Vaccinated" class="input-field" required>
+                    <select name="pet_vacinated" class="input-field" required>
+                        <option value="">Select Vaccination</option>
+                        <option value="5-in-1">5-in-1</option>
+                        <option value="4-in-1">4-in-1</option>
+                        <option value="Unvaccinated">Unvaccinated</option>
+                    </select>
                 </div>
 
                 <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Pet Image</label>
                     <input type="file" name="pet_image" id="petImageInput" accept="image/*" required class="w-full">
                     <img id="imagePreview" class="mt-3 w-full h-40 object-cover rounded-lg hidden" alt="Image Preview">
                 </div>
@@ -324,56 +375,65 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
         </div>
     </div>
 
-   <!-- Edit Pet Modal -->
-<div id="editPetModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 <?php echo isset($_GET['action']) && $_GET['action'] === 'edit' ? '' : 'hidden'; ?> overflow-y-auto">
-    <div class="bg-white w-full max-w-lg rounded-lg shadow-lg p-6 relative">
-        <button onclick="closeEditModal()" class="absolute top-2 right-2 text-xl font-bold text-gray-500 hover:text-red-500">&times;</button>
-        <h2 class="text-xl font-bold mb-4 text-center">Edit Pet</h2>
-        
-        <form id="editPetForm" method="POST" enctype="multipart/form-data" class="grid gap-4">
-            <input type="hidden" name="id" value="<?php echo isset($petToEdit['id']) ? $petToEdit['id'] : ''; ?>">
-            <input type="hidden" name="action" value="edit">
+    <!-- Edit Pet Modal -->
+    <div id="editPetModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 <?php echo isset($_GET['action']) && $_GET['action'] === 'edit' ? '' : 'hidden'; ?> overflow-y-auto p-4">
+        <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeEditModal()" class="absolute top-2 right-2 text-xl font-bold text-gray-500 hover:text-red-500">&times;</button>
+            <h2 class="text-xl font-bold mb-4 text-center">Edit Pet</h2>
             
-            <input type="text" name="pet_name" value="<?php echo isset($petToEdit['pet_name']) ? htmlspecialchars($petToEdit['pet_name']) : ''; ?>" placeholder="Pet Name" class="input-field" required>
-            <textarea name="description" rows="2" placeholder="Description" class="input-field" required><?php echo isset($petToEdit['description']) ? htmlspecialchars($petToEdit['description']) : ''; ?></textarea>
-            
-            <div class="grid grid-cols-2 gap-4">
-                <select name="type" class="input-field">
-                    <option value="Dog" <?php echo (isset($petToEdit['type']) && $petToEdit['type'] === 'Dog') ? 'selected' : ''; ?>>Dog</option>
-                    <option value="Cat" <?php echo (isset($petToEdit['type']) && $petToEdit['type'] === 'Cat') ? 'selected' : ''; ?>>Cat</option>
-                </select>
-                <input type="text" name="pet_age" value="<?php echo isset($petToEdit['pet_age']) ? htmlspecialchars($petToEdit['pet_age']) : ''; ?>" placeholder="Age" class="input-field" required>
-            </div>
+            <form id="editPetForm" method="POST" enctype="multipart/form-data" class="grid gap-4">
+                <input type="hidden" name="id" value="<?php echo isset($petToEdit['id']) ? $petToEdit['id'] : ''; ?>">
+                <input type="hidden" name="action" value="edit">
+                
+                <input type="text" name="pet_name" value="<?php echo isset($petToEdit['pet_name']) ? htmlspecialchars($petToEdit['pet_name']) : ''; ?>" placeholder="Pet Name" class="input-field" required>
+                <textarea name="description" rows="2" placeholder="Description" class="input-field" required><?php echo isset($petToEdit['description']) ? htmlspecialchars($petToEdit['description']) : ''; ?></textarea>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <select name="type" id="editPetType" class="input-field" onchange="updateEditBreedOptions()" required>
+                        <option value="">Select Type</option>
+                        <option value="Dog" <?php echo (isset($petToEdit['type']) && $petToEdit['type'] === 'Dog') ? 'selected' : ''; ?>>Dog</option>
+                        <option value="Cat" <?php echo (isset($petToEdit['type']) && $petToEdit['type'] === 'Cat') ? 'selected' : ''; ?>>Cat</option>
+                    </select>
+                    <input type="text" name="pet_age" value="<?php echo isset($petToEdit['pet_age']) ? htmlspecialchars($petToEdit['pet_age']) : ''; ?>" placeholder="Age" class="input-field" required>
+                </div>
 
-            <div class="grid grid-cols-2 gap-4">
-                <input type="text" name="pet_breed" value="<?php echo isset($petToEdit['pet_breed']) ? htmlspecialchars($petToEdit['pet_breed']) : ''; ?>" placeholder="Breed" class="input-field" required>
-                <select name="pet_gender" class="input-field">
-                    <option value="Male" <?php echo (isset($petToEdit['pet_gender']) && $petToEdit['pet_gender'] === 'Male') ? 'selected' : ''; ?>>Male</option>
-                    <option value="Female" <?php echo (isset($petToEdit['pet_gender']) && $petToEdit['pet_gender'] === 'Female') ? 'selected' : ''; ?>>Female</option>
-                </select>
-            </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <select name="pet_breed" id="editPetBreed" class="input-field" required>
+                        <option value="">Select Breed</option>
+                    </select>
+                    <select name="pet_gender" class="input-field" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male" <?php echo (isset($petToEdit['pet_gender']) && $petToEdit['pet_gender'] === 'Male') ? 'selected' : ''; ?>>Male</option>
+                        <option value="Female" <?php echo (isset($petToEdit['pet_gender']) && $petToEdit['pet_gender'] === 'Female') ? 'selected' : ''; ?>>Female</option>
+                    </select>
+                </div>
 
-            <div class="grid grid-cols-2 gap-4">
-                <input type="text" name="pet_kind" value="<?php echo isset($petToEdit['pet_kind']) ? htmlspecialchars($petToEdit['pet_kind']) : ''; ?>" placeholder="Kind" class="input-field" required>
-                <input type="text" name="pet_vacinated" value="<?php echo isset($petToEdit['pet_vacinated']) ? htmlspecialchars($petToEdit['pet_vacinated']) : ''; ?>" placeholder="Vaccinated" class="input-field" required>
-            </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" name="pet_kind" value="<?php echo isset($petToEdit['pet_kind']) ? htmlspecialchars($petToEdit['pet_kind']) : ''; ?>" placeholder="Kind" class="input-field" required>
+                    <select name="pet_vacinated" class="input-field" required>
+                        <option value="">Select Vaccination</option>
+                        <option value="5-in-1" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === '5-in-1') ? 'selected' : ''; ?>>5-in-1</option>
+                        <option value="4-in-1" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === '4-in-1') ? 'selected' : ''; ?>>4-in-1</option>
+                        <option value="Unvaccinated" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === 'Unvaccinated') ? 'selected' : ''; ?>>Unvaccinated</option>
+                    </select>
+                </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Change Image (Optional)</label>
-                <input type="file" name="pet_image" id="editPetImageInput" accept="image/*" class="w-full">
-                <img id="editImagePreview" class="mt-3 w-full h-40 object-cover rounded-lg" src="plist.php?id=<?php echo isset($petToEdit['id']) ? $petToEdit['id'] : ''; ?>" alt="Current Image">
-            </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Change Image (Optional)</label>
+                    <input type="file" name="pet_image" id="editPetImageInput" accept="image/*" class="w-full">
+                    <img id="editImagePreview" class="mt-3 w-full h-40 object-cover rounded-lg" src="plist.php?id=<?php echo isset($petToEdit['id']) ? $petToEdit['id'] : ''; ?>" alt="Current Image">
+                </div>
 
-            <button type="submit" class="bg-[#FDCB58] text-black py-2 px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300 w-full">
-                Update Pet
-            </button>
-        </form>
+                <button type="submit" class="bg-[#FDCB58] text-black py-2 px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300 w-full">
+                    Update Pet
+                </button>
+            </form>
+        </div>
     </div>
-</div>
 
     <!-- Delete Confirmation Modal -->
-    <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
-        <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+    <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden p-4">
+        <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-md">
             <h2 class="text-xl font-bold mb-4">Confirm Deletion</h2>
             <p class="mb-6">Are you sure you want to delete this pet? This action cannot be undone.</p>
             <form id="deleteForm" method="POST">
@@ -392,51 +452,49 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
         function toggleMenu() {
             document.getElementById('sideMenu').classList.toggle('active');
             document.getElementById('menuOverlay').classList.toggle('active');
+            document.body.style.overflow = document.getElementById('sideMenu').classList.contains('active') ? 'hidden' : '';
         }
+
+        // Close menu when clicking on menu items
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.getElementById('sideMenu').classList.remove('active');
+                document.getElementById('menuOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
 
         // Modal functions
         function openModal() {
             document.getElementById('addPetModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             document.getElementById('addPetModal').classList.add('hidden');
+            document.body.style.overflow = '';
         }
 
         function openEditModal(petId) {
-            // Fetch pet data via AJAX
-            fetch(`plist.php?id=${petId}&action=edit`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data) {
-                        document.getElementById('editPetId').value = data.id;
-                        document.getElementById('editPetName').value = data.pet_name;
-                        document.getElementById('editPetDescription').value = data.description;
-                        document.getElementById('editPetType').value = data.type;
-                        document.getElementById('editPetAge').value = data.pet_age;
-                        document.getElementById('editPetBreed').value = data.pet_breed;
-                        document.getElementById('editPetGender').value = data.pet_gender;
-                        document.getElementById('editPetKind').value = data.pet_kind;
-                        document.getElementById('editPetVaccinated').value = data.pet_vacinated;
-                        document.getElementById('editImagePreview').src = `plist.php?id=${data.id}`;
-                        
-                        document.getElementById('editPetModal').classList.remove('hidden');
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+            window.location.href = `plist.php?id=${petId}&action=edit`;
+            document.body.style.overflow = 'hidden';
         }
 
         function closeEditModal() {
+            window.location.href = 'plist.php';
             document.getElementById('editPetModal').classList.add('hidden');
+            document.body.style.overflow = '';
         }
 
         function confirmDelete(petId) {
             document.getElementById('deletePetId').value = petId;
             document.getElementById('deleteModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeDeleteModal() {
             document.getElementById('deleteModal').classList.add('hidden');
+            document.body.style.overflow = '';
         }
 
         // Image preview for add modal
@@ -453,27 +511,117 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             }
         });
 
-        function openEditModal(petId) {
-    // Redirect to the same page with edit parameters
-    window.location.href = `plist.php?id=${petId}&action=edit`;
-}
+        // Image preview for edit modal
+        document.getElementById('editPetImageInput').addEventListener('change', function (event) {
+            const preview = document.getElementById('editImagePreview');
+            const file = event.target.files[0];
 
-function closeEditModal() {
-    // Redirect back without edit parameters
-    window.location.href = 'plist.php';
-    // Also hide the modal in case JavaScript is working
-    document.getElementById('editPetModal').classList.add('hidden');
-}
+            if (file) {
+                preview.src = URL.createObjectURL(file);
+            }
+        });
 
-// Image preview for edit modal
-document.getElementById('editPetImageInput').addEventListener('change', function (event) {
-    const preview = document.getElementById('editImagePreview');
-    const file = event.target.files[0];
+        // Breed options
+        const dogBreeds = <?php echo json_encode($dogBreeds); ?>;
+        const catBreeds = <?php echo json_encode($catBreeds); ?>;
 
-    if (file) {
-        preview.src = URL.createObjectURL(file);
-    }
-});
+        // Update breed options based on pet type
+        function updateBreedOptions() {
+            const petType = document.getElementById('petType').value;
+            const breedSelect = document.getElementById('petBreed');
+            
+            // Clear existing options
+            breedSelect.innerHTML = '<option value="">Select Breed</option>';
+            
+            if (petType === 'Dog') {
+                dogBreeds.forEach(breed => {
+                    const option = document.createElement('option');
+                    option.value = breed;
+                    option.textContent = breed;
+                    breedSelect.appendChild(option);
+                });
+            } else if (petType === 'Cat') {
+                catBreeds.forEach(breed => {
+                    const option = document.createElement('option');
+                    option.value = breed;
+                    option.textContent = breed;
+                    breedSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Update breed options for edit modal
+        function updateEditBreedOptions() {
+            const petType = document.getElementById('editPetType').value;
+            const breedSelect = document.getElementById('editPetBreed');
+            
+            // Clear existing options
+            breedSelect.innerHTML = '<option value="">Select Breed</option>';
+            
+            if (petType === 'Dog') {
+                dogBreeds.forEach(breed => {
+                    const option = document.createElement('option');
+                    option.value = breed;
+                    option.textContent = breed;
+                    breedSelect.appendChild(option);
+                });
+            } else if (petType === 'Cat') {
+                catBreeds.forEach(breed => {
+                    const option = document.createElement('option');
+                    option.value = breed;
+                    option.textContent = breed;
+                    breedSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Initialize breed options for edit modal if editing
+        <?php if (isset($petToEdit)): ?>
+            window.onload = function() {
+                const petType = "<?php echo $petToEdit['type']; ?>";
+                const petBreed = "<?php echo $petToEdit['pet_breed']; ?>";
+                
+                const editPetType = document.getElementById('editPetType');
+                const editPetBreed = document.getElementById('editPetBreed');
+                
+                // Populate breeds based on pet type
+                if (petType === 'Dog') {
+                    dogBreeds.forEach(breed => {
+                        const option = document.createElement('option');
+                        option.value = breed;
+                        option.textContent = breed;
+                        editPetBreed.appendChild(option);
+                    });
+                } else if (petType === 'Cat') {
+                    catBreeds.forEach(breed => {
+                        const option = document.createElement('option');
+                        option.value = breed;
+                        option.textContent = breed;
+                        editPetBreed.appendChild(option);
+                    });
+                }
+                
+                // Set the selected breed
+                editPetBreed.value = petBreed;
+            };
+        <?php endif; ?>
+
+        // Close modals when clicking outside
+        window.addEventListener('click', function(event) {
+            const addModal = document.getElementById('addPetModal');
+            const editModal = document.getElementById('editPetModal');
+            const deleteModal = document.getElementById('deleteModal');
+            
+            if (event.target === addModal) {
+                closeModal();
+            }
+            if (event.target === editModal) {
+                closeEditModal();
+            }
+            if (event.target === deleteModal) {
+                closeDeleteModal();
+            }
+        });
     </script>
 </body>
 </html>
