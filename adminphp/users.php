@@ -179,7 +179,7 @@
                     $stmt = $conn->query("SELECT * FROM adopt");
                     $counter = 1;
                     while ($row = $stmt->fetch_assoc()) {
-                        echo "<tr class='bg-white' data-id='{$counter}'>";
+                        echo "<tr class='bg-white' data-id='{$row['id']}'>";
                         echo "<td class='px-4 py-2 border-b' data-label='#'>{$counter}</td>";
                         echo "<td class='px-4 py-2 border-b' data-label='Name'>{$row['fullName']}</td>";
                         echo "<td class='px-4 py-2 border-b' data-label='Address'>{$row['address']}</td>";
@@ -189,8 +189,8 @@
                         echo "<td class='px-4 py-2 border-b' data-label='Social Media'>{$row['socialMedia']}</td>";
                         echo "<td class='px-4 py-2 border-b' data-label='Occupation'>{$row['jobTitle']}</td>";
                         echo "<td class='px-4 py-2 border-b flex space-x-2 action-buttons' data-label='Action'>";
-                        echo "<button class='bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm md:text-base'>&#10004;</button>";
-                        echo "<button class='bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700 text-sm md:text-base'>&#10008;</button>";
+                        echo "<button class='approve-btn bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm md:text-base' data-id='{$row['id']}'>&#10004;</button>";
+                        echo "<button class='decline-btn bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700 text-sm md:text-base' data-id='{$row['id']}'>&#10008;</button>";
                         echo "</td>";
                         echo "</tr>";
                         $counter++;
@@ -198,23 +198,6 @@
                     ?>
                 </tbody>
             </table>
-        </div>
-    </div>
-
-    <!-- Modal for Adoption Details -->
-    <div id="adoptionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
-        <div class="bg-white rounded-lg p-4 w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Adoption Details</h3>
-                <button id="closeModal" class="text-2xl">&times;</button>
-            </div>
-            <div id="adoptionDetails" class="mb-4">
-                <!-- Adoption details will be inserted here -->
-            </div>
-            <div class="flex justify-between gap-4">
-                <button id="declineBtn" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-700 flex-1">Decline</button>
-                <button id="confirmBtn" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 flex-1">Confirm</button>
-            </div>
         </div>
     </div>
 
@@ -234,116 +217,87 @@
     </div>
 
     <script>
-        // Menu toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Menu toggle functionality
             const menuToggle = document.getElementById('menuToggle');
             const closeMenu = document.getElementById('closeMenu');
             const sideMenu = document.getElementById('sideMenu');
             const menuOverlay = document.getElementById('menuOverlay');
             
-            // Toggle menu
             menuToggle.addEventListener('click', function() {
                 sideMenu.classList.add('active');
                 menuOverlay.classList.add('active');
             });
             
-            // Close menu
             closeMenu.addEventListener('click', function() {
                 sideMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
             });
             
-            // Close menu when clicking overlay
             menuOverlay.addEventListener('click', function() {
                 sideMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
             });
 
-            // Modal functionality
-            const checkButtons = document.querySelectorAll('.bg-green-500');
-            const xButtons = document.querySelectorAll('.bg-red-500');
-            const adoptionModal = document.getElementById('adoptionModal');
+            // Adoption request handling
             const confirmModal = document.getElementById('confirmModal');
-            const closeModal = document.getElementById('closeModal');
             const closeConfirmModal = document.getElementById('closeConfirmModal');
             const cancelBtn = document.getElementById('cancelBtn');
+            const proceedBtn = document.getElementById('proceedBtn');
+            const confirmMessage = document.getElementById('confirmMessage');
+            
             let currentAction = '';
             let currentRowId = null;
+            let currentRowElement = null;
 
-            // Function to show adoption details
-            function showAdoptionDetails(rowId) {
-                // In a real app, you would fetch this data via AJAX
-                // For now, we'll get the data from the table row
-                const row = document.querySelector(`tr[data-id="${rowId}"]`);
-                if (row) {
-                    const userName = row.querySelector('td[data-label="Name"]').textContent;
-                    const petName = row.getAttribute('data-pet-name') || 'Unknown Pet';
-                    const petDescription = row.getAttribute('data-pet-description') || 'No description available';
-                    
-                    document.getElementById('adoptionDetails').innerHTML = `
-                        <h4 class="font-bold mb-2">Adoption Request</h4>
-                        <p class="mb-2"><span class="font-semibold">User:</span> ${userName}</p>
-                        <p class="mb-2"><span class="font-semibold">Pet to Adopt:</span> ${petName}</p>
-                        <p class="mb-2"><span class="font-semibold">Pet Description:</span> ${petDescription}</p>
-                    `;
-                    adoptionModal.classList.remove('hidden');
-                }
+            // Function to handle adoption action
+            function handleAdoptionAction(action, id, rowElement) {
+                fetch('process_adoption.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `action=${action}&id=${id}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove row only after successful server deletion
+                        rowElement.remove();
+                        alert(data.message);
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to process request. Please try again.');
+                });
             }
 
-            // Add data attributes to table rows (you should populate these from your database)
-            document.querySelectorAll('tbody tr').forEach((row, index) => {
-                row.setAttribute('data-id', index + 1);
-                // These should come from your database - this is just an example
-                row.setAttribute('data-pet-name', 'Pet ' + (index + 1));
-                row.setAttribute('data-pet-description', 'Description for Pet ' + (index + 1));
-            });
-
-            // Open adoption modal when check button is clicked
-            checkButtons.forEach((button, index) => {
+            // Approve button click
+            document.querySelectorAll('.approve-btn').forEach(button => {
                 button.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    currentRowId = row.getAttribute('data-id');
-                    showAdoptionDetails(currentRowId);
-                    currentAction = 'confirm';
-                });
-            });
-
-            // X button directly declines (with confirmation)
-            xButtons.forEach((button, index) => {
-                button.addEventListener('click', function() {
-                    const row = this.closest('tr');
-                    currentRowId = row.getAttribute('data-id');
-                    currentAction = 'decline';
-                    document.getElementById('confirmMessage').textContent = 
-                        "Are you sure you want to decline this adoption request?";
+                    currentRowId = this.getAttribute('data-id');
+                    currentRowElement = this.closest('tr');
+                    currentAction = 'approve';
+                    confirmMessage.textContent = "Are you sure you want to APPROVE this adoption request?";
                     confirmModal.classList.remove('hidden');
                 });
             });
 
-            // Close adoption modal
-            closeModal.addEventListener('click', function() {
-                adoptionModal.classList.add('hidden');
+            // Decline button click
+            document.querySelectorAll('.decline-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    currentRowId = this.getAttribute('data-id');
+                    currentRowElement = this.closest('tr');
+                    currentAction = 'decline';
+                    confirmMessage.textContent = "Are you sure you want to DECLINE this adoption request?";
+                    confirmModal.classList.remove('hidden');
+                });
             });
 
-            // Decline button in modal
-            document.getElementById('declineBtn').addEventListener('click', function() {
-                currentAction = 'decline';
-                document.getElementById('confirmMessage').textContent = 
-                    "Are you sure you want to decline this adoption request?";
-                confirmModal.classList.remove('hidden');
-                adoptionModal.classList.add('hidden');
-            });
-
-            // Confirm button in modal
-            document.getElementById('confirmBtn').addEventListener('click', function() {
-                currentAction = 'confirm';
-                document.getElementById('confirmMessage').textContent = 
-                    "Are you sure you want to confirm this adoption request?";
-                confirmModal.classList.remove('hidden');
-                adoptionModal.classList.add('hidden');
-            });
-
-            // Close confirm modal
+            // Modal controls
             closeConfirmModal.addEventListener('click', function() {
                 confirmModal.classList.add('hidden');
             });
@@ -353,14 +307,10 @@
             });
 
             // Proceed with action
-            document.getElementById('proceedBtn').addEventListener('click', function() {
+            proceedBtn.addEventListener('click', function() {
                 confirmModal.classList.add('hidden');
-                if (currentAction === 'confirm') {
-                    alert(`Adoption request #${currentRowId} confirmed!`);
-                    // Here you would add your actual confirmation logic
-                } else {
-                    alert(`Adoption request #${currentRowId} declined!`);
-                    // Here you would add your actual decline logic
+                if (currentRowId && currentRowElement) {
+                    handleAdoptionAction(currentAction, currentRowId, currentRowElement);
                 }
             });
         });

@@ -12,7 +12,8 @@ $dogBreeds = [
     'Poodle',
     'Rottweiler',
     'Yorkshire Terrier',
-    'Boxer'
+    'Boxer',
+    'Others'
 ];
 
 $catBreeds = [
@@ -25,7 +26,8 @@ $catBreeds = [
     'British Shorthair',
     'Scottish Fold',
     'Sphynx',
-    'Russian Blue'
+    'Russian Blue',
+    'Others'
 ];
 
 $vaccinationOptions = [
@@ -408,7 +410,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input type="text" name="pet_kind" value="<?php echo isset($petToEdit['pet_kind']) ? htmlspecialchars($petToEdit['pet_kind']) : ''; ?>" placeholder="Kind" class="input-field" required>
                     <select name="pet_vacinated" class="input-field" required>
                         <option value="">Select Vaccination</option>
                         <option value="5-in-1" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === '5-in-1') ? 'selected' : ''; ?>>5-in-1</option>
