@@ -201,119 +201,281 @@
         </div>
     </div>
 
-    <!-- Confirmation Modal -->
-    <div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
-        <div class="bg-white rounded-lg p-4 w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold">Confirm Action</h3>
-                <button id="closeConfirmModal" class="text-2xl">&times;</button>
-            </div>
-            <p id="confirmMessage" class="mb-4">Are you sure you want to proceed?</p>
-            <div class="flex justify-between gap-4">
-                <button id="cancelBtn" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 flex-1">Cancel</button>
-                <button id="proceedBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex-1">Proceed</button>
+  <!-- Replace your existing Confirmation Modal with this enhanced version -->
+<div id="confirmModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
+    <div class="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">Adoption Request Details</h3>
+            <button id="closeConfirmModal" class="text-2xl">&times;</button>
+        </div>
+        
+        <!-- User Information Section -->
+        <div class="mb-6">
+            <h4 class="text-lg font-semibold mb-2 border-b pb-2">User Information</h4>
+            <div id="userDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <!-- Will be populated by JavaScript -->
             </div>
         </div>
+        
+        <!-- Pet Information Section -->
+        <div class="mb-6">
+            <h4 class="text-lg font-semibold mb-2 border-b pb-2">Pet to Adopt</h4>
+            <div id="petDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <div id="petImageContainer" class="mt-4 flex justify-center">
+                <!-- Pet image will be inserted here -->
+            </div>
+        </div>
+        
+        <!-- Adoption Questions Section -->
+        <div class="mb-6">
+            <h4 class="text-lg font-semibold mb-2 border-b pb-2">Adoption Questions</h4>
+            <div id="adoptionQuestions" class="space-y-4">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Confirmation Question -->
+        <div class="bg-yellow-50 p-4 rounded-lg mb-6">
+            <p id="confirmMessage" class="font-semibold text-center"></p>
+        </div>
+        
+        <div class="flex justify-between gap-4">
+            <button id="cancelBtn" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 flex-1">Cancel</button>
+            <button id="proceedBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex-1">Proceed</button>
+        </div>
     </div>
+</div>
+    <script>document.addEventListener('DOMContentLoaded', function() {
+    // Menu toggle functionality
+    const menuToggle = document.getElementById('menuToggle');
+    const closeMenu = document.getElementById('closeMenu');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    if (menuToggle) menuToggle.addEventListener('click', function() {
+        sideMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+    });
+    
+    if (closeMenu) closeMenu.addEventListener('click', function() {
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+    });
+    
+    if (menuOverlay) menuOverlay.addEventListener('click', function() {
+        sideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+    });
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Menu toggle functionality
-            const menuToggle = document.getElementById('menuToggle');
-            const closeMenu = document.getElementById('closeMenu');
-            const sideMenu = document.getElementById('sideMenu');
-            const menuOverlay = document.getElementById('menuOverlay');
-            
-            menuToggle.addEventListener('click', function() {
-                sideMenu.classList.add('active');
-                menuOverlay.classList.add('active');
-            });
-            
-            closeMenu.addEventListener('click', function() {
-                sideMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-            });
-            
-            menuOverlay.addEventListener('click', function() {
-                sideMenu.classList.remove('active');
-                menuOverlay.classList.remove('active');
-            });
+    // Adoption request handling
+    const confirmModal = document.getElementById('confirmModal');
+    const closeConfirmModal = document.getElementById('closeConfirmModal');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const proceedBtn = document.getElementById('proceedBtn');
+    const confirmMessage = document.getElementById('confirmMessage');
+    
+    let currentAction = '';
+    let currentRowId = null;
+    let currentRowElement = null;
 
-            // Adoption request handling
-            const confirmModal = document.getElementById('confirmModal');
-            const closeConfirmModal = document.getElementById('closeConfirmModal');
-            const cancelBtn = document.getElementById('cancelBtn');
-            const proceedBtn = document.getElementById('proceedBtn');
-            const confirmMessage = document.getElementById('confirmMessage');
-            
-            let currentAction = '';
-            let currentRowId = null;
-            let currentRowElement = null;
-
-            // Function to handle adoption action
-            function handleAdoptionAction(action, id, rowElement) {
-                fetch('process_adoption.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `action=${action}&id=${id}`
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Remove row only after successful server deletion
-                        rowElement.remove();
-                        alert(data.message);
-                    } else {
-                        alert('Error: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Failed to process request. Please try again.');
-                });
+    // Function to handle adoption action
+    function handleAdoptionAction(action, id, rowElement) {
+        fetch('process_adoption.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `action=${action}&id=${id}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove row only after successful server deletion
+                rowElement.remove();
+                alert(data.message);
+            } else {
+                alert('Error: ' + data.message);
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to process request. Please try again.');
+        });
+    }
 
-            // Approve button click
-            document.querySelectorAll('.approve-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    currentRowId = this.getAttribute('data-id');
-                    currentRowElement = this.closest('tr');
-                    currentAction = 'approve';
-                    confirmMessage.textContent = "Are you sure you want to APPROVE this adoption request?";
-                    confirmModal.classList.remove('hidden');
-                });
-            });
-
-            // Decline button click
-            document.querySelectorAll('.decline-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    currentRowId = this.getAttribute('data-id');
-                    currentRowElement = this.closest('tr');
-                    currentAction = 'decline';
-                    confirmMessage.textContent = "Are you sure you want to DECLINE this adoption request?";
-                    confirmModal.classList.remove('hidden');
-                });
-            });
-
-            // Modal controls
-            closeConfirmModal.addEventListener('click', function() {
-                confirmModal.classList.add('hidden');
-            });
-
-            cancelBtn.addEventListener('click', function() {
-                confirmModal.classList.add('hidden');
-            });
-
-            // Proceed with action
-            proceedBtn.addEventListener('click', function() {
-                confirmModal.classList.add('hidden');
-                if (currentRowId && currentRowElement) {
-                    handleAdoptionAction(currentAction, currentRowId, currentRowElement);
+    // Function to attach event listeners to buttons
+    function attachButtonListeners() {
+        // Approve button click
+        document.querySelectorAll('.approve-btn').forEach(button => {
+            button.addEventListener('click', async function(e) {
+                e.preventDefault();
+                currentRowId = this.getAttribute('data-id');
+                currentRowElement = this.closest('tr');
+                currentAction = 'approve';
+                
+                // Show loading state
+                confirmModal.classList.remove('hidden');
+                document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
+                
+                // Fetch and display details
+                const success = await fetchAdoptionDetails(currentRowId);
+                if (!success) {
+                    confirmModal.classList.add('hidden');
                 }
             });
         });
+
+        // Decline button click
+        document.querySelectorAll('.decline-btn').forEach(button => {
+            button.addEventListener('click', async function(e) {
+                e.preventDefault();
+                currentRowId = this.getAttribute('data-id');
+                currentRowElement = this.closest('tr');
+                currentAction = 'decline';
+                
+                // Show loading state
+                confirmModal.classList.remove('hidden');
+                document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
+                
+                // Fetch and display details
+                const success = await fetchAdoptionDetails(currentRowId);
+                if (!success) {
+                    confirmModal.classList.add('hidden');
+                }
+            });
+        });
+    }
+
+    // Initial attachment of event listeners
+    attachButtonListeners();
+
+    // Modal controls
+    if (closeConfirmModal) closeConfirmModal.addEventListener('click', function() {
+        confirmModal.classList.add('hidden');
+    });
+
+    if (cancelBtn) cancelBtn.addEventListener('click', function() {
+        confirmModal.classList.add('hidden');
+    });
+
+    // Proceed with action
+    if (proceedBtn) proceedBtn.addEventListener('click', function() {
+        confirmModal.classList.add('hidden');
+        if (currentRowId && currentRowElement) {
+            handleAdoptionAction(currentAction, currentRowId, currentRowElement);
+        }
+    });
+
+    // Function to fetch adoption details
+    async function fetchAdoptionDetails(id) {
+        try {
+            const response = await fetch(`get_adoption_details.php?id=${id}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                // Populate User Information
+                document.getElementById('userDetails').innerHTML = `
+                    <div><strong>Name:</strong> ${data.fullName}</div>
+                    <div><strong>Address:</strong> ${data.address}</div>
+                    <div><strong>Phone:</strong> ${data.phone}</div>
+                    <div><strong>Age:</strong> ${data.age}</div>
+                    <div><strong>Email:</strong> ${data.email}</div>
+                    <div><strong>Social Media:</strong> ${data.socialMedia}</div>
+                    <div><strong>Occupation:</strong> ${data.jobTitle}</div>
+                    <div><strong>Income:</strong> ${data.income || 'N/A'}</div>
+                `;
+                
+                // Populate Pet Information
+                let petDetailsHTML = '';
+                let petImageHTML = '';
+                
+                if (data.desiredPet) {
+                    // Get pet details from database
+                    const petResponse = await fetch(`get_pet_details.php?name=${encodeURIComponent(data.desiredPet)}`);
+                    const petData = await petResponse.json();
+                    
+                    if (petData.success) {
+                        petDetailsHTML = `
+                            <div><strong>Pet Name:</strong> ${petData.pet_name}</div>
+                            <div><strong>Type:</strong> ${petData.type}</div>
+                            <div><strong>Breed:</strong> ${petData.pet_breed}</div>
+                            <div><strong>Age:</strong> ${petData.pet_age}</div>
+                            <div><strong>Gender:</strong> ${petData.pet_gender}</div>
+                            <div><strong>Vaccination:</strong> ${petData.pet_vacinated}</div>
+                            <div><strong>Description:</strong> ${petData.description}</div>
+                        `;
+                        
+                        petImageHTML = `
+                            <img src="../adminphp/plist.php?id=${petData.id}" 
+                                 alt="${petData.pet_name}" 
+                                 class="w-48 h-48 object-cover rounded-lg shadow-md">
+                        `;
+                    } else {
+                        petDetailsHTML = `
+                            <div><strong>Pet Name:</strong> ${data.desiredPet}</div>
+                            <div><em>Detailed pet information not available</em></div>
+                        `;
+                    }
+                } else {
+                    petDetailsHTML = '<div>No pet selected</div>';
+                }
+                
+                document.getElementById('petDetails').innerHTML = petDetailsHTML;
+                document.getElementById('petImageContainer').innerHTML = petImageHTML;
+                
+                // Populate Adoption Questions
+                document.getElementById('adoptionQuestions').innerHTML = `
+                    <div><strong>Desired Pet:</strong> ${data.desiredPet || 'N/A'}</div>
+                    <div><strong>Why adopt this pet:</strong> ${data.whyAdopt || 'N/A'}</div>
+                    <div><strong>Primary caregiver:</strong> ${data.primaryCaregiver || 'N/A'}</div>
+                    <div><strong>Reason for adopting now:</strong> ${data.whyNow || 'N/A'}</div>
+                    <div><strong>Previous pet experience:</strong> ${data.petOwnershipExperience || 'N/A'}</div>
+                    <div><strong>Current pets:</strong> ${data.currentPets || 'N/A'}</div>
+                    <div><strong>Current pets details:</strong> ${data.currentPetsDetails || 'N/A'}</div>
+                    <div><strong>Where pet will stay:</strong> ${data.petLocation || 'N/A'}</div>
+                    <div><strong>Hours pet will be alone:</strong> ${data.aloneHours || 'N/A'}</div>
+                    <div><strong>Care plan:</strong> ${data.petCarePlan || 'N/A'}</div>
+                    <div><strong>Veterinarian contact:</strong> ${data.vetContact || 'N/A'}</div>
+                    <div><strong>Emergency plan:</strong> ${data.emergencyPlan || 'N/A'}</div>
+                `;
+                
+                // Set confirmation message based on action
+                const actionText = currentAction === 'approve' ? 'APPROVE' : 'DECLINE';
+                document.getElementById('confirmMessage').textContent = 
+                    `Are you sure you want to ${actionText} this adoption request? Please review all details above before proceeding.`;
+                
+                return true;
+            } else {
+                alert('Error: ' + data.message);
+                return false;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to fetch adoption details. Please try again.');
+            return false;
+        }
+    }
+
+    // Re-attach event listeners when new rows are added dynamically
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+                attachButtonListeners();
+            }
+        });
+    });
+
+    // Start observing the table body for changes
+    const tableBody = document.querySelector('table.responsive-table tbody');
+    if (tableBody) {
+        observer.observe(tableBody, {
+            childList: true,
+            subtree: true
+        });
+    }
+});
     </script>
 </body>
 </html>
