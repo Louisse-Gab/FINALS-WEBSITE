@@ -263,12 +263,13 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
     </div>
 
     <!-- Header -->
-    <div class="flex justify-between items-center bg-[#FDF2C1] p-4 shadow-md sticky top-0 z-10">
-        <div class="menu-icon text-2xl cursor-pointer" onclick="toggleMenu()">&#9776;</div>
-        <h1 class="text-xl font-bold">Pet List</h1>
-        <div class="w-8 h-8 bg-black rounded-full"></div>
+   <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-2 shadow-md relative z-10">
+    <div class="menu-icon text-2xl cursor-pointer p-2 z-20" onclick="toggleMenu()">&#9776;</div>
+    <h1 class="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Pet List</h1>
+    <div class="flex items-center">
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
     </div>
-
+</div>
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-4">
         <!-- Action Buttons -->
