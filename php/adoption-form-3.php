@@ -10,19 +10,18 @@ if (!isset($_SESSION['username'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $id = $_POST['id'];  // ID from the hidden input
+  $id = $_POST['id']; 
   $desiredPet = isset($_POST['desiredPet']) ? implode(", ", $_POST['desiredPet']) : '';
   $whyAdopt = $_POST['whyAdopt'];
   $primaryCaregiver = $_POST['primaryCaregiver'];
   $whyNow = $_POST['whyNow'];
 
-  // Check if ID exists
+
   if (!empty($id)) {
     $query = $conn->prepare("UPDATE adopt SET desiredpet = ?, whyAdopt = ?, primaryCaregiver = ?, whyNow = ? WHERE id = ?");
     $query->bind_param("ssssi", $desiredPet, $whyAdopt, $primaryCaregiver, $whyNow, $id);
 
     if ($query->execute()) {
-      // Success: Redirect to next form or show message
       header("Location: adoption-form-4.php?id=" . $id);
       exit();
     } else {

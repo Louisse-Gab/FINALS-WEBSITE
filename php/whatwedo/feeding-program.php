@@ -35,7 +35,6 @@
       margin-right: -50vw;
     }
     
-    /* Enhanced Responsive Carousel Styles */
     .multi-carousel {
       position: relative;
       max-width: 100%;
@@ -90,8 +89,7 @@
     .multi-carousel-next {
       right: 0.5rem;
     }
-    
-    /* Responsive Adjustments */
+  
     @media (max-width: 1023px) {
       .desktop-nav {
         display: none;
@@ -147,7 +145,6 @@
       }
     }
     
-    /* Pet Info Overlay */
     .pet-info-overlay {
       position: absolute;
       bottom: 0;
@@ -166,7 +163,7 @@
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-  <!-- Improved Responsive Header -->
+  <!--Header-->
   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
     <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
       <a href="../home.php" class="flex items-center space-x-2 lg:space-x-5">
@@ -194,7 +191,7 @@
       </div>
     </div>
     
-    <!-- Mobile Menu (Dropdown) -->
+   
     <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
       <div class="container mx-auto px-4">
         <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
@@ -215,10 +212,8 @@
     <div class="bg-white rounded-lg shadow-lg overflow-hidden">
       <img src="../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Feeding Programs/Feeding Program 2.jpg" alt="Feeding Program" class="w-full h-64 object-cover">
       <div class="p-8">
-        <!-- Centered Title -->
         <h1 class="text-3xl font-bold mb-6 text-center">Feeding Program</h1>
 
-        <!-- Justified Paragraphs -->
         <p class="text-gray-700 mb-6 text-justify">
           Stray feeding is one of Shelter of Light's core outreach efforts, providing consistent food and care to homeless animals in the community. Volunteers go on scheduled rounds to feed stray cats and dogs, many of whom rely solely on this act of kindness for survival.
         </p>
@@ -226,7 +221,6 @@
           More than just a feeding activity, it's an opportunity to build trust, monitor health conditions, and sometimes even identify animals in need of rescue or medical attention. Through this initiative, Shelter of Light extends compassion beyond shelter walls, reaching the streets where help is needed most.
         </p>
 
-        <!-- Centered Button -->
         <div class="flex justify-center">
           <a href="../whatwedo/whatwedo.php" class="inline-block bg-[#FFBB00] text-white font-bold px-6 py-2 rounded hover:bg-yellow-500">Back to Programs</a>
         </div>
@@ -235,20 +229,16 @@
   </div>
 </main>
 
- 
-  <!-- Horizontal line above footer -->
   <hr class="border-t border-[#00000033] w-full my-0">
 
-  <!-- Footer -->
   <footer class="full-width-section bg-[#FFFBE9] text-[#5F4B32] py-6">
     <div class="container mx-auto px-4 lg:px-6">
         <div class="flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
             
-            <!-- Contact Info -->
             <div class="order-2 lg:order-1 flex flex-col items-center lg:items-start gap-2">
                 <p class="font-bold whitespace-nowrap">GET IN TOUCH WITH US</p>
                 <div class="flex justify-center gap-4">
-                    <!-- Social media icons -->
+
                     <a href="https://web.facebook.com/shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
@@ -272,12 +262,10 @@
                 </div>
             </div>
             
-            <!-- Copyright -->
             <div class="order-1 lg:order-2">
                 <p>&copy; Shelter of Light. All Rights Reserved.</p>
             </div>
             
-            <!-- Creators -->
             <div class="order-3 text-center lg:text-right">
                 <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
                 <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST-CICS</p>
@@ -288,15 +276,13 @@
   
   <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
             mobileMenuButton.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
-
-            // Close mobile menu when clicking outside
+            
             document.addEventListener('click', function(event) {
                 if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
                     mobileMenu.classList.add('hidden');

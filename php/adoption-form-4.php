@@ -9,10 +9,8 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-// Define the current page
 $currentPage = 'adopt';
 
-// Navigation items
 $navItems = [
     ['name' => 'Home', 'url' => 'home.php', 'active' => $currentPage === 'home'],
     ['name' => 'About Us', 'url' => 'about.php', 'active' => $currentPage === 'about'],
@@ -26,7 +24,7 @@ $success = false;
 $errorMsg = '';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $id = $_POST['id'] ?? null;  // Get the record ID to update
+    $id = $_POST['id'] ?? null; 
     $adoptionProcess = $_POST['adoption_process'] ?? '';
     $informationTruth = $_POST['information_truth'] ?? '';
     $agreement = $_POST['agreement'] ?? '';
@@ -36,7 +34,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } elseif (!$adoptionProcess || !$informationTruth || !$agreement || $agreement === 'disagree') {
         $errorMsg = "Please answer all questions properly and agree to continue.";
     } else {
-        // Update existing record in the database
         $stmt = $conn->prepare("UPDATE adopt SET adoption_process = ?, information_truth = ?, agreement = ? WHERE id = ?");
         $stmt->bind_param("sssi", $adoptionProcess, $informationTruth, $agreement, $id);
 
@@ -57,12 +54,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   <title>Adoption Agreement | Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Modal background overlay */
     .modal-overlay {
       background: rgba(0, 0, 0, 0.6);
     }
-    
-    /* Blur effect when modal is open */
+  
     body.modal-open {
       overflow: hidden;
     }
@@ -73,7 +68,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       transition: filter 0.3s ease;
     }
     
-    /* Media queries */
     @media (max-width: 1023px) {
       .desktop-nav {
         display: none;
@@ -94,7 +88,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       }
     }
     
-    /* Agreement form styles */
     .agreement-container {
       font-family: Arial, sans-serif;
       color: #333;
@@ -135,7 +128,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       background-color: #ccc;
     }
     
-    /* Thank you modal styles */
     .thank-you-modal {
       display: none;
       position: fixed;
@@ -179,7 +171,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-8 agreement-container">
 
-    <!-- Show error message if any -->
     <?php if (!empty($errorMsg)) : ?>
       <div class="max-w-600 mx-auto mb-4 p-4 bg-red-100 text-red-700 rounded">
         <?php echo htmlspecialchars($errorMsg); ?>
@@ -240,7 +231,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     </form>
   </main>
 
-  <!-- Thank You Modal -->
+  
   <div id="thank-you-modal" class="thank-you-modal">
     <div class="modal-content">
       <h2 class="text-2xl font-bold mb-4">Thank You for Your Adoption Application!</h2>
@@ -251,13 +242,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   </div>
 
   <script>
-    // Mobile menu toggle
     document.getElementById('menu-button')?.addEventListener('click', function() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
     });
 
-    // Modal exit button
     document.getElementById('modal-exit-button').addEventListener('click', function() {
       document.getElementById('thank-you-modal').style.display = 'none';
       document.body.classList.remove('modal-open');

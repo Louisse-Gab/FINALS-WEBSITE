@@ -31,32 +31,28 @@ if (!isset($_SESSION['username'])) {
 <main class="container mx-auto px-6 py-12">
   <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">     
 
-    <!-- Heading with X icon -->
     <div class="flex items-center justify-center mb-6 relative">
       <h1 class="text-3xl font-bold text-center">Shelter of Light Adoption Application Form</h1>
       <a href="adopt.php" class="absolute right-0 text-gray-500 hover:text-red-600 transition-colors duration-300" title="Back to Adopt Page">
-        <!-- X Icon -->
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </a>
     </div>
 
-    <!-- Application instructions -->
     <div class="mb-8 p-6 bg-yellow-50 rounded-lg">
       <p class="mb-4">All information you will share in this form will strictly be confidential and will only be used for the sake of this adoption process.</p>
       <p>Please complete all sections of this form to help us understand your situation and find the best match for both you and our animals.</p>
     </div>
 
       
-<!-- Application Process -->
 <h2 class="text-2xl font-bold mb-4">Application Process</h2>
 <div class="flex justify-center mb-8">
   <img src="../images/SHELTER OF LIGHT/FORMS/Adoption Process 2.png" 
        alt="Step 1" 
        class="w-[700px] h-auto rounded-lg shadow-md">
 </div>
-<!-- Our Adoptable Pets -->
+
 <h2 class="text-2xl font-bold mb-4">Our Adoptable Pets</h2>
 
 <!-- Dogs -->
@@ -76,7 +72,6 @@ if (!isset($_SESSION['username'])) {
   </div>
 </div>
 
-<!-- Milky and Hany Centered -->
 <div class="flex justify-center mb-10">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <div class="text-center">
@@ -89,8 +84,6 @@ if (!isset($_SESSION['username'])) {
     </div>
   </div>
 </div>
-
-
 
 <!-- Cats -->
 <h3 class="text-xl font-semibold mb-3">Take note of our adoptable cats:</h3>

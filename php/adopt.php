@@ -56,12 +56,9 @@ class PetAdoptionSystem {
           <title>Adopt a Cat | Shelter of Light</title>
           <script src="https://cdn.tailwindcss.com"></script>
           <style>
-            /* Modal background overlay */
             .modal-overlay {
               background: rgba(0, 0, 0, 0.6);
             }
-            
-            /* Blur effect when modal is open */
             body.modal-open {
               overflow: hidden;
             }
@@ -72,7 +69,6 @@ class PetAdoptionSystem {
               transition: filter 0.3s ease;
             }
             
-            /* Media queries */
             @media (max-width: 1023px) {
               .desktop-nav {
                 display: none;
@@ -92,8 +88,6 @@ class PetAdoptionSystem {
                 display: none;
               }
             }
-
-             /* Arrow link styles */
                 .arrow-link {
                     display: flex;
                     align-items: center;
@@ -111,7 +105,7 @@ class PetAdoptionSystem {
         </head>
         <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-        <!-- Improved Responsive Header -->
+        <!-- Header -->
         <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
           <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
             <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
@@ -139,7 +133,6 @@ class PetAdoptionSystem {
             </div>
           </div>
           
-          <!-- Mobile Menu (Dropdown) -->
           <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
             <div class="container mx-auto px-4">
               <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
@@ -158,10 +151,9 @@ class PetAdoptionSystem {
     
     public function renderPetSection($title, $pets) {
         ?>
-        <!-- Orange Container with Statement and Arrow -->
         <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
             <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
-                <div class="w-6"></div> <!-- Empty div for spacing -->
+                <div class="w-6"></div> 
                 <h2 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-center"><?= strtoupper($title) ?></h2>
                 <a href="home.php" class="arrow-link text-black hover:text-[#FFBB00]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,8 +162,6 @@ class PetAdoptionSystem {
                 </a>
             </div>
         </div>
-
-        <!-- Added margin-top here for spacing below the header -->
         <div class="mt-8 mb-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 <?php foreach ($pets as $pet): ?>
@@ -224,12 +214,10 @@ class PetAdoptionSystem {
     
     public function renderFooter() {
         ?>
-        <!-- Space Below -->
+
         <div class="h-12"></div>
         
         </div>
-
-        <!-- Horizontal line above footer -->
         <hr class="border-t border-[#00000033] w-full my-0">
 
         <!-- Footer -->
@@ -237,11 +225,10 @@ class PetAdoptionSystem {
             <div class="container mx-auto px-4 lg:px-6">
                 <div class="flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
                     
-                    <!-- Contact Info -->
                     <div class="order-2 lg:order-1 flex flex-col items-center lg:items-start gap-2">
                         <p class="font-bold whitespace-nowrap">GET IN TOUCH WITH US</p>
                         <div class="flex justify-center gap-4">
-                            <!-- Social media icons -->
+
                             <a href="https://web.facebook.com/shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00]">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
@@ -265,12 +252,10 @@ class PetAdoptionSystem {
                         </div>
                     </div>
                     
-                    <!-- Copyright -->
                     <div class="order-1 lg:order-2">
                         <p>&copy; Shelter of Light. All Rights Reserved.</p>
                     </div>
                     
-                    <!-- Creators -->
                     <div class="order-3 text-center lg:text-right">
                         <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
                         <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST</p>
@@ -286,18 +271,13 @@ class PetAdoptionSystem {
                 const mobileMenu = document.getElementById('mobile-menu');
                 const hamburgerIcon = document.getElementById('hamburger-icon');
                 
-                // Toggle mobile menu
                 menuButton.addEventListener('click', function() {
-                    // Toggle mobile menu visibility
                     mobileMenu.classList.toggle('hidden');
                     mobileMenu.classList.toggle('block');
-                    
-                    // Toggle animation classes
                     mobileMenu.classList.toggle('open');
                     hamburgerIcon.classList.toggle('active');
                 });
                 
-                // Close menu when clicking a link
                 const mobileLinks = mobileMenu.querySelectorAll('a');
                 mobileLinks.forEach(link => {
                     link.addEventListener('click', function() {
@@ -306,8 +286,7 @@ class PetAdoptionSystem {
                         hamburgerIcon.classList.remove('active');
                     });
                 });
-                
-                // Close menu when window is resized to desktop size
+
                 window.addEventListener('resize', function() {
                     if (window.innerWidth >= 1024) {
                         mobileMenu.classList.add('hidden');
@@ -316,22 +295,17 @@ class PetAdoptionSystem {
                     }
                 });
             });
-            // Mobile menu functionality
             const menuButton = document.getElementById('menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
 
             if (menuButton && mobileMenu) {
                 menuButton.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Prevent this click from triggering the document click handler
-                    // Toggle menu visibility
+                    e.stopPropagation(); 
                     mobileMenu.classList.toggle('hidden');
-                    
-                    // Toggle aria-expanded for accessibility
                     const isExpanded = this.getAttribute('aria-expanded') === 'true';
                     this.setAttribute('aria-expanded', !isExpanded);
                 });
 
-                // Close mobile menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (!menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
                         mobileMenu.classList.add('hidden');
@@ -340,8 +314,6 @@ class PetAdoptionSystem {
                 });
             }
         
-
-                // Close mobile menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (!menuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
                         mobileMenu.classList.add('hidden');
@@ -350,7 +322,6 @@ class PetAdoptionSystem {
                 });
             
 
-            // Close modal when clicking outside
             window.addEventListener('click', function(event) {
                 if (event.target.classList.contains('modal')) {
                     document.body.classList.remove('modal-open');
@@ -385,7 +356,6 @@ class PetAdoptionSystem {
     }
 }
 
-// Usage
 $adoptionSystem = new PetAdoptionSystem('adopt');
 $adoptionSystem->renderHeader();
 

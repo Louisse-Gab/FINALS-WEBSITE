@@ -1,11 +1,6 @@
 <?php
-// shelter_of_light.php - Single file implementation
-
-// Basic page variables
 $pageTitle = "Shelter of Light";
 $currentYear = date("Y");
-
-// Navigation items with their URLs and active states
 $navItems = [
     ["name" => "Home", "url" => "home.php", "active" => false],
     ["name" => "About Us", "url" => "about.php", "active" => false],
@@ -15,7 +10,6 @@ $navItems = [
     ["name" => "Contact", "url" => "contact.php", "active" => true]
 ];
 
-// Contact information with links
 $contactInfo = [
     ["label" => "CONTACT NUMBER", "value" => "+1 (123) 456-7890", "link" => "tel:+11234567890", "icon" => "phone"],
     ["label" => "EMAIL", "value" => "info@shelteroflight.org", "link" => "mailto:info@shelteroflight.org", "icon" => "mail"],
@@ -23,7 +17,6 @@ $contactInfo = [
     ["label" => "FACEBOOK/MESSENGER", "value" => "Shelter of Light", "link" => "https://web.facebook.com/shelteroflightph", "icon" => "facebook"]
 ];
 
-// Website creators with full names
 $creators = [
     ["name" => "Briones, Zyke", "image" => "../images/creators/briones.jpg"],
     ["name" => "Cabanada, Kristine", "image" => "../images/creators/cabanada.jpg"],
@@ -107,8 +100,6 @@ $creators = [
       opacity: 1;
       visibility: visible;
     }
-    
-    /* Contact icons responsive layout */
     @media (max-width: 640px) {
       .contact-icons-container {
         flex-direction: column;
@@ -119,15 +110,13 @@ $creators = [
         margin-bottom: 1.5rem;
       }
     }
-    
-    /* Creators grid responsive */
+
     @media (max-width: 768px) {
       .creators-grid {
         grid-template-columns: 1fr;
       }
     }
 
-        /* Arrow link styles */
     .arrow-link {
         display: flex;
         align-items: center;
@@ -170,8 +159,6 @@ $creators = [
     </div>
 </header>
 
-  
-     <!-- Mobile Menu (Dropdown) -->
      <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
       <div class="container mx-auto px-4">
         <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
@@ -186,10 +173,8 @@ $creators = [
     </div>
   </header>
 
-<!-- Overlay for mobile menu -->
 <div id="overlay" class="overlay"></div>
 
-<!-- Orange Container with Statement and Arrow -->
 <div class="full-width-section bg-[#FFF2CD] py-5 lg:py-5 border-b border-[#00000033]">
     <div class="container mx-auto px-4 lg:px-6 flex items-center justify-between">
         <div class="w-6"></div> <!-- Empty div for spacing -->
@@ -202,11 +187,10 @@ $creators = [
     </div>
 </div>
 
-<!-- Contact Card with Image Container and Side-by-Side Icons -->
 <section class="py-8">
     <div class="container mx-auto px-4 lg:px-6">
         <div class="bg-white border border-gray-200/50 rounded-lg p-6 lg:p-8 my-8 text-center overflow-hidden shadow-sm">
-            <!-- Contact Icons Container -->
+            <
             <div class="contact-icons-container flex flex-wrap justify-around items-start w-full px-4">
                 <!-- Phone -->
                 <div class="contact-item flex-1 flex flex-col items-center px-2.5 min-w-[150px] mb-6 lg:mb-0">
@@ -254,12 +238,10 @@ $creators = [
     </div>
 </section>
 
-<!-- Creators Section with Circular Profile Pictures -->
 <section class="py-12 bg-[#FFFBDE]">
     <div class="container mx-auto px-4 lg:px-6">
         <h2 class="text-3xl font-bold text-center mb-12 text-[#5F4B32]">CREATORS OF THIS WEBSITE</h2>
         <div class="creators-grid grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Creator 1: Briones, Zyke -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden border border-[#FFEBB9] hover:shadow-lg transition-shadow duration-300">
                 <div class="p-6 flex flex-col items-center">
                     <div class="mb-6 w-40 h-40 rounded-full overflow-hidden border-4 border-[#FFBB00] shadow-md">
@@ -273,7 +255,6 @@ $creators = [
                 </div>
             </div>
 
-            <!-- Creator 2: Cabanada, Kristine -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden border border-[#FFEBB9] hover:shadow-lg transition-shadow duration-300">
                 <div class="p-6 flex flex-col items-center">
                     <div class="mb-6 w-40 h-40 rounded-full overflow-hidden border-4 border-[#FFBB00] shadow-md">
@@ -287,7 +268,6 @@ $creators = [
                 </div>
             </div>
 
-            <!-- Creator 3: Lizen, Louisse Gabrielle -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden border border-[#FFEBB9] hover:shadow-lg transition-shadow duration-300">
                 <div class="p-6 flex flex-col items-center">
                     <div class="mb-6 w-40 h-40 rounded-full overflow-hidden border-4 border-[#FFBB00] shadow-md">
@@ -314,7 +294,6 @@ $creators = [
             <div class="order-2 lg:order-1 flex flex-col items-center lg:items-start gap-2">
                 <p class="font-bold whitespace-nowrap">GET IN TOUCH WITH US</p>
                 <div class="flex justify-center gap-4">
-                    <!-- Social media icons -->
                     <a href="https://web.facebook.com/shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00] transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
@@ -337,13 +316,11 @@ $creators = [
                     </a>
                 </div>
             </div>
-            
-            <!-- Copyright -->
+        
             <div class="order-1 lg:order-2">
                 <p>&copy; <?= $currentYear ?> Shelter of Light. All Rights Reserved.</p>
             </div>
             
-            <!-- Creators -->
             <div class="order-3 text-center lg:text-right">
                 <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
                 <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST-CICS</p>
@@ -352,18 +329,16 @@ $creators = [
     </div>
 </footer>
 
-
 <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu toggle
+     
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             
             mobileMenuButton.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
-
-            // Close mobile menu when clicking outside
+            
             document.addEventListener('click', function(event) {
                 if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
                     mobileMenu.classList.add('hidden');

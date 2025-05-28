@@ -4,8 +4,7 @@ require_once("../connection.php");
 $query = "SELECT type, COUNT(*) as total FROM pets WHERE type IN ('Dog', 'Cat') GROUP BY type";
 $result = mysqli_query($conn, $query);
 
-// Prepare data
-$animal_counts = ['Dog' => 0, 'Cat' => 0]; // Default to 0
+$animal_counts = ['Dog' => 0, 'Cat' => 0];
 while ($row = mysqli_fetch_assoc($result)) {
   $animal_counts[$row['type']] = $row['total'];
 }
@@ -52,7 +51,6 @@ while ($row = mysqli_fetch_assoc($result)) {
       margin-right: -50vw;
     }
 
-    /* Enhanced Responsive Carousel Styles */
     .multi-carousel {
       position: relative;
       max-width: 100%;
@@ -114,8 +112,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     .multi-carousel-next {
       right: 0.5rem;
     }
-
-    /* Responsive Adjustments */
     @media (max-width: 1023px) {
       .desktop-nav {
         display: none;
@@ -177,8 +173,6 @@ while ($row = mysqli_fetch_assoc($result)) {
         height: 350px;
       }
     }
-
-    /* Pet Info Overlay */
     .pet-info-overlay {
       position: absolute;
       bottom: 0;
@@ -199,7 +193,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
 
-  <!-- Improved Responsive Header -->
+  <!-- Header -->
   <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
     <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
       <a href="home.php" class="flex items-center space-x-2 lg:space-x-5">
@@ -227,7 +221,6 @@ while ($row = mysqli_fetch_assoc($result)) {
       </div>
     </div>
 
-    <!-- Mobile Menu (Dropdown) -->
     <div id="mobile-menu" class="hidden lg:hidden bg-[#FFFBE9] absolute w-full z-10 shadow-md">
       <div class="container mx-auto px-4">
         <div class="flex flex-col space-y-3 text-sm uppercase font-bold py-4">
@@ -244,7 +237,6 @@ while ($row = mysqli_fetch_assoc($result)) {
   </header>
 
   <main>
-    <!-- Your existing hero section -->
     <section class="bg-[#FFFBDE] py-8 lg:py-12">
       <div class="container mx-auto text-center px-4">
         <div class="flex flex-col lg:flex-row justify-center items-center">
@@ -255,8 +247,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <p class="italic text-[#FFBB00] mt-4 text-base lg:text-lg">"Where Love Shines Through the Darkness."</p>
       </div>
     </section>
-
-    <!-- Your existing introduction section -->
+    
     <section class="text-gray-800 py-8 lg:py-12 px-4 lg:px-6">
       <div class="container mx-auto">
         <p class="text-center leading-relaxed text-base lg:text-lg">
@@ -285,6 +276,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
         <div class="multi-carousel">
           <div class="multi-carousel-track" id="multi-carousel-track">
+
             <!-- Slide 1 -->
             <div class="multi-carousel-slide">
               <div class="multi-carousel-item">
@@ -354,7 +346,6 @@ while ($row = mysqli_fetch_assoc($result)) {
       </div>
     </section>
 
-    <!-- Your existing info section -->
     <section class="bg-black text-white py-8 lg:py-12">
       <div class="container mx-auto text-center px-4">
         <h3 class="text-base lg:text-lg font-bold mb-4">
@@ -384,11 +375,9 @@ while ($row = mysqli_fetch_assoc($result)) {
     <div class="container mx-auto px-4 lg:px-6">
       <div class="flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
 
-        <!-- Contact Info -->
         <div class="order-2 lg:order-1 flex flex-col items-center lg:items-start gap-2">
           <p class="font-bold whitespace-nowrap">GET IN TOUCH WITH US</p>
           <div class="flex justify-center gap-4">
-            <!-- Social media icons -->
             <a href="https://web.facebook.com/shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00]">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -417,12 +406,10 @@ while ($row = mysqli_fetch_assoc($result)) {
           </div>
         </div>
 
-        <!-- Copyright -->
         <div class="order-1 lg:order-2">
           <p>&copy; Shelter of Light. All Rights Reserved.</p>
         </div>
 
-        <!-- Creators -->
         <div class="order-3 text-center lg:text-right">
           <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
           <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST-CICS</p>
@@ -433,7 +420,6 @@ while ($row = mysqli_fetch_assoc($result)) {
   </footer>
 
   <script>
-    // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', function () {
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
@@ -442,14 +428,12 @@ while ($row = mysqli_fetch_assoc($result)) {
         mobileMenu.classList.toggle('hidden');
       });
 
-      // Close mobile menu when clicking outside
       document.addEventListener('click', function (event) {
         if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
           mobileMenu.classList.add('hidden');
         }
       });
 
-      // Enhanced Carousel Functionality
       const track = document.getElementById('multi-carousel-track');
       const slides = document.querySelectorAll('.multi-carousel-slide');
       const prevBtn = document.querySelector('.multi-carousel-prev');
@@ -458,7 +442,6 @@ while ($row = mysqli_fetch_assoc($result)) {
       let autoScrollInterval;
       const slideWidth = slides[0].clientWidth;
 
-      // Initialize carousel
       updateCarousel();
       setupAutoScroll();
       setupResponsiveChecks();
@@ -489,10 +472,9 @@ while ($row = mysqli_fetch_assoc($result)) {
       }
 
       function setupResponsiveChecks() {
-        // Recalculate slide width on resize
         window.addEventListener('resize', function () {
           const newSlideWidth = slides[0].clientWidth;
-          if (Math.abs(newSlideWidth - slideWidth) > 10) { // Only update if significant change
+          if (Math.abs(newSlideWidth - slideWidth) > 10) { 
             updateCarousel();
           }
         });
@@ -502,12 +484,10 @@ while ($row = mysqli_fetch_assoc($result)) {
       nextBtn.addEventListener('click', nextSlide);
       prevBtn.addEventListener('click', prevSlide);
 
-      // Pause auto-scroll on hover
       const carousel = document.querySelector('.multi-carousel');
       carousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
       carousel.addEventListener('mouseleave', setupAutoScroll);
 
-      // Touch support for mobile
       let touchStartX = 0;
       let touchEndX = 0;
 
@@ -523,11 +503,11 @@ while ($row = mysqli_fetch_assoc($result)) {
       }, { passive: true });
 
       function handleSwipe() {
-        const threshold = 50; // Minimum swipe distance
+        const threshold = 50; 
         if (touchStartX - touchEndX > threshold) {
-          nextSlide(); // Swipe left
+          nextSlide(); 
         } else if (touchEndX - touchStartX > threshold) {
-          prevSlide(); // Swipe right
+          prevSlide(); 
         }
       }
     });

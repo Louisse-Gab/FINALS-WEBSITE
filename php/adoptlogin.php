@@ -4,7 +4,7 @@ require_once '../connection.php';
 session_start();
 
 $message = "";
-$formToShow = "login"; // Default form
+$formToShow = "login";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
     $action = $_POST['action_type'];
@@ -227,12 +227,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
     <h1>ADOPTION ACCOUNT</h1>
     <?= $message ?>
     <div class="container">
-      <!-- Left Panel: Only visible on login -->
       <div class="left-panel" id="leftPanel" style="display: <?= $formToShow === 'login' ? 'flex' : 'none' ?>;">
         <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Cat" class="cat-img">
       </div>
-
-      <!-- Right Panel: Forms -->
       <div class="right-panel">
         <!-- Login Form -->
         <form id="loginForm" action="" method="POST">
@@ -247,7 +244,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action_type'])) {
           </p>
         </form>
 
-        <!-- Sign Up Form -->
         <form id="signupForm" action="" method="POST">
           <h2>REGISTER</h2>
           <input type="email" name="email" placeholder="EMAIL ADDRESS" required>
