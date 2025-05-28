@@ -56,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageType = $_FILES['pet_image']['type'];
 
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, pet_image=?, image_type=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("ssssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
+                $query->bind_param("sssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
             } else {
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("ssssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
+                $query->bind_param("sssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
             }
 
             if ($query->execute()) {
