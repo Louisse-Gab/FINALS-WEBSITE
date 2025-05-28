@@ -1,4 +1,9 @@
 <?php
+<<<<<<< HEAD
+=======
+
+// Basic page variables
+>>>>>>> a0cec83d7c20e4f7722fd764e48efdf4a431593b
 $pageTitle = "Shelter of Light";
 $currentYear = date("Y");
 $navItems = [
@@ -129,7 +134,7 @@ $creators = [
         transform: translateX(-5px);
         transition: transform 0.3s ease;
     }
-    
+
   </style>
 </head>
 <body class="text-gray-800 font-sans">

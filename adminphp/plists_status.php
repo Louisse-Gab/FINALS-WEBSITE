@@ -2,7 +2,6 @@
 session_start();
 require_once('../connection.php');
 
-// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -154,7 +153,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pet List Logs</title>
+    <title>Manage Pet Logs Here</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .side-menu {
@@ -261,13 +260,13 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
-                            Pet List Status
+                                Manage Pet Logs Here
                         </div>
                     </a>
                 </li>
 
                 <li>
-                    <a href="../adminphp/users_statusphp"
+                    <a href="../adminphp/users_status.php"
                         class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
@@ -299,7 +298,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
     <!-- Header -->
    <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-2 shadow-md relative z-10">
     <div class="menu-icon text-2xl cursor-pointer p-2 z-20" onclick="toggleMenu()">&#9776;</div>
-    <h1 class="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Pet List</h1>
+    <h1 class="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Manage Pet Logs Here</h1>
     <div class="flex items-center">
         <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
     </div>

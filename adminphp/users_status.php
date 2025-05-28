@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -17,7 +16,6 @@ if (!isset($_SESSION['username'])) {
     <title>Manage Users</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Menu transition effects */
         .side-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
@@ -27,7 +25,6 @@ if (!isset($_SESSION['username'])) {
             transform: translateX(0);
         }
 
-        /* Overlay for when menu is open */
         .menu-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease-in-out;
@@ -40,7 +37,6 @@ if (!isset($_SESSION['username'])) {
             pointer-events: auto;
         }
 
-        /* Responsive table styles */
         @media (max-width: 768px) {
             table.responsive-table thead {
                 display: none;
@@ -105,6 +101,7 @@ if (!isset($_SESSION['username'])) {
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
                             <span class="text-sm md:text-base">Home</span>
+
                         </div>
                     </a>
                 </li>
@@ -167,7 +164,7 @@ if (!isset($_SESSION['username'])) {
                 </li>
 
                 <li>
-                    <a href="../adminphp/users_statusphp"
+                    <a href="../adminphp/users_status.php"
                         class="menu-item block py-2 px-4 bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
@@ -200,8 +197,9 @@ if (!isset($_SESSION['username'])) {
     <!-- Header -->
     <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-3 shadow-md md:px-6 md:py-4">
         <button id="menuToggle" class="menu-icon text-2xl cursor-pointer">&#9776;</button>
-        <h1 class="text-lg font-bold text-black md:text-xl">Manage Adopt Here</h1>
-        <div class="w-7 h-7 bg-black rounded-full md:w-8 md:h-8"></div>
+        <h1 class="text-lg font-bold text-black md:text-xl">Manage Users Log Here</h1>
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
+
     </div>
 
     <!-- Manage Users Table -->
@@ -266,7 +264,6 @@ if (!isset($_SESSION['username'])) {
             <div class="mb-6">
                 <h4 class="text-lg font-semibold mb-2 border-b pb-2">User Information</h4>
                 <div id="userDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- Will be populated by JavaScript -->
                 </div>
             </div>
 
@@ -274,10 +271,9 @@ if (!isset($_SESSION['username'])) {
             <div class="mb-6">
                 <h4 class="text-lg font-semibold mb-2 border-b pb-2">Pet to Adopt</h4>
                 <div id="petDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- Will be populated by JavaScript -->
                 </div>
                 <div id="petImageContainer" class="mt-4 flex justify-center">
-                    <!-- Pet image will be inserted here -->
+
                 </div>
             </div>
 

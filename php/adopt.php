@@ -27,7 +27,7 @@ class PetAdoptionSystem {
     }
     
     public function getPets($type = null) {
-        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
+        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated, status FROM pets";
         if ($type) {
             $query .= " WHERE type = '" . $this->dbConnection->real_escape_string($type) . "'";
         }
@@ -171,12 +171,15 @@ class PetAdoptionSystem {
                         <p class="font-semibold text-sm text-gray-800"><?= htmlspecialchars($pet['pet_name']) ?></p>
                         <p class="text-xs text-gray-600"><?= htmlspecialchars(mb_strimwidth($pet['description'], 0, 100, '...')) ?></p>
                         <button class="mt-4 bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500"
-                            onclick="openModal(this)" data-name="<?= htmlspecialchars($pet['pet_name']) ?>"
-                            data-img="../adminphp/plist.php?id=<?= $pet['id'] ?>.jpg" data-age="<?= htmlspecialchars($pet['pet_age']) ?>"
+                            onclick="openModal(this)" 
+                            data-name="<?= htmlspecialchars($pet['pet_name']) ?>"
+                            data-img="../adminphp/plist.php?id=<?= $pet['id'] ?>.jpg" 
+                            data-age="<?= htmlspecialchars($pet['pet_age']) ?>"
                             data-breed="<?= htmlspecialchars($pet['pet_breed']) ?>"
                             data-gender="<?= htmlspecialchars($pet['pet_gender']) ?>"
                             data-vaccine="<?= htmlspecialchars($pet['pet_vacinated']) ?>"
-                            data-description="<?= htmlspecialchars($pet['description']) ?>">
+                            data-description="<?= htmlspecialchars($pet['description']) ?>"
+                            data-status="<?= htmlspecialchars($pet['status']) ?>">
                             SEE DETAILS
                         </button>
                     </div>
@@ -199,9 +202,9 @@ class PetAdoptionSystem {
                         <p class="text-gray-700 mb-2"><span class="font-semibold">Age:</span> <span id="modal-age"></span></p>
                         <p class="text-gray-700 mb-2"><span class="font-semibold">Breed:</span> <span id="modal-breed"></span></p>
                         <p class="text-gray-700 mb-2"><span class="font-semibold">Gender:</span> <span id="modal-gender"></span></p>
-                        <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> <span id="modal-vaccine"></span>
-                        </p>
-                        <p class="text-gray-700 mb-4 text-justify" id="modal-description">Description here.</p>
+                        <p class="text-gray-700 mb-2"><span class="font-semibold">Vaccinated:</span> <span id="modal-vaccine"></span></p>
+                        <p class="text-gray-700 mb-4 text-justify"><span class="font-semibold">Description:</span> <span id="modal-description"></span></p>
+                        <p class="text-gray-700 mb-4 text-justify"><span class="font-semibold">Status:</span> <span  id="modal-status"></span></p>
                         <a href="adoptlogin.php"
                             class="block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500 w-full text-center">Adopt
                             Me</a>
@@ -342,6 +345,7 @@ class PetAdoptionSystem {
                 document.getElementById('modal-gender').textContent = button.dataset.gender;
                 document.getElementById('modal-vaccine').textContent = button.dataset.vaccine;
                 document.getElementById('modal-description').textContent = button.dataset.description;
+                document.getElementById('modal-status').textContent = button.dataset.status;
 
                 modal.classList.remove('hidden');
             }
@@ -368,3 +372,4 @@ $adoptionSystem->renderPetSection('Adopt a Dog', $dogs);
 $adoptionSystem->renderModal();
 $adoptionSystem->renderFooter();
 ?>
+

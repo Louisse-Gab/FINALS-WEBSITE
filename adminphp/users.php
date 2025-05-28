@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -17,7 +16,6 @@ if (!isset($_SESSION['username'])) {
     <title>Manage Users</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Menu transition effects */
         .side-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
@@ -27,7 +25,6 @@ if (!isset($_SESSION['username'])) {
             transform: translateX(0);
         }
 
-        /* Overlay for when menu is open */
         .menu-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease-in-out;
@@ -40,7 +37,6 @@ if (!isset($_SESSION['username'])) {
             pointer-events: auto;
         }
 
-        /* Responsive table styles */
         @media (max-width: 768px) {
             table.responsive-table thead {
                 display: none;
@@ -167,7 +163,7 @@ if (!isset($_SESSION['username'])) {
                 </li>
 
                 <li>
-                    <a href="../adminphp/users_statusphp"
+                    <a href="../adminphp/users_status.php"
                         class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
@@ -202,7 +198,8 @@ if (!isset($_SESSION['username'])) {
     <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-3 shadow-md md:px-6 md:py-4">
         <button id="menuToggle" class="menu-icon text-2xl cursor-pointer">&#9776;</button>
         <h1 class="text-lg font-bold text-black md:text-xl">Manage Adopt Here</h1>
-        <div class="w-7 h-7 bg-black rounded-full md:w-8 md:h-8"></div>
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12"> 
+
     </div>
 
     <!-- Manage Users Table -->
@@ -257,7 +254,6 @@ if (!isset($_SESSION['username'])) {
         </div>
     </div>
 
-    <!-- Replace your existing Confirmation Modal with this enhanced version -->
     <div id="confirmModal"
         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
         <div class="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -270,7 +266,6 @@ if (!isset($_SESSION['username'])) {
             <div class="mb-6">
                 <h4 class="text-lg font-semibold mb-2 border-b pb-2">User Information</h4>
                 <div id="userDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- Will be populated by JavaScript -->
                 </div>
             </div>
 
@@ -278,10 +273,8 @@ if (!isset($_SESSION['username'])) {
             <div class="mb-6">
                 <h4 class="text-lg font-semibold mb-2 border-b pb-2">Pet to Adopt</h4>
                 <div id="petDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- Will be populated by JavaScript -->
                 </div>
                 <div id="petImageContainer" class="mt-4 flex justify-center">
-                    <!-- Pet image will be inserted here -->
                 </div>
             </div>
 
@@ -344,7 +337,6 @@ if (!isset($_SESSION['username'])) {
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            // Remove row only after successful server deletion
                             rowElement.remove();
                             alert(data.message);
                         } else {
@@ -477,14 +469,10 @@ if (!isset($_SESSION['username'])) {
                         document.getElementById('petImageContainer').innerHTML = petImageHTML;
 
                         // Set confirmation message based on action
-                        // ... (previous code remains the same until the confirmMessage section)
-
-                        // Set confirmation message based on action
                         const actionText = currentAction === 'Confirmed' ? 'CONFIRM' : 'DECLINE';
                         document.getElementById('confirmMessage').textContent =
                             `Are you sure you want to ${actionText} this adoption request? Please review all details above before proceeding.`;
 
-                        // ... (rest of the code remains the same)
                         return true;
                     } else {
                         alert('Error: ' + data.message);

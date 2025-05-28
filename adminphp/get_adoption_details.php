@@ -11,7 +11,6 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $id = $_GET['id'];
 
 try {
-    // Get adoption form details
     $stmt = $conn->prepare("SELECT * FROM adopt WHERE id = ?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -23,7 +22,6 @@ try {
     
     $adoptionData = $result->fetch_assoc();
     
-    // Combine all data
     $response = [
         'success' => true,
         'message' => 'Data retrieved successfully',
