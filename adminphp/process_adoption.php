@@ -30,30 +30,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $adoptionData = $result->fetch_assoc();
+        $status = $action;
 
-        // 2. Determine status
-        $status = $action === 'Confirmed' ? 'Confirmed' : 'Declined';
-
-        // 3. Update adoption status
+        // 2. Update adoption status
         $update = $conn->prepare("UPDATE adopt SET status = ? WHERE id = ?");
         $update->bind_param("si", $status, $id);
         $update->execute();
 
-        // 4. If confirmed, update pet status
+        // 3. If confirmed, update pet status
         if ($status === 'Confirmed') {
             $petStmt = $conn->prepare("UPDATE pets SET status = 'Adopted' WHERE pet_name = ?");
             $petStmt->bind_param("s", $adoptionData['desiredPet']);
             $petStmt->execute();
         }
 
-        // 5. Send Email Notification
+        // 4. Send email (for both Confirmed and Declined)
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'shelteroflightphh@gmail.com'; // Replace with your email
-            $mail->Password = 'kvrxsmzjxrptpejs';         // Use App Password
+            $mail->Password = 'kvrxsmzjxrptpejs';             // Use App Password
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
@@ -63,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $subject = "Adoption Request " . ($status === 'Confirmed' ? 'Approved' : 'Declined');
             $body = "Hello {$adoptionData['fullName']},<br><br>";
             $body .= "Your adoption request for <strong>{$adoptionData['desiredPet']}</strong> has been <strong>{$status}</strong>.<br><br>";
-            $body .= "Thank you for supporting pet adoption.<br><br>Shelter of Light";
+            $body .= "Thank you for supporting Shelter of Light.<br><br>Shelter of Light";
 
             $mail->isHTML(true);
             $mail->Subject = $subject;
@@ -78,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // 6. Commit transaction
+        // 5. Commit transaction
         $conn->commit();
 
         echo json_encode([

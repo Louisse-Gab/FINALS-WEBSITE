@@ -1,3 +1,113 @@
+<<<<<<< HEAD
+<?php
+session_start();
+require_once('../connection.php');
+
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
+
+// Handle profile updates
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form data
+    $name = $conn->real_escape_string($_POST['name']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $phone = $conn->real_escape_string($_POST['phone']);
+    $adminId = $_SESSION['adminId'];
+
+    // Handle file upload
+    $targetDir = "../uploads/";
+    $profilePicturePath = "";
+    
+    // Create uploads directory if it doesn't exist
+    if (!file_exists($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+    
+    if (!empty($_FILES["profilePicture"]["name"])) {
+        // Generate unique filename
+        $fileName = uniqid() . '_' . basename($_FILES["profilePicture"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+        
+        // Allow certain file formats
+        $allowTypes = ['jpg','png','jpeg','gif'];
+        if (in_array($fileType, $allowTypes)) {
+            // Upload file to server
+            if (move_uploaded_file($_FILES["profilePicture"]["tmp_name"], $targetFilePath)) {
+                $profilePicturePath = "uploads/" . $fileName;
+                
+                // Delete old profile picture if it exists
+                if (!empty($_SESSION['profilePicture']) && $_SESSION['profilePicture'] !== $profilePicturePath) {
+                    $oldFilePath = "../" . $_SESSION['profilePicture'];
+                    if (file_exists($oldFilePath)) {
+                        unlink($oldFilePath);
+                    }
+                }
+            }
+        }
+    }
+    
+    // Update database
+    if (!empty($profilePicturePath)) {
+        $sql = "UPDATE accounts SET name=?, email=?, phone=?, profile_picture=? WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssssi", $name, $email, $phone, $profilePicturePath, $adminId);
+    } else {
+        $sql = "UPDATE accounts SET name=?, email=?, phone=? WHERE id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssi", $name, $email, $phone, $adminId);
+    }
+    
+    if ($stmt->execute()) {
+        // Update session variables
+        $_SESSION['adminName'] = $name;
+        $_SESSION['adminEmail'] = $email;
+        $_SESSION['adminPhone'] = $phone;
+        if (!empty($profilePicturePath)) {
+            $_SESSION['profilePicture'] = $profilePicturePath;
+        }
+        
+        // Return success response
+        $response = [
+            'status' => 'success',
+            'name' => $name,
+            'profilePicture' => !empty($profilePicturePath) ? $profilePicturePath : 
+                              (isset($_SESSION['profilePicture']) ? $_SESSION['profilePicture'] : '')
+        ];
+        
+        echo json_encode($response);
+        exit;
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Database update failed: ' . $conn->error]);
+        exit;
+    }
+}
+
+// Fetch current admin data
+$adminData = null;
+if (isset($_SESSION['adminId'])) {
+    $query = $conn->prepare("SELECT name, email, phone, profile_picture FROM accounts WHERE id = ?");
+    $query->bind_param("i", $_SESSION['adminId']);
+    $query->execute();
+    $result = $query->get_result();
+    $adminData = $result->fetch_assoc();
+    $query->close();
+    
+    // Update session with latest data
+    if ($adminData) {
+        $_SESSION['adminName'] = $adminData['name'];
+        $_SESSION['adminEmail'] = $adminData['email'];
+        $_SESSION['adminPhone'] = $adminData['phone'];
+        $_SESSION['profilePicture'] = $adminData['profile_picture'];
+    }
+}
+?>
+
+=======
+>>>>>>> 00639b3ad5d67b814025058a584f2cb4e989b0a9
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -120,6 +230,7 @@
                     </a>
                 </li>
                 
+
                 <li class="border-t border-gray-300 mt-6 pt-4">
                     <a href="../php/adoptlogin.php" 
                        class="menu-item block py-2 px-4 hover:bg-red-100 text-red-600 rounded-lg transition duration-300" 

@@ -191,15 +191,14 @@ if (!isset($_SESSION['username'])) {
                         <th class="px-4 py-2 font-bold">Email Address</th>
                         <th class="px-4 py-2 font-bold">Social Media</th>
                         <th class="px-4 py-2 font-bold">Occupation</th>
-                        <th class="px-4 py-2 font-bold">Action</th>
+                        <th class="px-4 py-2 font-bold">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     require_once '../connection.php';
 
-                    // Define allowed statuses for verification
-                    $allowedStatuses = ['For Verification'];
+                    $allowedStatuses = ['Confirmed', 'Declined'];
 
                     // Prepare the statuses as a comma-separated string with quotes for SQL
                     $statusesForSql = "'" . implode("','", $allowedStatuses) . "'";
@@ -216,9 +215,7 @@ if (!isset($_SESSION['username'])) {
                         echo "<td class='px-4 py-2 border-b' data-label='Email'>{$row['email']}</td>";
                         echo "<td class='px-4 py-2 border-b' data-label='Social Media'>{$row['socialMedia']}</td>";
                         echo "<td class='px-4 py-2 border-b' data-label='Occupation'>{$row['jobTitle']}</td>";
-                        echo "<td class='px-4 py-2 border-b flex space-x-2 action-buttons' data-label='Action'>";
-                        echo "<button class='approve-btn bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-700 text-sm md:text-base' data-id='{$row['id']}'>&#10004;</button>";
-                        echo "<button class='decline-btn bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-700 text-sm md:text-base' data-id='{$row['id']}'>&#10008;</button>";
+                        echo "<td class='px-4 py-2 border-b' data-label='Status'>{$row['status']}</td>";
                         echo "</td>";
                         echo "</tr>";
                         $counter++;
@@ -270,8 +267,7 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>
     </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>document.addEventListener('DOMContentLoaded', function () {
             // Menu toggle functionality
             const menuToggle = document.getElementById('menuToggle');
             const closeMenu = document.getElementById('closeMenu');
@@ -329,52 +325,6 @@ if (!isset($_SESSION['username'])) {
                     });
             }
 
-            // Function to attach event listeners to buttons
-            function attachButtonListeners() {
-                // Approve button click
-                document.querySelectorAll('.approve-btn').forEach(button => {
-                    button.addEventListener('click', async function (e) {
-                        e.preventDefault();
-                        currentRowId = this.getAttribute('data-id');
-                        currentRowElement = this.closest('tr');
-                        currentAction = 'Confirmed';
-
-                        // Show loading state
-                        confirmModal.classList.remove('hidden');
-                        document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
-
-                        // Fetch and display details
-                        const success = await fetchAdoptionDetails(currentRowId);
-                        if (!success) {
-                            confirmModal.classList.add('hidden');
-                        }
-                    });
-                });
-
-                // Decline button click
-                document.querySelectorAll('.decline-btn').forEach(button => {
-                    button.addEventListener('click', async function (e) {
-                        e.preventDefault();
-                        currentRowId = this.getAttribute('data-id');
-                        currentRowElement = this.closest('tr');
-                        currentAction = 'Declined';
-
-                        // Show loading state
-                        confirmModal.classList.remove('hidden');
-                        document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
-
-                        // Fetch and display details
-                        const success = await fetchAdoptionDetails(currentRowId);
-                        if (!success) {
-                            confirmModal.classList.add('hidden');
-                        }
-                    });
-                });
-            }
-
-            // Initial attachment of event listeners
-            attachButtonListeners();
-
             // Modal controls
             if (closeConfirmModal) closeConfirmModal.addEventListener('click', function () {
                 confirmModal.classList.add('hidden');
@@ -408,6 +358,7 @@ if (!isset($_SESSION['username'])) {
                     <div><strong>Email:</strong> ${data.email}</div>
                     <div><strong>Social Media:</strong> ${data.socialMedia}</div>
                     <div><strong>Occupation:</strong> ${data.jobTitle}</div>
+                    <div><strong>Occupation:</strong> ${data.status}</div>
                 `;
 
                         // Populate Pet Information
@@ -449,14 +400,10 @@ if (!isset($_SESSION['username'])) {
                         document.getElementById('petImageContainer').innerHTML = petImageHTML;
 
                         // Set confirmation message based on action
-                        // ... (previous code remains the same until the confirmMessage section)
-
-                        // Set confirmation message based on action
-                        const actionText = currentAction === 'Confirmed' ? 'CONFIRM' : 'DECLINE';
+                        const actionText = currentAction === 'Confirmed' ? 'Confirmed' : 'Declined';
                         document.getElementById('confirmMessage').textContent =
                             `Are you sure you want to ${actionText} this adoption request? Please review all details above before proceeding.`;
 
-                        // ... (rest of the code remains the same)
                         return true;
                     } else {
                         alert('Error: ' + data.message);
