@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 session_start();
 require_once('../connection.php');
@@ -105,6 +106,8 @@ if (isset($_SESSION['adminId'])) {
 }
 ?>
 
+=======
+>>>>>>> 00639b3ad5d67b814025058a584f2cb4e989b0a9
 <!DOCTYPE html>
 <html lang="en">
 <head>

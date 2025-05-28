@@ -1,5 +1,12 @@
 <?php
+session_start();
 require_once('../connection.php');
+
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
 
 // Breed options
 $dogBreeds = [
@@ -56,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageType = $_FILES['pet_image']['type'];
 
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, pet_image=?, image_type=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("ssssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
+                $query->bind_param("sssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
             } else {
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("ssssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
+                $query->bind_param("sssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
             }
 
             if ($query->execute()) {
@@ -144,11 +151,10 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pet List</title>
+    <title>Pet List Logs</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .side-menu {
@@ -272,17 +278,10 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 </div>
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-4">
-        <!-- Action Buttons -->
-        <div class="flex justify-end mb-4">
-            <button onclick="openModal()"
-                class="bg-[#FDCB58] text-black py-2 px-4 sm:px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300 text-sm sm:text-base">
-                + Add Pet
-            </button>
-        </div>
 
         <!-- Pet List Section -->
         <?php
-        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
+        $query = "SELECT * FROM pets WHERE status != 'Not Adopted'";
         $result = $conn->query($query);
         ?>
 
@@ -290,22 +289,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="bg-white border border-gray-300 rounded-lg shadow-md p-4 relative">
-                        <!-- Edit and Delete buttons -->
-                        <div class="absolute top-2 right-2 flex space-x-1">
-                            <button onclick="openEditModal(<?= $row['id'] ?>)" 
-                                    class="bg-blue-500 text-white p-1 rounded-full hover:bg-blue-600 transition duration-300">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
-                                </button>
-                            <button onclick="confirmDelete(<?= $row['id'] ?>)" 
-                                class="bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                </svg>
-                            </button>
-                        </div>
-                        
                         <img src="plist.php?id=<?= $row['id'] ?>" alt="Pet Image"
                             class="w-full h-48 object-cover rounded-lg mb-3">
                         <div>
@@ -315,6 +298,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                                 <p><?= htmlspecialchars($row['type']) ?> • <?= htmlspecialchars($row['pet_age']) ?> • <?= htmlspecialchars($row['pet_gender']) ?></p>
                                 <p>Breed: <?= htmlspecialchars($row['pet_breed']) ?></p>
                                 <p>Vaccination: <?= htmlspecialchars($row['pet_vacinated']) ?></p>
+                                <p>Status: <?= htmlspecialchars($row['status']) ?></p>
                             </div>
                         </div>
                     </div>
@@ -371,77 +355,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                 <button type="submit" class="bg-[#FDCB58] text-black py-2 px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300 w-full">
                     Save Pet
                 </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Edit Pet Modal -->
-    <div id="editPetModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 <?php echo isset($_GET['action']) && $_GET['action'] === 'edit' ? '' : 'hidden'; ?> overflow-y-auto p-4">
-        <div class="bg-white w-full max-w-md rounded-lg shadow-lg p-4 sm:p-6 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeEditModal()" class="absolute top-2 right-2 text-xl font-bold text-gray-500 hover:text-red-500">&times;</button>
-            <h2 class="text-xl font-bold mb-4 text-center">Edit Pet</h2>
-            
-            <form id="editPetForm" method="POST" enctype="multipart/form-data" class="grid gap-4">
-                <input type="hidden" name="id" value="<?php echo isset($petToEdit['id']) ? $petToEdit['id'] : ''; ?>">
-                <input type="hidden" name="action" value="edit">
-                
-                <input type="text" name="pet_name" value="<?php echo isset($petToEdit['pet_name']) ? htmlspecialchars($petToEdit['pet_name']) : ''; ?>" placeholder="Pet Name" class="input-field" required>
-                <textarea name="description" rows="2" placeholder="Description" class="input-field" required><?php echo isset($petToEdit['description']) ? htmlspecialchars($petToEdit['description']) : ''; ?></textarea>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <select name="type" id="editPetType" class="input-field" onchange="updateEditBreedOptions()" required>
-                        <option value="">Select Type</option>
-                        <option value="Dog" <?php echo (isset($petToEdit['type']) && $petToEdit['type'] === 'Dog') ? 'selected' : ''; ?>>Dog</option>
-                        <option value="Cat" <?php echo (isset($petToEdit['type']) && $petToEdit['type'] === 'Cat') ? 'selected' : ''; ?>>Cat</option>
-                    </select>
-                    <input type="text" name="pet_age" value="<?php echo isset($petToEdit['pet_age']) ? htmlspecialchars($petToEdit['pet_age']) : ''; ?>" placeholder="Age" class="input-field" required>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <select name="pet_breed" id="editPetBreed" class="input-field" required>
-                        <option value="">Select Breed</option>
-                    </select>
-                    <select name="pet_gender" class="input-field" required>
-                        <option value="">Select Gender</option>
-                        <option value="Male" <?php echo (isset($petToEdit['pet_gender']) && $petToEdit['pet_gender'] === 'Male') ? 'selected' : ''; ?>>Male</option>
-                        <option value="Female" <?php echo (isset($petToEdit['pet_gender']) && $petToEdit['pet_gender'] === 'Female') ? 'selected' : ''; ?>>Female</option>
-                    </select>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <select name="pet_vacinated" class="input-field" required>
-                        <option value="">Select Vaccination</option>
-                        <option value="5-in-1" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === '5-in-1') ? 'selected' : ''; ?>>5-in-1</option>
-                        <option value="4-in-1" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === '4-in-1') ? 'selected' : ''; ?>>4-in-1</option>
-                        <option value="Unvaccinated" <?php echo (isset($petToEdit['pet_vacinated']) && $petToEdit['pet_vacinated'] === 'Unvaccinated') ? 'selected' : ''; ?>>Unvaccinated</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Change Image (Optional)</label>
-                    <input type="file" name="pet_image" id="editPetImageInput" accept="image/*" class="w-full">
-                    <img id="editImagePreview" class="mt-3 w-full h-40 object-cover rounded-lg" src="plist.php?id=<?php echo isset($petToEdit['id']) ? $petToEdit['id'] : ''; ?>" alt="Current Image">
-                </div>
-
-                <button type="submit" class="bg-[#FDCB58] text-black py-2 px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300 w-full">
-                    Update Pet
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Delete Confirmation Modal -->
-    <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden p-4">
-        <div class="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-md">
-            <h2 class="text-xl font-bold mb-4">Confirm Deletion</h2>
-            <p class="mb-6">Are you sure you want to delete this pet? This action cannot be undone.</p>
-            <form id="deleteForm" method="POST">
-                <input type="hidden" name="id" id="deletePetId">
-                <input type="hidden" name="action" value="delete">
-                <div class="flex justify-end space-x-4">
-                    <button type="button" onclick="closeDeleteModal()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100">Cancel</button>
-                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Delete</button>
-                </div>
             </form>
         </div>
     </div>
