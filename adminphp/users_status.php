@@ -105,7 +105,6 @@ if (!isset($_SESSION['username'])) {
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
                             <span class="text-sm md:text-base">Home</span>
-                            <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
 
                         </div>
                     </a>
@@ -169,7 +168,7 @@ if (!isset($_SESSION['username'])) {
                 </li>
 
                 <li>
-                    <a href="../adminphp/users_statusphp"
+                    <a href="../adminphp/users_status.php"
                         class="menu-item block py-2 px-4 bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"

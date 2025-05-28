@@ -167,7 +167,7 @@ if (!isset($_SESSION['username'])) {
                 </li>
 
                 <li>
-                    <a href="../adminphp/users_statusphp"
+                    <a href="../adminphp/users_status.php"
                         class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
@@ -202,7 +202,8 @@ if (!isset($_SESSION['username'])) {
     <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-3 shadow-md md:px-6 md:py-4">
         <button id="menuToggle" class="menu-icon text-2xl cursor-pointer">&#9776;</button>
         <h1 class="text-lg font-bold text-black md:text-xl">Manage Adopt Here</h1>
-        <div class="w-7 h-7 bg-black rounded-full md:w-8 md:h-8"></div>
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12"> <!-- Reduced logo size -->
+
     </div>
 
     <!-- Manage Users Table -->

@@ -402,3 +402,4 @@ $adoptionSystem->renderPetSection('Adopt a Dog', $dogs);
 $adoptionSystem->renderModal();
 $adoptionSystem->renderFooter();
 ?>
+
