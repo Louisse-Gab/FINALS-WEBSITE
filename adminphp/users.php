@@ -270,7 +270,8 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>
     </div>
-    <script>document.addEventListener('DOMContentLoaded', function () {
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
             // Menu toggle functionality
             const menuToggle = document.getElementById('menuToggle');
             const closeMenu = document.getElementById('closeMenu');
