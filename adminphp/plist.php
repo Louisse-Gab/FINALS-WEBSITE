@@ -301,7 +301,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 </div>
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-4">
-        <!-- Action Buttons -->
         <div class="flex justify-end mb-4">
             <button onclick="openModal()"
                 class="bg-[#FDCB58] text-black py-2 px-4 sm:px-6 rounded-full font-bold hover:bg-[#E6B84A] transition duration-300 text-sm sm:text-base">
@@ -309,7 +308,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             </button>
         </div>
 
-        <!-- Pet List Section -->
         <?php
         $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
         $result = $conn->query($query);
@@ -476,14 +474,12 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
     </div>
 
     <script>
-        // Menu functionality
         function toggleMenu() {
             document.getElementById('sideMenu').classList.toggle('active');
             document.getElementById('menuOverlay').classList.toggle('active');
             document.body.style.overflow = document.getElementById('sideMenu').classList.contains('active') ? 'hidden' : '';
         }
 
-        // Close menu when clicking on menu items
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', function() {
                 document.getElementById('sideMenu').classList.remove('active');
@@ -492,7 +488,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             });
         });
 
-        // Modal functions
         function openModal() {
             document.getElementById('addPetModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -525,7 +520,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             document.body.style.overflow = '';
         }
 
-        // Image preview for add modal
         document.getElementById('petImageInput').addEventListener('change', function (event) {
             const preview = document.getElementById('imagePreview');
             const file = event.target.files[0];
@@ -539,7 +533,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             }
         });
 
-        // Image preview for edit modal
         document.getElementById('editPetImageInput').addEventListener('change', function (event) {
             const preview = document.getElementById('editImagePreview');
             const file = event.target.files[0];

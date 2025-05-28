@@ -2,7 +2,6 @@
 session_start();
 require_once("../connection.php");
 
-// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -102,7 +101,6 @@ if (!isset($adopteddog_counts['Adopted'])) {
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Menu transition effects */
         .side-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
@@ -112,7 +110,6 @@ if (!isset($adopteddog_counts['Adopted'])) {
             transform: translateX(0);
         }
         
-        /* Overlay for when menu is open */
         .menu-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease-in-out;
@@ -125,7 +122,6 @@ if (!isset($adopteddog_counts['Adopted'])) {
             pointer-events: auto;
         }
 
-        /* Dashboard specific styles */
         .stat-card {
             transition: all 0.3s ease;
             height: 150px;
@@ -142,15 +138,12 @@ if (!isset($adopteddog_counts['Adopted'])) {
     </style>
 </head>
 <body class="bg-[#FFF9E5] font-sans text-gray-800">
-    <!-- Side Menu Overlay -->
     <div id="menuOverlay" class="menu-overlay fixed inset-0 z-20" onclick="toggleMenu()"></div>
     
-    <!-- Side Menu -->
     <div id="sideMenu" class="side-menu fixed top-0 left-0 h-full w-64 bg-[#FDF2C1] z-30 shadow-lg">
         <div class="p-4 border-b border-gray-300">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold">Menu</h2>
-                <!-- Close button with ID for JavaScript targeting -->
                 <button id="closeMenuBtn" class="text-2xl cursor-pointer p-2">&times;</button>
             </div>
         </div>
@@ -318,9 +311,7 @@ if (!isset($adopteddog_counts['Adopted'])) {
         </div>
     </div>
 
-    <!-- Inline JavaScript for immediate execution -->
     <script>
-        // Define functions first
         function toggleMenu() {
             console.log("Toggle menu called");
             const sideMenu = document.getElementById('sideMenu');
@@ -335,24 +326,19 @@ if (!isset($adopteddog_counts['Adopted'])) {
                 menuOverlay.classList.toggle('active');
             }
             
-            // Prevent scrolling when menu is open
             document.body.style.overflow = (sideMenu && sideMenu.classList.contains('active')) ? 'hidden' : '';
         }
 
         function navigateTo(url) {
             console.log("Navigating to:", url);
-            // Close the menu first
             toggleMenu();
             
-            // Then navigate to the URL
             window.location.href = url;
         }
 
-        // Add event listeners when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             console.log("DOM loaded, initializing menu");
             
-            // Add event listener to close button
             const closeButton = document.getElementById('closeMenuBtn');
             if (closeButton) {
                 console.log("Close button found, adding event listener");
@@ -366,7 +352,6 @@ if (!isset($adopteddog_counts['Adopted'])) {
         });
     </script>
     
-    <!-- External JavaScript file -->
     <script src="../adminjs/dash.js"></script>
 </body>
 </html>

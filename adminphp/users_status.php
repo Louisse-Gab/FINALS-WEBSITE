@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -17,7 +16,6 @@ if (!isset($_SESSION['username'])) {
     <title>Manage Users</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Menu transition effects */
         .side-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
@@ -27,7 +25,6 @@ if (!isset($_SESSION['username'])) {
             transform: translateX(0);
         }
 
-        /* Overlay for when menu is open */
         .menu-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease-in-out;
@@ -40,7 +37,6 @@ if (!isset($_SESSION['username'])) {
             pointer-events: auto;
         }
 
-        /* Responsive table styles */
         @media (max-width: 768px) {
             table.responsive-table thead {
                 display: none;
@@ -268,7 +264,6 @@ if (!isset($_SESSION['username'])) {
             <div class="mb-6">
                 <h4 class="text-lg font-semibold mb-2 border-b pb-2">User Information</h4>
                 <div id="userDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- Will be populated by JavaScript -->
                 </div>
             </div>
 
@@ -276,10 +271,9 @@ if (!isset($_SESSION['username'])) {
             <div class="mb-6">
                 <h4 class="text-lg font-semibold mb-2 border-b pb-2">Pet to Adopt</h4>
                 <div id="petDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- Will be populated by JavaScript -->
                 </div>
                 <div id="petImageContainer" class="mt-4 flex justify-center">
-                    <!-- Pet image will be inserted here -->
+
                 </div>
             </div>
 

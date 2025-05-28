@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Redirect if not logged in
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -17,7 +16,6 @@ if (!isset($_SESSION['username'])) {
     <title>Adoption Status</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Menu transition effects */
         .side-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
@@ -27,7 +25,6 @@ if (!isset($_SESSION['username'])) {
             transform: translateX(0);
         }
 
-        /* Overlay for when menu is open */
         .menu-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease-in-out;
@@ -40,7 +37,6 @@ if (!isset($_SESSION['username'])) {
             pointer-events: auto;
         }
 
-        /* Status badges */
         .status-badge {
             padding: 0.25rem 0.5rem;
             border-radius: 0.25rem;
@@ -59,7 +55,6 @@ if (!isset($_SESSION['username'])) {
             color: #B91C1C;
         }
 
-        /* Responsive table styles */
         @media (max-width: 768px) {
             table.responsive-table thead {
                 display: none;
@@ -95,10 +90,8 @@ if (!isset($_SESSION['username'])) {
 </head>
 
 <body class="bg-gray-800 text-black-300 font-sans">
-    <!-- Side Menu Overlay -->
     <div id="menuOverlay" class="menu-overlay fixed inset-0 z-20"></div>
 
-    <!-- Side Menu -->
     <div id="sideMenu" class="side-menu fixed top-0 left-0 h-full w-64 bg-[#FDF2C1] z-30 shadow-lg md:w-56">
         <div class="p-4 border-b border-gray-300">
             <div class="flex justify-between items-center">
@@ -108,7 +101,6 @@ if (!isset($_SESSION['username'])) {
         </div>
         <nav class="p-4">
             <ul class="space-y-4">
-                <!-- Home Menu Item -->
                 <li>
                     <a href="../adminphp/index.php"
                         class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300"
@@ -224,10 +216,8 @@ if (!isset($_SESSION['username'])) {
                     <?php
                     require_once '../connection.php';
 
-                    // Define allowed statuses for results
                     $allowedStatuses = ['Confirmed', 'Declined'];
 
-                    // Prepare the statuses as a comma-separated string with quotes for SQL
                     $statusesForSql = "'" . implode("','", $allowedStatuses) . "'";
 
                     $stmt = $conn->query("SELECT * FROM adopt WHERE status IN ($statusesForSql) ORDER BY processed_date DESC");
@@ -258,7 +248,6 @@ if (!isset($_SESSION['username'])) {
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Menu toggle functionality
             const menuToggle = document.getElementById('menuToggle');
             const closeMenu = document.getElementById('closeMenu');
             const sideMenu = document.getElementById('sideMenu');

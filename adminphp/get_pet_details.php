@@ -11,7 +11,6 @@ if (!isset($_GET['name']) || empty($_GET['name'])) {
 $petName = $_GET['name'];
 
 try {
-    // Get pet details
     $stmt = $conn->prepare("SELECT * FROM pets WHERE pet_name = ?");
     $stmt->bind_param("s", $petName);
     $stmt->execute();
