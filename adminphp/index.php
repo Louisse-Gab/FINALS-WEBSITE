@@ -204,7 +204,7 @@ if (!isset($_SESSION['username'])) {
                     <h2 class="text-black text-2xl font-bold">MANAGE USERS</h2>
                 </a>
 
-                <a href="../adminphp/users.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                <a href="../adminphp/users_status.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <h2 class="text-black text-2xl font-bold"> USER STATUS</h2>
                 </a>
 
