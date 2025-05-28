@@ -56,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageType = $_FILES['pet_image']['type'];
 
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, pet_image=?, image_type=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("ssssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
+                $query->bind_param("sssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
             } else {
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("ssssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
+                $query->bind_param("sssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
             }
 
             if ($query->execute()) {
@@ -245,6 +245,35 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
                         </div>
                     </a>
                 </li>
+
+                <li>
+                    <a href="../adminphp/plists_status.php"
+                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            Pet List Status
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../adminphp/users_statusphp"
+                        class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
+                        <div class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                            User Status
+                        </div>
+                    </a>
+                </li>
+                
                 <li class="border-t border-gray-300 mt-6 pt-4">
                     <a href="../php/adoptlogin.php"
                         class="menu-item block py-2 px-4 hover:bg-red-100 text-red-600 rounded-lg transition duration-300">
