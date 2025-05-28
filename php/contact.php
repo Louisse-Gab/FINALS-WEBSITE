@@ -1,5 +1,4 @@
 <?php
-// shelter_of_light.php - Single file implementation
 
 // Basic page variables
 $pageTitle = "Shelter of Light";
@@ -140,7 +139,7 @@ $creators = [
         transform: translateX(-5px);
         transition: transform 0.3s ease;
     }
-    
+
   </style>
 </head>
 <body class="text-gray-800 font-sans">

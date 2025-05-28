@@ -105,6 +105,8 @@ if (!isset($_SESSION['username'])) {
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
                             <span class="text-sm md:text-base">Home</span>
+                            <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
+
                         </div>
                     </a>
                 </li>
@@ -173,8 +175,9 @@ if (!isset($_SESSION['username'])) {
     <!-- Header -->
     <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-3 shadow-md md:px-6 md:py-4">
         <button id="menuToggle" class="menu-icon text-2xl cursor-pointer">&#9776;</button>
-        <h1 class="text-lg font-bold text-black md:text-xl">Manage Adopt Here</h1>
-        <div class="w-7 h-7 bg-black rounded-full md:w-8 md:h-8"></div>
+        <h1 class="text-lg font-bold text-black md:text-xl">Manage Users Log Here</h1>
+        <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
+
     </div>
 
     <!-- Manage Users Table -->

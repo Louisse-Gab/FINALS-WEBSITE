@@ -1,8 +1,6 @@
 <?php
-// Define the current page
 $currentPage = 'donate';
 
-// Navigation items
 $navItems = [
     ['name' => 'Home', 'url' => 'home.php', 'active' => $currentPage === 'home'],
     ['name' => 'About Us', 'url' => 'about.php', 'active' => $currentPage === 'about'],
