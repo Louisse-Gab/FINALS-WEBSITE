@@ -1,12 +1,5 @@
 <?php
-session_start();
 require_once('../connection.php');
-
-// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
-if (!isset($_SESSION['username'])) {
-    header('Location: ../php/home.php');
-    exit();
-}
 
 // Breed options
 $dogBreeds = [
@@ -63,10 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageType = $_FILES['pet_image']['type'];
 
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, pet_image=?, image_type=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("sssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
+                $query->bind_param("ssssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
             } else {
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
-                $query->bind_param("sssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
+                $query->bind_param("ssssssssi", $petname, $description, $type, $petage, $petbreed, $petgender, $petkind, $petvaccinated, $id);
             }
 
             if ($query->execute()) {
@@ -151,6 +144,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -288,7 +282,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 
         <!-- Pet List Section -->
         <?php
-        $query = "SELECT * FROM pets WHERE status != 'Adopted'";
+        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
         $result = $conn->query($query);
         ?>
 
