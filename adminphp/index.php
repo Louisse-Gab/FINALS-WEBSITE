@@ -57,6 +57,26 @@ if (!isset($_SESSION['username'])) {
         .profile-icon:hover {
             transform: scale(1.1);
         }
+
+        /* Menu icon styles */
+        .menu-icon {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .menu-icon:hover {
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 4px;
+        }
+        
+        .menu-icon svg {
+            width: 24px;
+            height: 24px;
+        }
     </style>
 </head>
 <body class="bg-[#fffbeb] font-sans min-h-screen">
@@ -68,7 +88,7 @@ if (!isset($_SESSION['username'])) {
         <div class="p-4 border-b border-gray-300">
             <div class="flex justify-between items-center">
                 <h2 class="text-xl font-bold">Menu</h2>
-                <button class="text-2xl">&times;</button>
+                <button id="closeMenuBtn" class="text-2xl cursor-pointer p-2">&times;</button>
             </div>
         </div>
         <nav class="p-4">
@@ -141,22 +161,18 @@ if (!isset($_SESSION['username'])) {
     </div>
     
     <!-- Header -->
-  <!-- Header -->
-<div class="flex justify-between items-center bg-[#FDF2C1] p-4 shadow-md">
-    <div class="menu-icon text-2xl cursor-pointer">&#9776;</div>
-    <h1 class="text-xl font-bold">Shelter of Light</h1>
-    <div class="flex items-center">
-        <span class="mr-3 text-sm font-medium">
-            <?php echo isset($_SESSION['adminName']) ? $_SESSION['adminName'] : 'Admin'; ?>
-        </span>
-        <a href="../adminphp/adminprof.php" class="w-8 h-8 bg-black rounded-full block profile-icon cursor-pointer" title="Admin Profile">
-            <!-- If there's a profile picture, it would be displayed here -->
-            <?php if(isset($_SESSION['profilePicture']) && !empty($_SESSION['profilePicture'])): ?>
-                <img src="<?php echo $_SESSION['profilePicture']; ?>" alt="Admin Profile" class="w-full h-full rounded-full object-cover">
-            <?php endif; ?>
-        </a>
+    <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-2 shadow-md relative z-10">
+        <div class="menu-icon" id="menuButton">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </div>
+        <h1 class="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Home</h1>
+        <div class="flex items-center">
+            <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
+        </div>
     </div>
-</div>
+
     <!-- Main Dashboard Content -->
     <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col items-center justify-center min-h-[70vh]">
@@ -179,7 +195,55 @@ if (!isset($_SESSION['username'])) {
         </div>
     </div>
 
-    <!-- Link to the external JavaScript file -->
-    <script src="../adminjs/index.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Function to toggle the side menu
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            sideMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Initialize menu functionality when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the menu button
+            const menuButton = document.getElementById('menuButton');
+            
+            // Add click event to menu button
+            if (menuButton) {
+                menuButton.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event bubbling
+                    toggleMenu();
+                });
+            }
+            
+            // Make sure the close button works
+            const closeButton = document.getElementById('closeMenuBtn');
+            if (closeButton) {
+                closeButton.addEventListener('click', toggleMenu);
+            }
+            
+            // Make sure the overlay works
+            const menuOverlay = document.getElementById('menuOverlay');
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', toggleMenu);
+            }
+            
+            // Close menu when clicking anywhere outside
+            document.addEventListener('click', function(e) {
+                const sideMenu = document.getElementById('sideMenu');
+                if (sideMenu.classList.contains('active') && 
+                    !e.target.closest('#sideMenu') && 
+                    e.target !== menuButton) {
+                    toggleMenu();
+                }
+            });
+        });
+    </script>
 </body>
 </html>

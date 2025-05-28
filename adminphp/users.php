@@ -171,10 +171,16 @@ if (!isset($_SESSION['username'])) {
     </div>
 
     <!-- Header -->
-    <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-3 shadow-md md:px-6 md:py-4">
-        <button id="menuToggle" class="menu-icon text-2xl cursor-pointer">&#9776;</button>
-        <h1 class="text-lg font-bold text-black md:text-xl">Manage Adopt Here</h1>
-        <div class="w-7 h-7 bg-black rounded-full md:w-8 md:h-8"></div>
+    <div class="flex justify-between items-center bg-[#FDF2C1] px-4 py-2 shadow-md relative z-10">
+        <button id="menuButton" class="menu-icon cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <h1 class="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Manage Users</h1>
+        <div class="flex items-center">
+            <img src="../images/SHELTER OF LIGHT/SOL-LOGO.png" alt="Logo" class="w-8 h-8 lg:w-12 lg:h-12">
+        </div>
     </div>
 
     <!-- Manage Users Table -->
@@ -270,6 +276,7 @@ if (!isset($_SESSION['username'])) {
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <script>document.addEventListener('DOMContentLoaded', function () {
             // Menu toggle functionality
             const menuToggle = document.getElementById('menuToggle');
@@ -288,6 +295,28 @@ if (!isset($_SESSION['username'])) {
             });
 
             if (menuOverlay) menuOverlay.addEventListener('click', function () {
+=======
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu toggle functionality
+            const menuButton = document.getElementById('menuButton');
+            const closeMenu = document.getElementById('closeMenu');
+            const sideMenu = document.getElementById('sideMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            if (menuButton) menuButton.addEventListener('click', function() {
+                sideMenu.classList.add('active');
+                menuOverlay.classList.add('active');
+            });
+            
+            if (closeMenu) closeMenu.addEventListener('click', function() {
+                sideMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            });
+            
+            if (menuOverlay) menuOverlay.addEventListener('click', function() {
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                 sideMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
             });
@@ -298,7 +327,11 @@ if (!isset($_SESSION['username'])) {
             const cancelBtn = document.getElementById('cancelBtn');
             const proceedBtn = document.getElementById('proceedBtn');
             const confirmMessage = document.getElementById('confirmMessage');
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
             let currentAction = '';
             let currentRowId = null;
             let currentRowElement = null;
@@ -312,6 +345,7 @@ if (!isset($_SESSION['username'])) {
                     },
                     body: `action=${action}&id=${id}`
                 })
+<<<<<<< HEAD
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
@@ -326,12 +360,29 @@ if (!isset($_SESSION['username'])) {
                         console.error('Error:', error);
                         alert('Failed to process request. Please try again.');
                     });
+=======
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Remove row only after successful server deletion
+                        rowElement.remove();
+                        alert(data.message);
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to process request. Please try again.');
+                });
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
             }
 
             // Function to attach event listeners to buttons
             function attachButtonListeners() {
                 // Approve button click
                 document.querySelectorAll('.approve-btn').forEach(button => {
+<<<<<<< HEAD
                     button.addEventListener('click', async function (e) {
                         e.preventDefault();
                         currentRowId = this.getAttribute('data-id');
@@ -342,6 +393,18 @@ if (!isset($_SESSION['username'])) {
                         confirmModal.classList.remove('hidden');
                         document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
 
+=======
+                    button.addEventListener('click', async function(e) {
+                        e.preventDefault();
+                        currentRowId = this.getAttribute('data-id');
+                        currentRowElement = this.closest('tr');
+                        currentAction = 'approve';
+                        
+                        // Show loading state
+                        confirmModal.classList.remove('hidden');
+                        document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
+                        
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                         // Fetch and display details
                         const success = await fetchAdoptionDetails(currentRowId);
                         if (!success) {
@@ -352,16 +415,28 @@ if (!isset($_SESSION['username'])) {
 
                 // Decline button click
                 document.querySelectorAll('.decline-btn').forEach(button => {
+<<<<<<< HEAD
                     button.addEventListener('click', async function (e) {
+=======
+                    button.addEventListener('click', async function(e) {
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                         e.preventDefault();
                         currentRowId = this.getAttribute('data-id');
                         currentRowElement = this.closest('tr');
                         currentAction = 'decline';
+<<<<<<< HEAD
 
                         // Show loading state
                         confirmModal.classList.remove('hidden');
                         document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
 
+=======
+                        
+                        // Show loading state
+                        confirmModal.classList.remove('hidden');
+                        document.getElementById('userDetails').innerHTML = '<p>Loading details...</p>';
+                        
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                         // Fetch and display details
                         const success = await fetchAdoptionDetails(currentRowId);
                         if (!success) {
@@ -375,16 +450,28 @@ if (!isset($_SESSION['username'])) {
             attachButtonListeners();
 
             // Modal controls
+<<<<<<< HEAD
             if (closeConfirmModal) closeConfirmModal.addEventListener('click', function () {
                 confirmModal.classList.add('hidden');
             });
 
             if (cancelBtn) cancelBtn.addEventListener('click', function () {
+=======
+            if (closeConfirmModal) closeConfirmModal.addEventListener('click', function() {
+                confirmModal.classList.add('hidden');
+            });
+
+            if (cancelBtn) cancelBtn.addEventListener('click', function() {
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                 confirmModal.classList.add('hidden');
             });
 
             // Proceed with action
+<<<<<<< HEAD
             if (proceedBtn) proceedBtn.addEventListener('click', function () {
+=======
+            if (proceedBtn) proceedBtn.addEventListener('click', function() {
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                 confirmModal.classList.add('hidden');
                 if (currentRowId && currentRowElement) {
                     handleAdoptionAction(currentAction, currentRowId, currentRowElement);
@@ -396,6 +483,7 @@ if (!isset($_SESSION['username'])) {
                 try {
                     const response = await fetch(`get_adoption_details.php?id=${id}`);
                     const data = await response.json();
+<<<<<<< HEAD
 
                     if (data.success) {
                         // Populate User Information
@@ -452,6 +540,81 @@ if (!isset($_SESSION['username'])) {
                         document.getElementById('confirmMessage').textContent =
                             `Are you sure you want to ${actionText} this adoption request? Please review all details above before proceeding.`;
 
+=======
+                    
+                    if (data.success) {
+                        // Populate User Information
+                        document.getElementById('userDetails').innerHTML = `
+                            <div><strong>Name:</strong> ${data.fullName}</div>
+                            <div><strong>Address:</strong> ${data.address}</div>
+                            <div><strong>Phone:</strong> ${data.phone}</div>
+                            <div><strong>Age:</strong> ${data.age}</div>
+                            <div><strong>Email:</strong> ${data.email}</div>
+                            <div><strong>Social Media:</strong> ${data.socialMedia}</div>
+                            <div><strong>Occupation:</strong> ${data.jobTitle}</div>
+                            <div><strong>Income:</strong> ${data.income || 'N/A'}</div>
+                        `;
+                        
+                        // Populate Pet Information
+                        let petDetailsHTML = '';
+                        let petImageHTML = '';
+                        
+                        if (data.desiredPet) {
+                            // Get pet details from database
+                            const petResponse = await fetch(`get_pet_details.php?name=${encodeURIComponent(data.desiredPet)}`);
+                            const petData = await petResponse.json();
+                            
+                            if (petData.success) {
+                                petDetailsHTML = `
+                                    <div><strong>Pet Name:</strong> ${petData.pet_name}</div>
+                                    <div><strong>Type:</strong> ${petData.type}</div>
+                                    <div><strong>Breed:</strong> ${petData.pet_breed}</div>
+                                    <div><strong>Age:</strong> ${petData.pet_age}</div>
+                                    <div><strong>Gender:</strong> ${petData.pet_gender}</div>
+                                    <div><strong>Vaccination:</strong> ${petData.pet_vacinated}</div>
+                                    <div><strong>Description:</strong> ${petData.description}</div>
+                                `;
+                                
+                                petImageHTML = `
+                                    <img src="../adminphp/plist.php?id=${petData.id}" 
+                                         alt="${petData.pet_name}" 
+                                         class="w-48 h-48 object-cover rounded-lg shadow-md">
+                                `;
+                            } else {
+                                petDetailsHTML = `
+                                    <div><strong>Pet Name:</strong> ${data.desiredPet}</div>
+                                    <div><em>Detailed pet information not available</em></div>
+                                `;
+                            }
+                        } else {
+                            petDetailsHTML = '<div>No pet selected</div>';
+                        }
+                        
+                        document.getElementById('petDetails').innerHTML = petDetailsHTML;
+                        document.getElementById('petImageContainer').innerHTML = petImageHTML;
+                        
+                        // Populate Adoption Questions
+                        document.getElementById('adoptionQuestions').innerHTML = `
+                            <div><strong>Desired Pet:</strong> ${data.desiredPet || 'N/A'}</div>
+                            <div><strong>Why adopt this pet:</strong> ${data.whyAdopt || 'N/A'}</div>
+                            <div><strong>Primary caregiver:</strong> ${data.primaryCaregiver || 'N/A'}</div>
+                            <div><strong>Reason for adopting now:</strong> ${data.whyNow || 'N/A'}</div>
+                            <div><strong>Previous pet experience:</strong> ${data.petOwnershipExperience || 'N/A'}</div>
+                            <div><strong>Current pets:</strong> ${data.currentPets || 'N/A'}</div>
+                            <div><strong>Current pets details:</strong> ${data.currentPetsDetails || 'N/A'}</div>
+                            <div><strong>Where pet will stay:</strong> ${data.petLocation || 'N/A'}</div>
+                            <div><strong>Hours pet will be alone:</strong> ${data.aloneHours || 'N/A'}</div>
+                            <div><strong>Care plan:</strong> ${data.petCarePlan || 'N/A'}</div>
+                            <div><strong>Veterinarian contact:</strong> ${data.vetContact || 'N/A'}</div>
+                            <div><strong>Emergency plan:</strong> ${data.emergencyPlan || 'N/A'}</div>
+                        `;
+                        
+                        // Set confirmation message based on action
+                        const actionText = currentAction === 'approve' ? 'APPROVE' : 'DECLINE';
+                        document.getElementById('confirmMessage').textContent = 
+                            `Are you sure you want to ${actionText} this adoption request? Please review all details above before proceeding.`;
+                        
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                         return true;
                     } else {
                         alert('Error: ' + data.message);
@@ -465,8 +628,13 @@ if (!isset($_SESSION['username'])) {
             }
 
             // Re-attach event listeners when new rows are added dynamically
+<<<<<<< HEAD
             const observer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (mutation) {
+=======
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+>>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
                     if (mutation.addedNodes.length) {
                         attachButtonListeners();
                     }
