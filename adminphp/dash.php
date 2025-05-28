@@ -1,3 +1,99 @@
+<?php 
+session_start();
+require_once("../connection.php");
+
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
+
+// Query to count accounts per role
+$query = "SELECT role, COUNT(*) as total FROM accounts WHERE role = 'User' GROUP BY role";
+$result = mysqli_query($conn, $query);
+
+// Prepare data
+$role_counts = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $role_counts[$row['role']] = $row['total'];
+}
+
+// Query to count adopt For Verification
+$query = "SELECT status, COUNT(*) as total FROM adopt WHERE status = 'For Verification' GROUP BY status";
+$result = mysqli_query($conn, $query);
+
+// Prepare data
+$status_counts = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $status_counts[$row['status']] = $row['total'];
+}
+
+// Ensure 'For Verification' key exists, even if count is 0
+if (!isset($status_counts['For Verification'])) {
+    $status_counts['For Verification'] = 0;
+}
+
+// Query to count adopt Confirmed
+$query = "SELECT status, COUNT(*) as total FROM adopt WHERE status = 'Confirmed' GROUP BY status";
+$result = mysqli_query($conn, $query);
+
+// Prepare data
+$confirmed_counts = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $confirmed_counts[$row['status']] = $row['total'];
+}
+
+// Ensure 'Confirmed' key exists, even if count is 0
+if (!isset($confirmed_counts['Confirmed'])) {
+    $confirmed_counts['Confirmed'] = 0;
+}
+
+// Query to count adopt Declined
+$query = "SELECT status, COUNT(*) as total FROM adopt WHERE status = 'Declined' GROUP BY status";
+$result = mysqli_query($conn, $query);
+
+// Prepare data
+$decline_counts = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $decline_counts[$row['status']] = $row['total'];
+}
+
+// Ensure 'Confirmed' key exists, even if count is 0
+if (!isset($decline_counts['Declined'])) {
+    $decline_counts['Declined'] = 0;
+}
+
+// Query to count pets Adopted Cat
+$query = "SELECT status, type, COUNT(*) as total FROM pets WHERE status = 'Adopted' AND type = 'Cat' GROUP BY status";
+$result = mysqli_query($conn, $query);
+
+// Prepare data
+$adoptedcat_counts = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $adoptedcat_counts[$row['status']] = $row['total'];
+}
+
+// Ensure 'Confirmed' key exists, even if count is 0
+if (!isset($adoptedcat_counts['Adopted'])) {
+    $adoptedcat_counts['Adopted'] = 0;
+}
+
+// Query to count pets Adopted Dog
+$query = "SELECT status, type, COUNT(*) as total FROM pets WHERE status = 'Adopted' AND type = 'Dog' GROUP BY status";
+$result = mysqli_query($conn, $query);
+
+// Prepare data
+$adopteddog_counts = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $adopteddog_counts[$row['status']] = $row['total'];
+}
+
+// Ensure 'Confirmed' key exists, even if count is 0
+if (!isset($adopteddog_counts['Adopted'])) {
+    $adopteddog_counts['Adopted'] = 0;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,45 +231,58 @@
     <!-- Dashboard Content -->
     <div class="container mx-auto px-4 py-8">
         <!-- First Row -->
+         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <!-- TOTAL USERS -->
+             <?php foreach ($role_counts as $role => $count): ?>
             <div class="stat-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-xl font-bold text-center mb-2">TOTAL USERS</h3>
-                <p class="text-4xl font-bold text-center">24</p>
+                <p class="text-4xl font-bold text-center"><?= $count ?></p>
             </div>
+            <?php endforeach; ?>
             
             <!-- CONFIRMED -->
+             <?php foreach ($confirmed_counts as $confirmed => $count): ?>
             <div class="stat-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-xl font-bold text-center mb-2">CONFIRMED</h3>
-                <p class="text-4xl font-bold text-center">18</p>
+                <p class="text-4xl font-bold text-center"><?= $count ?></p>
             </div>
+            <?php endforeach; ?>
             
             <!-- DECLINED -->
+             <?php foreach ($decline_counts as $decline => $count): ?>
             <div class="stat-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-xl font-bold text-center mb-2">DECLINED</h3>
-                <p class="text-4xl font-bold text-center">3</p>
+                <p class="text-4xl font-bold text-center"><?= $count ?></p>
             </div>
+            <?php endforeach; ?>
         </div>
         
         <!-- Second Row -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- FOR VERIFICATION -->
+             <?php foreach ($status_counts as $status => $count): ?>
             <div class="stat-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-xl font-bold text-center mb-2">FOR VERIFICATION</h3>
-                <p class="text-4xl font-bold text-center">6</p>
+                <p class="text-4xl font-bold text-center"><?= $count ?></p>
             </div>
+            <?php endforeach; ?>
             
             <!-- TOTAL CATS ADOPTED -->
+            <?php foreach ($adoptedcat_counts as $adoptedcat => $count): ?>
             <div class="stat-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-xl font-bold text-center mb-2">TOTAL CATS ADOPTED</h3>
-                <p class="text-4xl font-bold text-center">12</p>
+                <p class="text-4xl font-bold text-center"><?= $count ?></p>
             </div>
+            <?php endforeach; ?>
             
             <!-- TOTAL DOGS ADOPTED -->
+             <?php foreach ($adopteddog_counts as $adopteddog => $count): ?>
             <div class="stat-card bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-xl font-bold text-center mb-2">TOTAL DOGS ADOPTED</h3>
-                <p class="text-4xl font-bold text-center">9</p>
+                <p class="text-4xl font-bold text-center"><?= $count ?></p>
             </div>
+            <?php endforeach; ?>
         </div>
     </div>
 

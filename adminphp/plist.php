@@ -1,5 +1,12 @@
 <?php
+session_start();
 require_once('../connection.php');
+
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
 
 // Breed options
 $dogBreeds = [
@@ -144,7 +151,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -281,7 +287,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
 
         <!-- Pet List Section -->
         <?php
-        $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
+        $query = "SELECT * FROM pets WHERE status != 'Adopted'";
         $result = $conn->query($query);
         ?>
 

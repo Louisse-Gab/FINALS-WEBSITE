@@ -2,6 +2,12 @@
 session_start();
 require_once('../connection.php');
 
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
+
 // Handle profile updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get form data

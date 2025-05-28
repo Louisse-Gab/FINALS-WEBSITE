@@ -1,6 +1,14 @@
 <?php
   require_once '../connection.php';
 
+  session_start();
+
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
+
   if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $fullname = $_POST['fullName'];
     $address = $_POST['address'];
@@ -10,9 +18,10 @@
     $jobTitle = $_POST['jobTitle'];
     $age = $_POST['age'];
     $employer = $_POST['employer'];
+    $status = 'For Verification';
 
-    $query = $conn->prepare('INSERT INTO adopt (fullName, address, phone, email, socialMedia, jobTitle, age, employer) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-    $query->bind_param('ssssssss', $fullname, $address, $phone, $email, $socialMedia, $jobTitle, $age, $employer);
+    $query = $conn->prepare('INSERT INTO adopt (fullName, address, phone, email, socialMedia, jobTitle, age, employer, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $query->bind_param('sssssssss', $fullname, $address, $phone, $email, $socialMedia, $jobTitle, $age, $employer, $status);
     
     if($query->execute() === TRUE){
       $last_id = $conn->insert_id;

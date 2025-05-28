@@ -1,6 +1,14 @@
 <?php
 require_once '../connection.php';
 
+session_start();
+
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $id = $_POST['id'];  // ID from the hidden input
   $desiredPet = isset($_POST['desiredPet']) ? implode(", ", $_POST['desiredPet']) : '';
@@ -57,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       require_once('../connection.php');
 
 
-      $query = "SELECT id, pet_name FROM pets";
+      $query = "SELECT * FROM pets WHERE status != 'Adopted'";
       $result = $conn->query($query);
 
       if ($result && $result->num_rows > 0):

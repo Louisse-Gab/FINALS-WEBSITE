@@ -1,5 +1,14 @@
 <?php
 require_once '../connection.php';
+
+session_start();
+
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+if (!isset($_SESSION['username'])) {
+    header('Location: ../php/home.php');
+    exit();
+}
+
 // Define the current page
 $currentPage = 'adopt';
 
