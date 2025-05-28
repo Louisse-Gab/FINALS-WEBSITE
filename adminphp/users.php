@@ -356,7 +356,7 @@ if (!isset($_SESSION['username'])) {
                         e.preventDefault();
                         currentRowId = this.getAttribute('data-id');
                         currentRowElement = this.closest('tr');
-                        currentAction = 'decline';
+                        currentAction = 'Declined';
 
                         // Show loading state
                         confirmModal.classList.remove('hidden');
@@ -448,10 +448,14 @@ if (!isset($_SESSION['username'])) {
                         document.getElementById('petImageContainer').innerHTML = petImageHTML;
 
                         // Set confirmation message based on action
-                        const actionText = currentAction === 'approve' ? 'APPROVE' : 'DECLINE';
+                        // ... (previous code remains the same until the confirmMessage section)
+
+                        // Set confirmation message based on action
+                        const actionText = currentAction === 'Confirmed' ? 'CONFIRM' : 'DECLINE';
                         document.getElementById('confirmMessage').textContent =
                             `Are you sure you want to ${actionText} this adoption request? Please review all details above before proceeding.`;
 
+                        // ... (rest of the code remains the same)
                         return true;
                     } else {
                         alert('Error: ' + data.message);

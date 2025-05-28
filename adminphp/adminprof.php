@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 session_start();
 require_once('../connection.php');
@@ -106,8 +105,6 @@ if (isset($_SESSION['adminId'])) {
 }
 ?>
 
-=======
->>>>>>> 4af0a34f90a6c91869c6e2caf630a058552a3e1f
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -230,6 +227,7 @@ if (isset($_SESSION['adminId'])) {
                     </a>
                 </li>
                 
+
                 <li class="border-t border-gray-300 mt-6 pt-4">
                     <a href="../php/adoptlogin.php" 
                        class="menu-item block py-2 px-4 hover:bg-red-100 text-red-600 rounded-lg transition duration-300" 

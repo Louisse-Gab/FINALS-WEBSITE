@@ -6,6 +6,18 @@
   <title>Adopt a Cat | Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
     body {
       display: flex;
       flex-direction: column;
@@ -268,7 +280,7 @@
             <!-- Creators -->
             <div class="order-3 text-center lg:text-right">
                 <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
-                <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST</p>
+                <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST-CICS</p>
             </div>
         </div>
     </div>
