@@ -221,6 +221,7 @@ if (!isset($_SESSION['username'])) {
                     <h2 class="text-black text-2xl font-bold">MANAGE USERS</h2>
                 </a>
 
+<<<<<<< HEAD
                 
                 <!-- Manage Users Card -->
                 <a href="../adminphp/plists_status.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
@@ -229,6 +230,8 @@ if (!isset($_SESSION['username'])) {
 
                 
                 <!-- User Status Card -->
+=======
+>>>>>>> 8a084f13aed8779c002aa0426270ce83c4e2dafc
                 <a href="../adminphp/users_status.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <h2 class="text-black text-2xl font-bold"> USER STATUS</h2>
                 </a>
