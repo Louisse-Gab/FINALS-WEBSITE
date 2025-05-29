@@ -55,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $imageData = file_get_contents($imageTmpPath);
                 $imageType = $_FILES['pet_image']['type'];
 
+
+            //UPDATE
                 $query = $conn->prepare("UPDATE pets SET pet_name=?, description=?, pet_image=?, image_type=?, type=?, pet_age=?, pet_breed=?, pet_gender=?, pet_vacinated=? WHERE id=?");
                 $query->bind_param("sssssssssi", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petvaccinated, $id);
             } else {
@@ -67,6 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo "<script>alert('Error updating pet: " . $query->error . "');</script>";
             }
+
+            //DELETE
             $query->close();
         } elseif ($_POST['action'] === 'delete') {
             $id = $_POST['id'];
@@ -95,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $imageData = file_get_contents($imageTmpPath);
             $imageType = $_FILES['pet_image']['type'];
 
+            // CREATE
             $query = $conn->prepare("INSERT INTO pets (pet_name, description, pet_image, image_type, type, pet_age, pet_breed, pet_gender, pet_vacinated) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $query->bind_param("sssssssss", $petname, $description, $imageData, $imageType, $type, $petage, $petbreed, $petgender, $petvaccinated);
 
@@ -130,6 +135,7 @@ if (isset($_GET['id']) && !isset($_GET['action'])) {
     exit();
 }
 
+// READ
 // Fetch pet data for editing
 $petToEdit = null;
 if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') {
@@ -308,6 +314,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'edit') 
             </button>
         </div>
 
+        //READ
         <?php
         $query = "SELECT id, pet_name, description, type, pet_age, pet_breed, pet_gender, pet_vacinated FROM pets";
         $result = $conn->query($query);
