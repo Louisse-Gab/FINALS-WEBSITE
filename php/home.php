@@ -507,7 +507,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         if (touchStartX - touchEndX > threshold) {
           nextSlide(); 
         } else if (touchEndX - touchStartX > threshold) {
-          prevSlide(); 
+          prevSlide(); // Swipe right
         }
       }
     });

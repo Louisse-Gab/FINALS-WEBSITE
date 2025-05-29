@@ -1,6 +1,9 @@
 <?php
+<<<<<<< HEAD
+=======
 // shelter_of_light.php - Single file implementation
 
+>>>>>>> 8a084f13aed8779c002aa0426270ce83c4e2dafc
 // Basic page variables
 $pageTitle = "Shelter of Light";
 $currentYear = date("Y");
@@ -363,7 +366,10 @@ $creators = [
                 mobileMenu.classList.toggle('hidden');
             });
 
+<<<<<<< HEAD
+=======
             // Close mobile menu when clicking outside
+>>>>>>> 8a084f13aed8779c002aa0426270ce83c4e2dafc
             document.addEventListener('click', function(event) {
                 if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
                     mobileMenu.classList.add('hidden');

@@ -1,6 +1,7 @@
 <?php 
 session_start();
 
+// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -15,6 +16,7 @@ if (!isset($_SESSION['username'])) {
     <title>Shelter of Light</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Menu transition effects */
         .side-menu {
             transition: transform 0.3s ease-in-out;
             transform: translateX(-100%);
@@ -24,6 +26,7 @@ if (!isset($_SESSION['username'])) {
             transform: translateX(0);
         }
         
+        /* Overlay for when menu is open */
         .menu-overlay {
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease-in-out;
@@ -36,6 +39,7 @@ if (!isset($_SESSION['username'])) {
             pointer-events: auto;
         }
 
+        /* Card hover effect */
         .dashboard-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -45,8 +49,16 @@ if (!isset($_SESSION['username'])) {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
-       
+        /* Profile icon hover effect */
+        .profile-icon {
+            transition: transform 0.2s ease;
+        }
+        
+        .profile-icon:hover {
+            transform: scale(1.1);
+        }
 
+        /* Menu icon styles */
         .menu-icon {
             transition: all 0.2s ease;
             cursor: pointer;
@@ -68,8 +80,10 @@ if (!isset($_SESSION['username'])) {
     </style>
 </head>
 <body class="bg-[#fffbeb] font-sans min-h-screen">
+    <!-- Side Menu Overlay -->
     <div id="menuOverlay" class="menu-overlay fixed inset-0 z-20"></div>
     
+    <!-- Side Menu -->
     <div id="sideMenu" class="side-menu fixed top-0 left-0 h-full w-64 bg-[#FDF2C1] z-30 shadow-lg">
         <div class="p-4 border-b border-gray-300">
             <div class="flex justify-between items-center">
@@ -82,7 +96,7 @@ if (!isset($_SESSION['username'])) {
                 <!-- Home Menu Item -->
                 <li>
                     <a href="../adminphp/index.php" 
-                       class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300" 
+                       class="menu-item block py-2 px-4 bg-[#FDCB58] rounded-lg transition duration-300" 
                        data-url="index.php">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -145,7 +159,7 @@ if (!isset($_SESSION['username'])) {
                 </li>
 
                 <li>
-                    <a href="../adminphp/users_status.php"
+                    <a href="../adminphp/users_statusphp"
                         class="menu-item block py-2 px-4 hover:bg-[#FDCB58] rounded-lg transition duration-300">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" fill="none" viewBox="0 0 24 24"
@@ -192,30 +206,43 @@ if (!isset($_SESSION['username'])) {
     <div class="container mx-auto px-4 py-8">
         <div class="flex flex-col items-center justify-center min-h-[70vh]">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+                <!-- Dashboard Card -->
                 <a href="../adminphp/dash.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <h2 class="text-black text-2xl font-bold">DASHBOARD</h2>
                 </a>
 
+                <!-- Pet List Card -->
                 <a href="../adminphp/plist.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <h2 class="text-black text-2xl font-bold">PET LIST</h2>
                 </a>
 
+                <!-- Manage User Card -->
                 <a href="../adminphp/users.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <h2 class="text-black text-2xl font-bold">MANAGE USERS</h2>
                 </a>
 
+<<<<<<< HEAD
+                
+                <!-- Manage Users Card -->
+                <a href="../adminphp/plists_status.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <h2 class="text-black text-2xl font-bold">PET LIST STATUS</h2>
+                </a>
+
+                
+                <!-- User Status Card -->
+=======
+>>>>>>> 8a084f13aed8779c002aa0426270ce83c4e2dafc
                 <a href="../adminphp/users_status.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
                     <h2 class="text-black text-2xl font-bold"> USER STATUS</h2>
                 </a>
 
-                <a href="../adminphp/users.php" class="dashboard-card bg-white border border-black p-12 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                    <h2 class="text-black text-2xl font-bold">PET LISTS STATUS</h2>
-                </a>
             </div>
         </div>
     </div>
 
+    <!-- JavaScript -->
     <script>
+        // Function to toggle the side menu
         function toggleMenu() {
             const sideMenu = document.getElementById('sideMenu');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -223,12 +250,16 @@ if (!isset($_SESSION['username'])) {
             sideMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
             
+            // Prevent scrolling when menu is open
             document.body.style.overflow = sideMenu.classList.contains('active') ? 'hidden' : '';
         }
 
+        // Initialize menu functionality when the DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Get the menu button
             const menuButton = document.getElementById('menuButton');
             
+            // Add click event to menu button
             if (menuButton) {
                 menuButton.addEventListener('click', function(e) {
                     e.stopPropagation(); // Prevent event bubbling
@@ -236,16 +267,19 @@ if (!isset($_SESSION['username'])) {
                 });
             }
             
+            // Make sure the close button works
             const closeButton = document.getElementById('closeMenuBtn');
             if (closeButton) {
                 closeButton.addEventListener('click', toggleMenu);
             }
             
+            // Make sure the overlay works
             const menuOverlay = document.getElementById('menuOverlay');
             if (menuOverlay) {
                 menuOverlay.addEventListener('click', toggleMenu);
             }
             
+            // Close menu when clicking anywhere outside
             document.addEventListener('click', function(e) {
                 const sideMenu = document.getElementById('sideMenu');
                 if (sideMenu.classList.contains('active') && 
