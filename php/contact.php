@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
-=======
-
 // Basic page variables
->>>>>>> a0cec83d7c20e4f7722fd764e48efdf4a431593b
 $pageTitle = "Shelter of Light";
 $currentYear = date("Y");
 $navItems = [
@@ -343,7 +339,7 @@ $creators = [
             mobileMenuButton.addEventListener('click', function() {
                 mobileMenu.classList.toggle('hidden');
             });
-            
+
             document.addEventListener('click', function(event) {
                 if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
