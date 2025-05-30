@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
-=======
 // shelter_of_light.php - Single file implementation
 
->>>>>>> 8a084f13aed8779c002aa0426270ce83c4e2dafc
 // Basic page variables
 $pageTitle = "Shelter of Light";
 $currentYear = date("Y");
@@ -260,7 +257,7 @@ $creators = [
 <!-- Creators Section with Circular Profile Pictures -->
 <section class="py-12 bg-[#FFFBDE]">
     <div class="container mx-auto px-4 lg:px-6">
-        <h2 class="text-3xl font-bold text-center mb-12 text-[#5F4B32]">CREATORS OF THIS WEBSITE</h2>
+        <h2 class="text-3xl font-bold text-center mb-12 text-[#5F4B32]">DEVELOPERS OF THIS WEBSITE</h2>
         <div class="creators-grid grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Creator 1: Briones, Zyke -->
             <div class="bg-white rounded-xl shadow-md overflow-hidden border border-[#FFEBB9] hover:shadow-lg transition-shadow duration-300">
@@ -366,10 +363,7 @@ $creators = [
                 mobileMenu.classList.toggle('hidden');
             });
 
-<<<<<<< HEAD
-=======
             // Close mobile menu when clicking outside
->>>>>>> 8a084f13aed8779c002aa0426270ce83c4e2dafc
             document.addEventListener('click', function(event) {
                 if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
                     mobileMenu.classList.add('hidden');

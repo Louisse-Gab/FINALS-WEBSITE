@@ -21,6 +21,7 @@ class PetAdoptionSystem {
         ];
     }
     
+
     private function connectToDatabase() {
         require_once('../connection.php');
         return $conn;
