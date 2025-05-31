@@ -3,7 +3,7 @@ require_once '../connection.php';
 
 session_start();
 
-// pag walang nakalogin at binago sa url eto ang ma eexecute nya 
+// Redirect if not logged in
 if (!isset($_SESSION['username'])) {
     header('Location: ../php/home.php');
     exit();
@@ -27,12 +27,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $id = $_POST['id'] ?? null; 
     $adoptionProcess = $_POST['adoption_process'] ?? '';
     $informationTruth = $_POST['information_truth'] ?? '';
-    $agreement = $_POST['agreement'] ?? '';
+    $agreement = isset($_POST['agreement']) ? 'agree' : '';
+    $dataPrivacy = isset($_POST['data_privacy']) ? 'agree' : '';
 
     if (!$id) {
         $errorMsg = "Record ID is missing.";
-    } elseif (!$adoptionProcess || !$informationTruth || !$agreement || $agreement === 'disagree') {
-        $errorMsg = "Please answer all questions properly and agree to continue.";
+    } elseif (!$adoptionProcess || !$informationTruth || !$agreement || !$dataPrivacy) {
+        $errorMsg = "Please answer all questions properly and agree to all terms to continue.";
     } else {
         $stmt = $conn->prepare("UPDATE adopt SET adoption_process = ?, information_truth = ?, agreement = ? WHERE id = ?");
         $stmt->bind_param("sssi", $adoptionProcess, $informationTruth, $agreement, $id);
@@ -164,6 +165,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       font-size: 16px;
       margin-top: 15px;
     }
+    .privacy-notice {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 5px;
+      margin: 15px 0;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #dee2e6;
+    }
   </style>
 </head>
 <body class="bg-[#FFFBDE] text-gray-800 font-sans">
@@ -212,15 +222,29 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
       <div class="question">
         <label class="block mb-2 font-medium">I understand that in the submission of this form, I am granting Shelter of Light to use my answers here for the sake of the adoption application process.</label>
-        <div class="flex items-center mb-1">
+        <div class="flex items-center">
           <input type="checkbox" id="agree" name="agreement" value="agree" class="mr-2" required
             <?php if (isset($_POST['agreement']) && $_POST['agreement'] === 'agree') echo 'checked'; ?>>
-          <label for="agree">Agree</label>
+          <label for="agree">I agree</label>
         </div>
-        <div class="flex items-center">
-          <input type="checkbox" id="disagree" name="agreement" value="disagree" class="mr-2"
-            <?php if (isset($_POST['agreement']) && $_POST['agreement'] === 'disagree') echo 'checked'; ?>>
-          <label for="disagree">Disagree</label>
+      </div>
+
+      <div class="question">
+        <label class="block mb-2 font-medium">Data Privacy Notice</label>
+        <div class="privacy-notice">
+          <p class="mb-2">Shelter of Light respects your privacy and is committed to protecting your personal data. By agreeing to this notice, you consent to:</p>
+          <ul class="list-disc pl-5 mb-2">
+            <li>The collection, use, and processing of your personal information for the purpose of processing your adoption application</li>
+            <li>The storage of your data in our secure systems for as long as necessary to fulfill the purposes we collected it for</li>
+            <li>The sharing of your information with relevant authorities if required by law</li>
+            <li>Receiving communications from us regarding your application and other shelter-related matters</li>
+          </ul>
+          <p>We will not share your information with third parties for marketing purposes without your explicit consent.</p>
+        </div>
+        <div class="flex items-center mt-2">
+          <input type="checkbox" id="data-privacy" name="data_privacy" value="agree" class="mr-2" required
+            <?php if (isset($_POST['data_privacy']) && $_POST['data_privacy'] === 'agree') echo 'checked'; ?>>
+          <label for="data-privacy">I agree to the Data Privacy Notice</label>
         </div>
       </div>
 
