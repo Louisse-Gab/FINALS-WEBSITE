@@ -72,6 +72,18 @@ if (!isset($_SESSION['username'])) {
                 justify-content: flex-end;
             }
         }
+
+        .editable-field {
+            border: 1px dashed #ccc;
+            padding: 2px 4px;
+            min-width: 100px;
+        }
+
+        .editable-field:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background-color: #f8fff8;
+        }
     </style>
 </head>
 
@@ -264,14 +276,24 @@ if (!isset($_SESSION['username'])) {
 
             <!-- User Information Section -->
             <div class="mb-6">
-                <h4 class="text-lg font-semibold mb-2 border-b pb-2">User Information</h4>
+                <div class="flex justify-between items-center mb-2 border-b pb-2">
+                    <h4 class="text-lg font-semibold">User Information</h4>
+                    <button id="editUserBtn" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-700 text-sm">
+                        Edit
+                    </button>
+                </div>
                 <div id="userDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 </div>
             </div>
 
             <!-- Pet Information Section -->
             <div class="mb-6">
-                <h4 class="text-lg font-semibold mb-2 border-b pb-2">Pet to Adopt</h4>
+                <div class="flex justify-between items-center mb-2 border-b pb-2">
+                    <h4 class="text-lg font-semibold">Pet to Adopt</h4>
+                    <button id="editPetBtn" class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-700 text-sm">
+                        Edit
+                    </button>
+                </div>
                 <div id="petDetails" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 </div>
                 <div id="petImageContainer" class="mt-4 flex justify-center">
@@ -283,14 +305,27 @@ if (!isset($_SESSION['username'])) {
                 <p id="confirmMessage" class="font-semibold text-center"></p>
             </div>
 
-            <div class="flex justify-between gap-4">
-                <button id="cancelBtn" name="cancelbtn"
-                    class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 flex-1">Cancel</button>
-                <button id="proceedBtn" name="proceedbtn"
-                    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex-1">Proceed</button>
+            <div class="flex flex-col md:flex-row justify-between gap-4">
+                <div class="flex gap-4">
+                    <button id="saveChangesBtn" name="saveChangesBtn"
+                        class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700 flex-1 hidden">
+                        Save Changes
+                    </button>
+                    <button id="cancelEditBtn" name="cancelEditBtn"
+                        class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 flex-1 hidden">
+                        Cancel Edit
+                    </button>
+                </div>
+                <div class="flex gap-4 mt-4 md:mt-0">
+                    <button id="cancelBtn" name="cancelbtn"
+                        class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 flex-1">Cancel</button>
+                    <button id="proceedBtn" name="proceedbtn"
+                        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex-1">Proceed</button>
+                </div>
             </div>
         </div>
     </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function () {
             // Menu toggle functionality
@@ -320,10 +355,100 @@ if (!isset($_SESSION['username'])) {
             const cancelBtn = document.getElementById('cancelBtn');
             const proceedBtn = document.getElementById('proceedBtn');
             const confirmMessage = document.getElementById('confirmMessage');
+            const editUserBtn = document.getElementById('editUserBtn');
+            const editPetBtn = document.getElementById('editPetBtn');
+            const saveChangesBtn = document.getElementById('saveChangesBtn');
+            const cancelEditBtn = document.getElementById('cancelEditBtn');
 
             let currentAction = '';
             let currentRowId = null;
             let currentRowElement = null;
+            let originalData = {};
+            let isEditing = false;
+
+            // Function to make fields editable
+            function makeFieldsEditable() {
+                const editableFields = document.querySelectorAll('.editable-content');
+                editableFields.forEach(field => {
+                    const content = field.textContent;
+                    const fieldName = field.getAttribute('data-field');
+                    field.innerHTML = `<input type="text" class="editable-field w-full" 
+                                        value="${content}" 
+                                        data-field="${fieldName}">`;
+                });
+                
+                // Show save and cancel edit buttons
+                saveChangesBtn.classList.remove('hidden');
+                cancelEditBtn.classList.remove('hidden');
+                // Hide proceed and cancel buttons
+                proceedBtn.classList.add('hidden');
+                cancelBtn.classList.add('hidden');
+                // Disable edit buttons
+                editUserBtn.disabled = true;
+                editPetBtn.disabled = true;
+                
+                isEditing = true;
+            }
+
+            // Function to revert fields to non-editable
+            function revertFields() {
+                const editableInputs = document.querySelectorAll('.editable-field');
+                editableInputs.forEach(input => {
+                    const parent = input.parentNode;
+                    const fieldName = input.getAttribute('data-field');
+                    const originalValue = originalData[fieldName] || input.value;
+                    parent.innerHTML = `<span class="editable-content" data-field="${fieldName}">${originalValue}</span>`;
+                });
+                
+                // Hide save and cancel edit buttons
+                saveChangesBtn.classList.add('hidden');
+                cancelEditBtn.classList.add('hidden');
+                // Show proceed and cancel buttons
+                proceedBtn.classList.remove('hidden');
+                cancelBtn.classList.remove('hidden');
+                // Enable edit buttons
+                editUserBtn.disabled = false;
+                editPetBtn.disabled = false;
+                
+                isEditing = false;
+            }
+
+            // Function to collect edited data
+            function collectEditedData() {
+                const editedData = {};
+                const editableInputs = document.querySelectorAll('.editable-field');
+                
+                editableInputs.forEach(input => {
+                    const fieldName = input.getAttribute('data-field');
+                    editedData[fieldName] = input.value;
+                });
+                
+                return editedData;
+            }
+
+            // Function to save changes to database
+            function saveChangesToDatabase(editedData) {
+                return fetch('update_adoption.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: currentRowId,
+                        ...editedData
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update original data with new values
+                        Object.assign(originalData, editedData);
+                        return true;
+                    } else {
+                        throw new Error(data.message || 'Failed to update record');
+                    }
+                });
+            }
 
             // Function to handle adoption action
             function handleAdoptionAction(action, id, rowElement) {
@@ -398,10 +523,66 @@ if (!isset($_SESSION['username'])) {
             // Modal controls
             if (closeConfirmModal) closeConfirmModal.addEventListener('click', function () {
                 confirmModal.classList.add('hidden');
+                if (isEditing) {
+                    revertFields();
+                }
             });
 
             if (cancelBtn) cancelBtn.addEventListener('click', function () {
                 confirmModal.classList.add('hidden');
+                if (isEditing) {
+                    revertFields();
+                }
+            });
+
+            // Edit buttons
+            if (editUserBtn) editUserBtn.addEventListener('click', function() {
+                makeFieldsEditable();
+            });
+
+            if (editPetBtn) editPetBtn.addEventListener('click', function() {
+                makeFieldsEditable();
+            });
+
+            // Save changes button
+            if (saveChangesBtn) saveChangesBtn.addEventListener('click', function() {
+                const editedData = collectEditedData();
+                
+                saveChangesToDatabase(editedData)
+                    .then(success => {
+                        if (success) {
+                            alert('Changes saved successfully!');
+                            revertFields();
+                            
+                            // Update the table row with new data
+                            if (currentRowElement) {
+                                const fieldsToUpdate = {
+                                    'fullName': currentRowElement.querySelector('td:nth-child(2)'),
+                                    'address': currentRowElement.querySelector('td:nth-child(3)'),
+                                    'phone': currentRowElement.querySelector('td:nth-child(4)'),
+                                    'age': currentRowElement.querySelector('td:nth-child(5)'),
+                                    'email': currentRowElement.querySelector('td:nth-child(6)'),
+                                    'socialMedia': currentRowElement.querySelector('td:nth-child(7)'),
+                                    'jobTitle': currentRowElement.querySelector('td:nth-child(8)')
+                                };
+                                
+                                for (const [field, element] of Object.entries(fieldsToUpdate)) {
+                                    if (element && editedData[field]) {
+                                        element.textContent = editedData[field];
+                                    }
+                                }
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error saving changes: ' + error.message);
+                        console.error('Error:', error);
+                    });
+            });
+
+            // Cancel edit button
+            if (cancelEditBtn) cancelEditBtn.addEventListener('click', function() {
+                revertFields();
             });
 
             // Proceed with action
@@ -419,16 +600,28 @@ if (!isset($_SESSION['username'])) {
                     const data = await response.json();
 
                     if (data.success) {
-                        // Populate User Information
+                        // Store original data
+                        originalData = {
+                            'fullName': data.fullName,
+                            'address': data.address,
+                            'phone': data.phone,
+                            'age': data.age,
+                            'email': data.email,
+                            'socialMedia': data.socialMedia,
+                            'jobTitle': data.jobTitle,
+                            'desiredPet': data.desiredPet
+                        };
+
+                        // Populate User Information with editable spans
                         document.getElementById('userDetails').innerHTML = `
-                    <div><strong>Name:</strong> ${data.fullName}</div>
-                    <div><strong>Address:</strong> ${data.address}</div>
-                    <div><strong>Phone:</strong> ${data.phone}</div>
-                    <div><strong>Age:</strong> ${data.age}</div>
-                    <div><strong>Email:</strong> ${data.email}</div>
-                    <div><strong>Social Media:</strong> ${data.socialMedia}</div>
-                    <div><strong>Occupation:</strong> ${data.jobTitle}</div>
-                `;
+                            <div><strong>Name:</strong> <span class="editable-content" data-field="fullName">${data.fullName}</span></div>
+                            <div><strong>Address:</strong> <span class="editable-content" data-field="address">${data.address}</span></div>
+                            <div><strong>Phone:</strong> <span class="editable-content" data-field="phone">${data.phone}</span></div>
+                            <div><strong>Age:</strong> <span class="editable-content" data-field="age">${data.age}</span></div>
+                            <div><strong>Email:</strong> <span class="editable-content" data-field="email">${data.email}</span></div>
+                            <div><strong>Social Media:</strong> <span class="editable-content" data-field="socialMedia">${data.socialMedia}</span></div>
+                            <div><strong>Occupation:</strong> <span class="editable-content" data-field="jobTitle">${data.jobTitle}</span></div>
+                        `;
 
                         // Populate Pet Information
                         let petDetailsHTML = '';
@@ -441,25 +634,25 @@ if (!isset($_SESSION['username'])) {
 
                             if (petData.success) {
                                 petDetailsHTML = `
-                            <div><strong>Pet Name:</strong> ${petData.pet_name}</div>
-                            <div><strong>Type:</strong> ${petData.type}</div>
-                            <div><strong>Breed:</strong> ${petData.pet_breed}</div>
-                            <div><strong>Age:</strong> ${petData.pet_age}</div>
-                            <div><strong>Gender:</strong> ${petData.pet_gender}</div>
-                            <div><strong>Vaccination:</strong> ${petData.pet_vacinated}</div>
-                            <div><strong>Description:</strong> ${petData.description}</div>
-                        `;
+                                    <div><strong>Pet Name:</strong> <span class="editable-content" data-field="desiredPet">${petData.pet_name}</span></div>
+                                    <div><strong>Type:</strong> ${petData.type}</div>
+                                    <div><strong>Breed:</strong> ${petData.pet_breed}</div>
+                                    <div><strong>Age:</strong> ${petData.pet_age}</div>
+                                    <div><strong>Gender:</strong> ${petData.pet_gender}</div>
+                                    <div><strong>Vaccination:</strong> ${petData.pet_vacinated}</div>
+                                    <div><strong>Description:</strong> ${petData.description}</div>
+                                `;
 
                                 petImageHTML = `
-                            <img src="../adminphp/plist.php?id=${petData.id}" 
-                                 alt="${petData.pet_name}" 
-                                 class="w-48 h-48 object-cover rounded-lg shadow-md">
-                        `;
+                                    <img src="../adminphp/plist.php?id=${petData.id}" 
+                                         alt="${petData.pet_name}" 
+                                         class="w-48 h-48 object-cover rounded-lg shadow-md">
+                                `;
                             } else {
                                 petDetailsHTML = `
-                            <div><strong>Pet Name:</strong> ${data.desiredPet}</div>
-                            <div><em>Detailed pet information not available</em></div>
-                        `;
+                                    <div><strong>Pet Name:</strong> <span class="editable-content" data-field="desiredPet">${data.desiredPet}</span></div>
+                                    <div><em>Detailed pet information not available</em></div>
+                                `;
                             }
                         } else {
                             petDetailsHTML = '<div>No pet selected</div>';
