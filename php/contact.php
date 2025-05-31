@@ -1,9 +1,6 @@
 <?php
-<<<<<<< HEAD
-=======
 // shelter_of_light.php - Single file implementation
 
->>>>>>> 8a084f13aed8779c002aa0426270ce83c4e2dafc
 // Basic page variables
 $pageTitle = "Shelter of Light";
 $currentYear = date("Y");
