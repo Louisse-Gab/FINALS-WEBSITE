@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adopt a Cat | Shelter of Light</title>
+  <title>Collaborations | Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html, body {

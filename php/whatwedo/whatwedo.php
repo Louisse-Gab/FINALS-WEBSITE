@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adopt a Cat | Shelter of Light</title>
+  <title>What We Do| Shelter of Light</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html, body {
@@ -122,8 +122,100 @@
   </style>
 </head>
 
-<!--Header -->
 <body class="text-gray-800 font-sans">
+    <?php
+    // Base class for all activities
+    class ShelterActivity {
+        protected $title;
+        protected $description;
+        protected $imagePath;
+        protected $link;
+
+        public function __construct($title, $description, $imagePath, $link) {
+            $this->title = $title;
+            $this->description = $description;
+            $this->imagePath = $imagePath;
+            $this->link = $link;
+        }
+
+        public function renderCard() {
+            return '
+                <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 flex flex-col">
+                    <div class="h-48 bg-gray-200">
+                        <img src="'.$this->imagePath.'" alt="'.$this->title.'" class="object-cover w-full h-full">
+                    </div>
+                    <div class="flex flex-col justify-between p-6 flex-grow">
+                        <div class="text-center">
+                            <h2 class="text-xl font-bold mb-2">'.$this->title.'</h2>
+                            <p class="text-gray-600 mb-4 min-h-[72px]">'.$this->description.'</p>
+                        </div>
+                        <div class="text-center mt-auto">
+                            <a href="'.$this->link.'" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+            ';
+        }
+    }
+
+    // Child class for Feeding Program
+    class FeedingProgram extends ShelterActivity {
+        public function __construct() {
+            parent::__construct(
+                "FEEDING PROGRAMS",
+                "Helping other rescuers and people through our community pantries and through what we have",
+                "../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Feeding Programs/Feeding Program (Thumbnail).jpg",
+                "../whatwedo/feeding-program.php"
+            );
+        }
+    }
+
+    // Child class for Collaborations
+    class Collaboration extends ShelterActivity {
+        public function __construct() {
+            parent::__construct(
+                "COLLABORATIONS",
+                "Shelter of Light welcomes partnerships with individuals, organizations, and communities who share the same mission of compassion for animals",
+                "../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Collaborations/Collaborations (Thumbnail).jpg",
+                "../whatwedo/collaboration.php"
+            );
+        }
+    }
+
+    // Child class for Programs
+    class SpayNeuterProgram extends ShelterActivity {
+        public function __construct() {
+            parent::__construct(
+                "PROGRAMS",
+                "Spay and Neuter Activities",
+                "../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Programs/Pograms(Thumbnail).jpg",
+                "../whatwedo/spay-neuter.php"
+            );
+        }
+    }
+
+    // Child class for Volunteers
+    class VolunteerProgram extends ShelterActivity {
+        public function __construct() {
+            parent::__construct(
+                "VOLUNTEERS",
+                "Shelter Visits & Volunteer Opportunities",
+                "../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Volunteers/Volunteers (Thumbnail).jpg",
+                "../whatwedo/volunteer.php"
+            );
+        }
+    }
+
+    // Create instances of each activity
+    $activities = [
+        new FeedingProgram(),
+        new Collaboration(),
+        new SpayNeuterProgram(),
+        new VolunteerProgram()
+    ];
+    ?>
+
+    <!--Header -->
     <header class="bg-[#FFFBE9] shadow-md border-b border-[#00000033]">
         <div class="container mx-auto flex justify-between items-center px-4 lg:px-6 py-4 lg:py-6">
             <a href="../home.php" class="flex items-center space-x-2 lg:space-x-5">
@@ -183,70 +275,12 @@
             <div class="py-12 bg-[#FFF9E5]">
                 <div class="container mx-auto px-4">
                     <div class="flex flex-wrap justify-center gap-8">
-                        
-                        <!-- CARD TEMPLATE START -->
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 flex flex-col">
-                            <div class="h-48 bg-gray-200">
-                                <img src="../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Feeding Programs/Feeding Program (Thumbnail).jpg" alt="Feeding Program" class="object-cover w-full h-full">
-                            </div>
-                            <div class="flex flex-col justify-between p-6 flex-grow">
-                                <div class="text-center">
-                                    <h2 class="text-xl font-bold mb-2">FEEDING PROGRAMS</h2>
-                                    <p class="text-gray-600 mb-4 min-h-[72px]">Helping other rescuers and people through our community pantries and through what we have</p>
-                                </div>
-                                <div class="text-center mt-auto">
-                                    <a href="../whatwedo/feeding-program.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Collaborations -->
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 flex flex-col">
-                            <div class="h-48 bg-gray-200">
-                                <img src="../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Collaborations/Collaborations (Thumbnail).jpg" alt="Collaborations" class="object-cover w-full h-full">
-                            </div>
-                            <div class="flex flex-col justify-between p-6 flex-grow">
-                                <div class="text-center">
-                                    <h2 class="text-xl font-bold mb-2">COLLABORATIONS</h2>
-                                    <p class="text-gray-600 mb-4 min-h-[72px]">Shelter of Light welcomes partnerships with individuals, organizations, and communities who share the same mission of compassion for animals</p>
-                                </div>
-                                <div class="text-center mt-auto">
-                                    <a href="../whatwedo/collaboration.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Programs -->
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 flex flex-col">
-                            <div class="h-48 bg-gray-200">
-                                <img src="../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Programs/Pograms(Thumbnail).jpg" alt="Programs" class="object-cover w-full h-full">
-                            </div>
-                            <div class="flex flex-col justify-between p-6 flex-grow">
-                                <div class="text-center">
-                                    <h2 class="text-xl font-bold mb-2">PROGRAMS</h2>
-                                    <p class="text-gray-600 mb-4 min-h-[72px]">Spay and Neuter Activities</p>
-                                </div>
-                                <div class="text-center mt-auto">
-                                    <a href="../whatwedo/spay-neuter.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Volunteers -->
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden w-80 flex flex-col">
-                            <div class="h-48 bg-gray-200">
-                                <img src="../../images/SHELTER OF LIGHT/WHAT WE DO PAGE/Volunteers/Volunteers (Thumbnail).jpg" alt="Volunteers" class="object-cover w-full h-full">
-                            </div>
-                            <div class="flex flex-col justify-between p-6 flex-grow">
-                                <div class="text-center">
-                                    <h2 class="text-xl font-bold mb-2">VOLUNTEERS</h2>
-                                    <p class="text-gray-600 mb-4 min-h-[72px]">Shelter Visits & Volunteer Opportunities</p>
-                                </div>
-                                <div class="text-center mt-auto">
-                                    <a href="../whatwedo/volunteer.php" class="inline-block bg-[#FFBB00] text-white font-bold px-4 py-2 rounded hover:bg-yellow-500">SEE DETAILS</a>
-                                </div>
-                            </div>
-                        </div>
+                        <?php
+                        // Render each activity card
+                        foreach ($activities as $activity) {
+                            echo $activity->renderCard();
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -254,51 +288,50 @@
     </main>
 
     <!-- Footer -->
-<hr class="border-t border-[#00000033] w-full my-0">
-<footer class="full-width-section bg-[#FFFBE9] text-[#5F4B32] py-6">
-    <div class="container mx-auto px-4 lg:px-6">
-        <div class="flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
-            
-            <div class="order-2 lg:order-1 flex flex-col items-center lg:items-start gap-2">
-                <p class="font-bold whitespace-nowrap">GET IN TOUCH WITH US</p>
-                <div class="flex justify-center gap-4">
-             
-
-                    <a href="https://web.facebook.com/shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.instagram.com/shelteroflightph?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-[#5F4B32] hover:text-[#FFBB00]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://x.com/shelteroflight" class="text-[#5F4B32] hover:text-[#FFBB00]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.youtube.com/@shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                        </svg>
-                    </a>
+    <hr class="border-t border-[#00000033] w-full my-0">
+    <footer class="full-width-section bg-[#FFFBE9] text-[#5F4B32] py-6">
+        <div class="container mx-auto px-4 lg:px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-4 text-center lg:text-left">
+                
+                <div class="order-2 lg:order-1 flex flex-col items-center lg:items-start gap-2">
+                    <p class="font-bold whitespace-nowrap">GET IN TOUCH WITH US</p>
+                    <div class="flex justify-center gap-4">
+                 
+                        <a href="https://web.facebook.com/shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/shelteroflightph?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-[#5F4B32] hover:text-[#FFBB00]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/shelteroflight" class="text-[#5F4B32] hover:text-[#FFBB00]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.youtube.com/@shelteroflightph" class="text-[#5F4B32] hover:text-[#FFBB00]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
+                
+                <div class="order-1 lg:order-2">
+                    <p>&copy; Shelter of Light. All Rights Reserved.</p>
+                </div>
+                
+                <div class="order-3 text-center lg:text-right">
+                    <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
+                    <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST-CICS</p>
+                </div>
+                
             </div>
-            
-            <div class="order-1 lg:order-2">
-                <p>&copy; Shelter of Light. All Rights Reserved.</p>
-            </div>
-            
-            <div class="order-3 text-center lg:text-right">
-                <p class="font-bold whitespace-nowrap">CREATORS OF THIS WEBSITE</p>
-                <p class="whitespace-nowrap">BRIONES | CABANADA | LIZEN<br>UST-CICS</p>
-            </div>
-            
         </div>
-    </div>
-</footer>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
